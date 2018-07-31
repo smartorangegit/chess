@@ -53,93 +53,9 @@ gulp.task('home-js', function() {
 });
 // Home end
 
-// News start
-gulp.task('news-js', function() {
-	return gulp.src([
-		'src/js/news.js',
-		])
-	.pipe(concat('news.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// News end
-
-// salon start
-gulp.task('salon-js', function() {
-	return gulp.src([
-		'src/js/salon.js',
-		])
-	.pipe(concat('salon.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// salon end
-
-// spa start
-gulp.task('spa-js', function() {
-	return gulp.src([
-		'src/js/spa.js',
-		])
-	.pipe(concat('spa.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// spa end
-
-// clinic start
-gulp.task('clinic-js', function() {
-	return gulp.src([
-		'src/js/clinic.js',
-		])
-	.pipe(concat('clinic.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// clinic end
-
-// contact start
-gulp.task('contact-js', function() {
-	return gulp.src([
-		'src/js/contact.js',
-		])
-	.pipe(concat('contact.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// contact end
-
-// fitness start
-gulp.task('fitness-js', function() {
-	return gulp.src([
-		'src/js/fitness.js',
-		])
-	.pipe(concat('fitness.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// fitness end
-
-// photo-studio start
-gulp.task('photo-studio-js', function() {
-	return gulp.src([
-		'src/js/photo-studio.js',
-		])
-	.pipe(concat('photo-studio.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-// photo-studio end
-
 gulp.task('js', [
 	'common-js',
-	'home-js',
-	'news-js',
-	'salon-js',
-	'spa-js',
-	'clinic-js',
-	'fitness-js',
-	'photo-studio-js',
-	'contact-js'
+	'home-js'
 	], function() {
 	return gulp.src([
 		'src/js/common.js',
@@ -152,7 +68,7 @@ gulp.task('js', [
 
 gulp.task('browser-sync', function() {
 	browserSync({
-		proxy: "sandler/dist",
+		proxy: "chess/dist",
     	notify: false // Отключаем уведомления
 	});
 });

@@ -1,0 +1,37 @@
+.footer {
+	padding: 15px 0;
+	&__logo {
+		dispaly: block;
+		width: 80px;
+		margin-bottom: 12px;
+	}
+
+	&__text {
+		display: inline-block;
+		font-size: 1rem;
+		font-family: $gotham;
+
+			&_mr {
+				margin-right: 45px;
+			}
+
+		&_blue {
+			color: $blue;
+			margin-bottom: 20px;
+		}
+	}
+
+	&-bottom {
+		position: relative;
+		width: 100%;
+		display: flex;
+		align-items: flex-end;
+		/*justify-content: space-between;*/
+	}
+}
+
+.smart-orange-logo {
+	position: absolute;
+	right: 0;
+	top: -28px;
+}

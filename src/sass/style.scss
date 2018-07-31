@@ -9,30 +9,17 @@
 @import 'libs/datapick-classic.css';
 @import 'libs/slick.scss';
 @import 'libs/slick-theme.scss';
+@import 'libs/ion-range-custom.scss';
 
+@import 'common/common';
+@import 'common/common-media';
 @import 'header/header';
 @import 'header/header-media';
 @import 'footer/footer';
 @import 'footer/footer-media';
-@import 'common/common';
-@import 'common/common-media';
 @import 'home/home';
 @import 'home/home-media';
-@import 'news/news';
-@import 'news/news-media';
-@import 'open-news/open-news';
-@import 'open-news/open-news-media';
-@import 'salon/salon';
-@import 'salon/salon-media';
-@import 'contact/contact';
-@import 'contact/contact-media';
-@import 'yulia/yulia';
-@import 'yulia/yulia-media';
-@import 'restaurant/restaurant';
-@import 'restaurant/restaurant-media';
+// @import 'footer/footer';
+// @import 'footer/footer-media';
 
-@import 'popup-form/popup-form';
-@import 'popup-form/popup-form-media';
-@import 'preloader/preloader';
 
-@import '_animation-class.scss';

@@ -1,0 +1,80 @@
+body {
+	background-color: #F9F9F9;
+	font-family: $gotham;
+}
+
+.container {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+.button {
+	position: relative;
+	padding: 0 10px;
+	line-height: 35px;
+	background-color: transparent;
+	border-radius: 5px;
+	border-top: 2px solid $blue;
+	border-bottom: 2px solid #91E2FB;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	box-sizing: border-box;
+	cursor: pointer;
+	color: $dark-gray;
+	font-family: $gothamMedium;
+	font-size: 1rem;
+	text-transform: uppercase;
+	transition: all 0.1s;
+
+	&:before, &:after {
+		@extend %absolute-center_v;
+		width: 2px;
+		height: 98%;
+		border-radius: 50%; 
+		background: linear-gradient(to bottom, $blue, #91E2FB);
+		content: " ";
+	}
+
+	&:before {
+		left: -1px;
+	}
+	&:after {
+		right: -1px;
+	}
+
+	&:hover {
+		background: linear-gradient(to bottom, $blue, #91E2FB);
+		color: #fff;
+	}
+}
+
+.slider__button {
+	position: absolute;
+	top: 50%;
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	transition: all 0.5s;
+	cursor: pointer;
+
+	&-next {
+		right: 8%;
+		transform: translateY(-50%) rotate(-180deg);
+	}
+
+	&-prev {
+		left: 8%;
+		transform: translateY(-50%);
+	}
+
+	&-icon {
+		width: 40px;
+		height: 40px;
+		fill: #fff;
+	}
+}
+

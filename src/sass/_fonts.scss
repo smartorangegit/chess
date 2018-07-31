@@ -1,48 +1,23 @@
 @font-face {
-    font-family: 'HelveticaLight';
-    src: url('../fonts/HelveticaNeue-Light.woff2') format('woff2'),
-        url('../fonts/HelveticaNeue-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'SolomonSansNormal';
-    src: url('../fonts/Solomon-Sans-Normal.woff2') format('woff2'),
-        url('../fonts/Solomon-Sans-Normal.woff') format('woff');
+    font-family: 'gotham';
+    src: url('../fonts/GothamPro.woff2') format('woff2'),
+        url('../fonts/GothamPro.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Helvetica';
-    src: url('../fonts/HelveticaNeue.woff2') format('woff2'),
-        url('../fonts/HelveticaNeue.woff') format('woff');
-    font-weight: normal;
+    font-family: 'gothamMedium';
+    src: url('../fonts/GothamPro-Medium.woff2') format('woff2'),
+        url('../fonts/GothamPro-Medium.woff') format('woff');
+    font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'DinBold';
-    src: url('../fonts/DINPro-CondensedBold.woff2') format('woff2'),
-        url('../fonts/DINPro-CondensedBold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'HelveticaULight';
-    src: url('../fonts/HelveticaNeue-UltraLight.woff2') format('woff2'),
-        url('../fonts/HelveticaNeue-UltraLight.woff') format('woff');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'SolomonLight';
-    src: url('../fonts/Solomon-Sans-Light.woff2') format('woff2'),
-        url('../fonts/Solomon-Sans-Light.woff') format('woff');
+    font-family: 'gothamLight';
+    src: url('../fonts/GothamPro-Light.woff2') format('woff2'),
+        url('../fonts/GothamPro-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
 }
-
