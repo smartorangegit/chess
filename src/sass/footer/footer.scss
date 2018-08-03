@@ -1,5 +1,13 @@
+.footer-clear {
+	padding-bottom: 135px;
+}
 .footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 	padding: 15px 0;
+
 	&__logo {
 		dispaly: block;
 		width: 80px;

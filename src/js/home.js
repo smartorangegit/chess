@@ -11,15 +11,6 @@ $('.home-slider').slick({
 	nextArrow: '.home-slider__button-next'
 });
 
-$('.js-filter__range').ionRangeSlider({
-        min: 0,
-        max: 600,
-        type: 'double',
-        prettify: true,
-        hide_min_max: true,
-        hide_from_to: true
-    });
-
 // slider change text
 function changeText(slider, textBlock) {
     var text = textBlock.find(".text-element-js");

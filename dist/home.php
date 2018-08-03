@@ -120,37 +120,37 @@
                             </select>
                         </div>
                         <div class="home-filter-checkbox-wrap">
-                            <span class="home-filter-checkbox__text">Количество комнат:</span>
-                            <ul class="home-filter-checkbox-list">
-                                <li class="home-filter-checkbox-list__item">
-                                    <span class="home-filter-checkbox__text">1</span> 
-                                    <input id="home-checkbox_1" type="checkbox" class="home-filter-checkbox">
-                                    <label for="home-checkbox_1" class="home-filter-checkbox-list__label"></label>
+                            <span class="filter-checkbox__text">Количество комнат:</span>
+                            <ul class="filter-checkbox-list">
+                                <li class="filter-checkbox-list__item">
+                                    <span class="filter-checkbox__text">1</span> 
+                                    <input id="checkbox_1" type="checkbox" class="filter-checkbox">
+                                    <label for="checkbox_1" class="filter-checkbox-list__label"></label>
                                 </li>
-                                <li class="home-filter-checkbox-list__item">
-                                    <span class="home-filter-checkbox__text">2</span> 
-                                    <input id="home-checkbox_2" type="checkbox" class="home-filter-checkbox">
-                                    <label for="home-checkbox_2" class="home-filter-checkbox-list__label"></label>
+                                <li class="filter-checkbox-list__item">
+                                    <span class="filter-checkbox__text">2</span> 
+                                    <input id="checkbox_2" type="checkbox" class="filter-checkbox">
+                                    <label for="checkbox_2" class="filter-checkbox-list__label"></label>
                                 </li>
-                                <li class="home-filter-checkbox-list__item">
-                                    <span class="home-filter-checkbox__text">3</span> 
-                                    <input id="home-checkbox_3" type="checkbox" class="home-filter-checkbox">
-                                    <label for="home-checkbox_3" class="home-filter-checkbox-list__label"></label>
+                                <li class="filter-checkbox-list__item">
+                                    <span class="filter-checkbox__text">3</span> 
+                                    <input id="checkbox_3" type="checkbox" class="filter-checkbox">
+                                    <label for="checkbox_3" class="filter-checkbox-list__label"></label>
                                 </li>
-                                <li class="home-filter-checkbox-list__item">
-                                    <span class="home-filter-checkbox__text">4</span> 
-                                    <input id="home-checkbox_4" type="checkbox" class="home-filter-checkbox">
-                                    <label for="home-checkbox_4" class="home-filter-checkbox-list__label"></label>
+                                <li class="filter-checkbox-list__item">
+                                    <span class="filter-checkbox__text">4</span> 
+                                    <input id="checkbox_4" type="checkbox" class="filter-checkbox">
+                                    <label for="checkbox_4" class="filter-checkbox-list__label"></label>
                                 </li>
-                                <li class="home-filter-checkbox-list__item">
-                                    <span class="home-filter-checkbox__text">5</span> 
-                                    <input id="home-checkbox_5" type="checkbox" class="home-filter-checkbox">
-                                    <label for="home-checkbox_5" class="home-filter-checkbox-list__label"></label>
+                                <li class="filter-checkbox-list__item">
+                                    <span class="filter-checkbox__text">5+</span> 
+                                    <input id="checkbox_5" type="checkbox" class="filter-checkbox">
+                                    <label for="checkbox_5" class="filter-checkbox-list__label"></label>
                                 </li>
-                                <li class="home-filter-checkbox-list__item">
-                                    <span class="home-filter-checkbox__text">СВ</span> 
-                                    <input id="home-checkbox_6" type="checkbox" class="home-filter-checkbox">
-                                    <label for="home-checkbox_6" class="home-filter-checkbox-list__label"></label>
+                                <li class="filter-checkbox-list__item">
+                                    <span class="filter-checkbox__text">Св</span> 
+                                    <input id="checkbox_6" type="checkbox" class="filter-checkbox">
+                                    <label for="checkbox_6" class="filter-checkbox-list__label"></label>
                                 </li>
                             </ul>
                         </div>
@@ -413,7 +413,6 @@
             </div>
         </div>
     </section>
-
     
     <?php include_once('includes/footer.php'); ?> 
 

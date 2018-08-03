@@ -53,8 +53,20 @@ gulp.task('home-js', function() {
 });
 // Home end
 
+// filter start
+gulp.task('filter-js', function() {
+	return gulp.src([
+		'src/js/filter.js',
+		])
+	.pipe(concat('filter.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'));
+});
+// filter end
+
 gulp.task('js', [
 	'common-js',
+	'filter-js',
 	'home-js'
 	], function() {
 	return gulp.src([

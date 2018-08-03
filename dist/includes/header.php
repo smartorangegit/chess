@@ -1,7 +1,7 @@
 <header class="header header-home">
 	<div class="container">
 		<a href="#" class="logo__link">
-			<img src="img/logo.png" alt="" class="logo__image">
+			<img src="img/logo.svg" alt="" class="logo__image">
 		</a>
 		<nav class="nav header__nav">
 			<ul class="nav-list">
