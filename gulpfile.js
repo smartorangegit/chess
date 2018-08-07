@@ -64,9 +64,21 @@ gulp.task('filter-js', function() {
 });
 // filter end
 
+// profile start
+gulp.task('profile-js', function() {
+	return gulp.src([
+		'src/js/profile.js',
+		])
+	.pipe(concat('profile.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'));
+});
+// profile end
+
 gulp.task('js', [
 	'common-js',
 	'filter-js',
+	'profile-js',
 	'home-js'
 	], function() {
 	return gulp.src([
@@ -86,7 +98,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('sass', function() {
-	return gulp.src(['src/sass/**/*.sass', 'src/sass/**/*.scss'])
+	return gulp.src(['src/sass/**/*.sass', 'src/sass/**/*.scss', 'src/sass/**/*.css'])
 	.pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))

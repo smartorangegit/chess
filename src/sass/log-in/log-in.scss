@@ -1,0 +1,122 @@
+.log__heading {
+	font-size: 18/16*1rem;
+	text-transform: uppercase;
+	color: $blue;
+	line-height: 55px;
+	background-color: #FCFCFD;
+	text-align: center;
+}
+
+.log__descript {
+	padding: 15px 0 23px 0;
+}
+
+.log__descript-text {
+	text-align: center;
+	color: $dark-gray;
+	line-height: 1.5;
+
+	&_light {
+		color: $blue;
+		font-family: $gothamLight;
+		font-size: 14/16*1rem;
+	}
+}
+
+.form-wrap {
+	width: 100%;
+	padding: 27px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;	
+	margin-bottom: 75px;
+}	
+
+.form {
+	width: 350px;
+
+	&__input {
+		width: 100%;
+		margin-top: 12px;
+		height: 28px;
+		border-radius: 5px;
+		border: 1px solid $light-gray;
+		color: $light-gray;
+		padding-left: 8px;
+		color: $dark-gray;
+		font-family: $gotham;
+		font-size: 18/16*1rem;
+		// outline: none;
+		box-sizing: border-box;
+
+		// &:focus {
+		// 	border-color: red;
+		// }
+
+		&-wrap {
+			width: 100%;
+			margin-bottom: 12px;
+		}
+	}
+
+	&__label {
+		font-size: 18/16*1rem;
+		color: $dark-gray;
+		font-family: $gotham;
+	}
+
+	&__button {
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		outline: none;
+		border: none;
+		background-color: $light-gray;
+		text-transform: uppercase;
+		padding: 0 10px;
+		height: 30px;
+		border-radius: 5px;
+		color: #fff;
+		cursor: pointer;
+		transition: all 0.3s;
+		font-size: 1rem;
+
+		&:hover {
+			color: $dark-gray;
+		}
+
+		&_sign-in {
+			background-color: $blue;
+			padding: 0 55px;
+		}
+	}
+
+	&__link {
+		color: $dark-gray;
+		font-size: 14/16*1rem;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+}
+
+.form__bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+.check-wrap {
+	display: flex;
+	align-items: center;
+}
+
+.sig-in-check {
+	margin-right: 5px;
+}
+.sign-in-check__text {
+	font-size: 14/16*1rem;
+}

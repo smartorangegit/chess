@@ -11,26 +11,7 @@ $('.home-slider').slick({
 	nextArrow: '.home-slider__button-next'
 });
 
-// slider change text
-function changeText(slider, textBlock) {
-    var text = textBlock.find(".text-element-js");
-    var heading = textBlock.find(".heading-element-js");
-
-    text[0].style.display="block";
-    if(heading.length != 0) {
-        heading[0].style.display="block";
-    }
-
-
-    slider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
-        text.css("display", "none");
-        if(heading.length != 0) {
-            heading.css("display", "none");
-            heading[nextSlide].style.display="block";
-        }
-        text[nextSlide].style.display="block";
-    });
-};
-
+// change other content when change current slide
+    //this function locate in common.js
 changeText($(".home-slider"), $(".slide-info-list"));
-// end__slider change text
+// end__change other content when change current slide

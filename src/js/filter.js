@@ -10,20 +10,20 @@ $(".filter-full__button_more").on("click", function() {
     $(".filter-settings").slideToggle();
 });
 
-
-// document.querySelectorAll(".entrance-flats__item").forEach(function(item) {
-//     var data = item.getAttribute("data-color");
-//     var box = $(item).find(".entrance-flats__color-box");
-//     if(data == "green") {
-//         box.addClass("color-box_green");
-//     } else if(data == "yellow") {
-//         box.addClass("color-box_yellow");
-//     } else if(data == "gray") {
-//         box.addClass("color-box_gray");
-//     } else if(data == "dark-gray") {
-//         box.addClass("color-box_dark-gray");
-//     } 
-// });
+// cahnge color-box color
+document.querySelectorAll(".color-box").forEach(function(item) {
+    var data = item.getAttribute("data-color");
+    if(data == "green") {
+        $(item).addClass("color-box_green");
+    } else if(data == "yellow") {
+        $(item).addClass("color-box_yellow");
+    } else if(data == "gray") {
+        $(item).addClass("color-box_gray");
+    } else if(data == "dark-gray") {
+        $(item).addClass("color-box_dark-gray");
+    } 
+});
+// end__cahnge color-box color
 
 
 (function entranceShow() {
@@ -273,8 +273,14 @@ $(".view-list__item").on("click", function() {
     if(index === 0) {
         $(".result-plan").fadeIn();
         $(".result-tile-wrap").css("display", "none");
+        $(".result-list").css("display", "none");
     } else if(index === 2) {
         $(".result-tile-wrap").fadeIn();
+        $(".result-list").css("display", "none");
+        $(".result-plan").css("display", "none");
+    } else if(index === 1) {
+        $(".result-list").fadeIn();
+        $(".result-tile-wrap").css("display", "none");
         $(".result-plan").css("display", "none");
     }
 });

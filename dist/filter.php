@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.min.css">
-    <title>apparmens-plan</title>
+    <title>Filter</title>
 </head>
     <body>
         <?php include_once('includes/header.php');?>
@@ -786,6 +786,74 @@
                         <option value="">2</option>
                         <option value="">1</option>
                     </select>
+                </div>
+                <div class="table_shadow">
+                    <div class="table-container">
+                        <table class="filter-table">
+                            <thead class="filter-table__head">
+                                <th class="filter-table__heading filter-table_no_padding">Этаж</th>
+                                <th class="filter-table__heading">Статус</th>
+                                <th class="filter-table__heading">Гостинная,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Спальня,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Ванная,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Гостинная,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Ванная,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
+                            </thead>    
+                            <tbody>
+                                <tr class="filter-table__row">
+                                    <td class="filter-table__col filter-table_no_padding">1</td>
+                                    <td class="filter-table__col"><div data-color="gray" class="color-box filter-table__color-box"></div></td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">24</td>
+                                </tr>
+                                <tr class="filter-table__row">
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col"><div data-color="green" class="color-box filter-table__color-box"></div></td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                </tr>
+                                <tr class="filter-table__row">
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col"><div data-color="yellow" data-color="dark-gray" class="color-box filter-table__color-box"></div></td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                </tr>
+                                <tr class="filter-table__row">
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col"><div data-color="dark-gray" class="color-box filter-table__color-box"></div></td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                    <td class="filter-table__col">1</td>
+                                    <td class="filter-table__col">45</td>
+                                    <td class="filter-table__col">24</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>   
         </section>
