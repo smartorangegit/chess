@@ -22,11 +22,8 @@
                     <li class="location-list__item">
                         <a href="#" class="location-list__link">Квартал RYBALSKY</a>
                     </li>
-                    <li class="location-list__item">
-                        <a href="#" class="location-list__link">RYBALSKY - ДОМ 3</a>
-                    </li>
                     <li class="location-list__item location-list__item_active">
-                        <a href="#" class="location-list__link location-list__link_last">Квартира № 89</a>
+                        <a href="#" class="location-list__link location-list__link_last">RYBALSKY - ДОМ 3</a>
                     </li>
                 </ul>
             </div>

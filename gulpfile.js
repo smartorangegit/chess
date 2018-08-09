@@ -75,10 +75,22 @@ gulp.task('profile-js', function() {
 });
 // profile end
 
+// residence start
+gulp.task('residence-js', function() {
+	return gulp.src([
+		'src/js/residence.js',
+		])
+	.pipe(concat('residence.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'));
+});
+// residence end
+
 gulp.task('js', [
 	'common-js',
 	'filter-js',
 	'profile-js',
+	'residence-js',
 	'home-js'
 	], function() {
 	return gulp.src([
