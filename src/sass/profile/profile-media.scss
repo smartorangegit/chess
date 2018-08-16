@@ -1,0 +1,16 @@
+@media screen and (max-width: 1023px) {
+	.profile-form {
+		width: 100%;
+
+		&-container {
+			width: 90%;
+		}	
+		&-top {
+			width: 100%;
+		}
+	}
+
+	.profile-flat-slider-wrap {
+		height: 270px;
+	}
+}

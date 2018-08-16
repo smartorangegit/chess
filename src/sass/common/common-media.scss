@@ -1,0 +1,48 @@
+@media screen and (max-width: 1220px) {
+	.container {
+		width: 100%;
+		padding: 0 10px;
+		box-sizing: border-box;
+	}
+	.logo__link {
+		left: 10px;
+	}
+
+	.button {
+		line-height: 30px;
+	}
+
+	.location {
+		margin-bottom: 15px;
+	}
+
+	.building {
+		width: 49%;
+
+		&__heading {
+			font-size: 1.2rem;
+		}
+	}
+	.building-flats-list {
+		&__num {
+			width: 30px;
+			height: 30px;
+			font-size: 1rem;
+		}
+		&__text {
+			font-size: 0.8rem;
+		}
+	}
+	.building-info-list {
+		&__text {
+			font-size: 0.9rem;
+		}
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.button {
+		line-height: 20px;
+		font-size: 0.8rem;
+	}
+}

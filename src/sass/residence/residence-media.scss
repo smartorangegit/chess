@@ -1,0 +1,61 @@
+@media screen and (max-width: 1220px) {
+	.residence-slider-wrap {
+		height: 300px;
+	}
+	.full-image-slider-wrap {
+		height: 400px;
+	}
+	.full-image-container {
+		width: 825px;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.residence-slider-wrap {
+		height: 240px;
+	}
+	.full-image-slider-wrap {
+		height: 400px;
+	}
+	.full-image-container {
+		width: 825px;
+	}
+
+	.residence-main-content {
+		&-container {
+			padding-top: 15px;
+		}
+
+		&__heading {
+			margin-bottom: 15px;
+			font-size: 1rem;
+		}
+
+		p {
+			font-size: 0.8rem;
+		}
+	}
+
+	.residence-main-list_home {
+		width: 100%;
+	}
+
+	.residence-main-list_yard__item span, .residence-main-list_home__item span {
+		font-size: 0.8rem;
+	}
+
+	.residence-building-list {
+		flex-direction: column;
+		align-items: center;
+	}
+	.residence-building__item {
+		width: 75%;
+	}
+
+	.full-image-container {
+		width: 600px;
+	}
+	.full-image-slider-nav {
+		display: none;
+	}
+}

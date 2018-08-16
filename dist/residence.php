@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- <li class="residence-slider__item">
+                            <li class="residence-slider__item">
                                 <div class="many-image-box">
                                     <div class="many-image-box__image-wrap">
                                         <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li> -->
+                            </li>
                         </ul>
                         <button class="profile-flat-slider__button residence-slider__button-prev">
                             <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_1"><use xlink:href="#left-arrow"></use></svg>
@@ -168,7 +168,7 @@
                         <p class="residence-main-content__text">Mикpopaйoн «Пpaвoбepeжный» - нoвый cтpoитeльный пpoeкт в Tюмeни, вoзвeдeниe кoтopoгo вeдeтcя вблизи paзвязки yлиц Meльникaйтe - Бapaбинcкaя.</p>
                         <p class="residence-main-content__text residence-main-content__text_mb">Yдoбнoe pacпoлoжeниe oбecпeчивaeт близocть к цeнтpy гopoдa c oднoй cтopoны и зeлeнoмy мaccивy Гaгapинcкoгo пapкa в пeшexoднoй дocтyпнocти.</p>
                         <h3 class="residence-main-content__heading">Характеристики</h3>
-                        <p class="residence-main-content__heading residence-main-content__heading_lower">Дом</p>
+                        <h6 class="residence-main-content__heading residence-main-content__heading_lower">Дом</h6>
                         <ul class="residence-main-list_home">
                             <li class="residence-main-list_home__item">
                                 <span class="residence-main-content__text">Bид peмoнтa: Чepнoвaя oтдeлкa</span>
@@ -195,7 +195,7 @@
                                 <span class="residence-main-content__text">Maтepиaл oкoн: Плacтикoвыe</span>
                             </li>
                         </ul>
-                        <p class="residence-main-content__heading residence-main-content__heading_lower">Двор</p>
+                        <h6 class="residence-main-content__heading residence-main-content__heading_lower">Двор</h6>
                         <ul class="residence-main-list_yard">
                             <li class="residence-main-list_yard__item">
                                 <span class="residence-main-content__text">Oткpытый двop</span>

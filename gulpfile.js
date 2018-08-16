@@ -42,6 +42,17 @@ gulp.task('common-js', function() {
 });
 // Common
 
+// header start
+gulp.task('header-js', function() {
+	return gulp.src([
+		'src/js/header.js',
+		])
+	.pipe(concat('header.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'));
+});
+// header end
+
 // Home start
 gulp.task('home-js', function() {
 	return gulp.src([
@@ -88,6 +99,7 @@ gulp.task('residence-js', function() {
 
 gulp.task('js', [
 	'common-js',
+	'header-js',
 	'filter-js',
 	'profile-js',
 	'residence-js',

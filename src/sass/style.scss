@@ -3,7 +3,7 @@
 @import 'mixins';
 @import 'fonts.scss';
 
-@import 'libs/inputmask.css';
+@import 'libs/inputmask.scss';
 @import 'libs/datapick-classic.date.css';
 @import 'libs/datapick-classic.time.css';
 @import 'libs/datapick-classic.css';
@@ -12,22 +12,30 @@
 @import 'libs/ion-range-custom.scss';
 
 @import 'common/common';
-@import 'common/common-media';
+// @import 'common/common-media';
 @import 'header/header';
-@import 'header/header-media';
+// @import 'header/header-media';
 @import 'footer/footer';
-@import 'footer/footer-media';
+// @import 'footer/footer-media';
 @import 'filter/filter';
-@import 'filter/filter-media';
+// @import 'filter/filter-media';
 @import 'home/home';
-@import 'home/home-media';
+// @import 'home/home-media';
 @import 'log-in/log-in';
-@import 'log-in/log-in-media';
+// @import 'log-in/log-in-media';
 @import 'flat/flat';
-@import 'flat/flat-media';
+// @import 'flat/flat-media';
 @import 'profile/profile';
-@import 'profile/profile-media';
+// @import 'profile/profile-media';
 @import 'residence/residence';
+// @import 'residence/residence-media';
+
+@import 'common/common-media';
+@import 'header/header-media';
+@import 'footer/footer-media';
+@import 'filter/filter-media';
+@import 'home/home-media';
+@import 'log-in/log-in-media';
+@import 'flat/flat-media';
+@import 'profile/profile-media';
 @import 'residence/residence-media';
-
-

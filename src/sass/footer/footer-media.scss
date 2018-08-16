@@ -1,0 +1,34 @@
+
+@media screen and (max-width: 1220px) {
+	.smart-orange-logo {
+		top: -80px;
+	}
+
+	.footer-bottom {
+		justify-content: space-between;
+	}
+	.footer__text_mr {
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.footer-clear {
+		padding-bottom: 180px;
+	}
+
+	.smart-orange-logo {
+		top: -80px;
+	}
+
+	.footer-bottom {
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	.footer__text {
+		width: 100%;
+		text-align: center;
+		margin-bottom: 10px;
+		font-size: 0.9rem;
+	}
+}

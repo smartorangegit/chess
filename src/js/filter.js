@@ -3,6 +3,7 @@ $(".filter-top__button_more").on("click", function() {
     $(this).toggleClass("filter-top__button_more_active");
     $(this).find(".filter-top__button-icon").toggleClass("filter-top__button-icon_active");
     $(".filter-full").slideToggle();
+     $(".filter-settings").slideUp();
 });
 $(".filter-full__button_more").on("click", function() {
     $(this).toggleClass("filter-full__button_more_active");
@@ -27,7 +28,6 @@ document.querySelectorAll(".color-box").forEach(function(item) {
 
 
 (function entranceShow() {
-    
     //test array
     var third = [
                    [
@@ -286,5 +286,411 @@ $(".view-list__item").on("click", function() {
 });
 // end__change-view
 
+// flat-tooltip-show
+$(".entrance-flats__item").hover(
+    function() {
+        var wrapperTop = $(".result-tile-wrap").offset().top,
+            wrapperLeft = $(".result-tile-wrap").offset().left;
+
+        var elemenTop = $(this).offset().top,
+            elementLeft = $(this).offset().left;
+
+        var diffTop = elemenTop - wrapperTop,
+            diffLeft = elementLeft - wrapperLeft;
+
+        var tooltip = $('.entrance-tooltip'),
+            tooltipHeight = tooltip.height(),
+            tooltipWidth = tooltip.width();
+
+        tooltip.css({
+            top: diffTop - tooltipHeight - 25,
+            left: diffLeft - 2*tooltipWidth - 25,
+            opacity: "1"
+        });
+    },
+    function() {
+        $('.entrance-tooltip').css({
+            opacity: "0",
+            left: "-999px"
+        });
+    }
+);
+// end__flat-tooltip-show
 
 
+// filter
+var filter = {
+    count: "12",
+    typ: "1",
+    page: "1",
+    option: {
+        price: [0, 1000000],
+        all_room: [0, 20000],
+        rooms: []
+    }
+}
+var myJSON = {};
+
+// get_ranges_value
+function ranges() {
+    var rangeItem = $('.range__item');
+    for(var i = 0; i < rangeItem.length; i++) {
+        var inputInfo = $(rangeItem[i]).find('.js-filter__hidden-values');
+        var rangesSlaider = $(rangeItem[i]).find('.js-filter__range');
+        var min = inputInfo.attr("min"),
+            max = inputInfo.attr("max");
+
+        // set defoult value
+        inputInfo.siblings('.js-filter__text_min').html(min);
+        inputInfo.siblings('.js-filter__text_max').html(max);
+
+        // initialize rangeSlider
+        rangesSlaider.ionRangeSlider({
+            min: min,
+            max: max,
+            type: 'double',
+            prettify: true,
+            onChange: onRangeChange
+        });
+    }
+};
+ranges();
+function onRangeChange(e) {
+    var target = e.input;
+    for(var i = 0; i < target.length; i++) {
+        target.siblings('.js-filter__text_min').html(e.from);
+        target.siblings('.js-filter__text_max').html(e.to);
+        var name = target.siblings('.js-filter__hidden-values').attr('name');
+        // console.log(name);
+        filter.option[name][0] = +e.from;
+        filter.option[name][1] = +e.to;
+    }
+}
+// end__get_ranges_value
+
+// get_selects_value
+function citySelect() {
+    var value = document.getElementById("city").value;
+    filter.option["city"] = value;
+}
+function districtSelect() {
+    var value = document.getElementById("district").value;
+    filter.option["district"] = value;
+}
+function stateSelect() {
+    var value = document.getElementById("state").value;
+    filter.option["state"] = value;
+}
+function developerSelect() {
+    var value = document.getElementById("developer").value;
+    filter.option["developer"] = value;
+    console.log(filter);
+}
+// end__get_selects_value
+
+
+// get_number_of_rooms
+$(".filter-checkbox").on("click", function() {
+    var roomNumber = $(this).attr("value");
+    filter.option["rooms"].push(+roomNumber);
+});
+// end__get_number_of_rooms
+
+// show_selected_residance
+function residenceShow(residence) {
+    function info (residenceArr) {
+        var markup = "";
+        residenceArr.forEach(function(item, i) {
+            markup += "<li class='residence-list__item'>" + 
+                    "<a href='residence.php'>" +
+                        "<h4 class='residence-list__heading'>" + item.project_name + "</h4>" +
+                        "<p class='residence-list__link'>" + item.project_site + "</p>" +
+                        "<div class='residence-list__image-wrap'>" +
+                            "<img src='" + item.project_img + "' alt='image' class='residence-list__image'>" +
+                            "<span class='residence-list__price'>от " + item.project_price + "грн. м<sup>2</sup></span>" +
+                        "</div>" +
+                        "<ul class='residence-list-info'>" +
+                            "<li class='residence-list-info__item'>" +
+                                "<svg class='residence-list-info__icon'><use xlink:href='#placeholder'></use></svg>" +
+                                "<p class='residence-list-info__text'>" + item.project_metro + "<br><span class='residence-list-info__text_medium'>" + item.project_adress + "</span></p>" +
+                            "</li>" +
+                            "<li class='residence-list-info__item'>" +
+                                "<svg class='residence-list-info__icon'><use xlink:href='#price'></use></svg>" +
+                                "<p class='residence-list-info__text'>Минимальная стоимость квартиры – <span class='residence-list-info__text_medium'>от " + item.project_price_flat + "грн.</span></p>" +
+                            "</li>" +
+                            "<li class='residence-list-info__item'>" +
+                                "<svg class='residence-list-info__icon residence-list-info__icon_rotate'><use xlink:href='#print'></use></svg>" +
+                                "<p class='residence-list-info__text'>Помещений – <span class='residence-list-info__text_medium'>" +item.project_rooms +"</span></p>" +
+                            "</li>" +
+                            "<li class='residence-list-info__logo-wrap'>" +
+                                "<img src='" + item.development_img + "' alt='logo' class='residence-list-info__logo'>" +
+                            "</li>" +
+                        "</ul>" +
+                    "</a>" +
+                "</li>"
+        });
+        return markup;
+    }
+
+    $(".residence-list").append(info(residence));
+};
+// end__show_selected_residance
+
+// show_selected_flats
+function flatsShow(flats) {
+    function info (flatsArr) {
+        var markup = "";
+        flatsArr.forEach(function(item, i) {
+           markup += "<li class='result-plan-list__item'>" +
+                        "<img src='img/filter/plan/plan_1.png' alt='plan-image' class='result-plan-list__image'>" +
+                        "<div class='result-plan-info'>" +
+                            "<div class='result-plan-info__price'>" +
+                                "<p class='result-plan-info__text'>" + item.common_cost + " грн</p>" +
+                                "<p class='result-plan-info__text'>" + item.meters + "м<sup>2</sup> – " + item.meter_cost + " грн/м<sup>2</sup></p>" +
+                                "<div class='color-box result-plan__color-box color-box_" + item.status + "'></div>" +
+                            "</div>" +
+                            "<div class='result-plan-info__floor'>" +
+                                "<p class='result-plan-info__text'>" + item.floor + " этаж</p>" +
+                                "<p class='result-plan-info__text'>№ " + item.flat_num + "</p>" +
+                            "</div>" +
+                        "</div>" +
+                        "<a href='#' class='rooms__link result-plan__rooms-link'>" + item.rooms_num +"K</a>" +
+                        "<a href='#' class='button result-plan__button'>Подробнее</a>" +
+                    "</li>"
+        });
+        return markup;
+    }
+
+    $(".result-plan-list").append(info(flats));
+};
+// flatsShow();
+// end__show_selected_flats
+
+// pagination
+var paginAjaxObj = {
+    url: "/ajax",
+    type: "POST",
+    dataType: "json",
+    data: myJSON,
+    success: function(){
+       console.log("success");
+    },
+    error: function(){
+       alert("Error");
+    }
+}
+
+function paginationItemShow(quantity) {
+    var quantityToShow = 12;
+    var intengerResult = Math.floor(quantity / quantityToShow);
+    var list = $('.pagination-num-list');
+
+    if(quantity / quantityToShow > 1) {
+        $('.home-pagination').css("display", "block");
+    }
+
+    for(var i = 0; i <= intengerResult; i++) {
+        list.append(
+            "<li class='pagination-num-list__item'>" +
+                "<a href='#' class='pagination-num-list__link pagination__button'>" + (i+1) + "</a>" +
+            "</li>"
+        );
+    }
+    // console.log(intengerResult);
+}
+
+$(".pagination-num-list__link").on("click", function(e) {
+    e.preventDefault();
+    var pageNum = $(this).html();
+    filter.page = pageNum;
+    myJSON = JSON.stringify(filter);
+
+    $.ajax(paginAjaxObj);
+});
+$(".pagination-next").on("click", function(e) {
+    e.preventDefault();
+    filter.page = +filter.page + 1;
+    myJSON = JSON.stringify(filter);
+
+    $.ajax(paginAjaxObj);
+});
+$(".pagination-prev").on("click", function(e) {
+    e.preventDefault();
+    if(+filter.page >= 2) {
+        filter.page = +filter.page - 1;
+    }
+    myJSON = JSON.stringify(filter);
+
+    $.ajax(paginAjaxObj);
+});
+// end__pagination
+
+// submit_home
+$('.filter__form').submit(function(e) {
+    e.preventDefault();
+    $(".residence-list__item").remove();
+    console.log(filter);
+
+    $.ajax({
+        url: "http://apivime.smarto.com.ua/ajax",
+        type: "POST",
+        dataType: "json",
+        data: filter,
+        success: function(data){
+            console.log(data);
+            residenceShow(data.data);
+            paginationItemShow(data.quantity);
+        },
+        error: function(data){
+           console.log(data);
+        }
+    });
+});
+// end__submit_home
+
+$('.filter-full__button_apply').on("click", function(e) {
+    e.preventDefault();
+    console.log(filter);
+    myJSON = JSON.stringify(filter);
+
+    $.ajax({
+        url: "http://apivime.smarto.com.ua/ajax",
+        type: "POST",
+        dataType: "json",
+        data: myJSON,
+        success: function(data){
+            flatsShow(data);
+            // console.log(data);
+        },
+        error: function(data){
+           console.log(data);
+        }
+    });
+});
+
+// reset
+$('.filter__button_clear-js').on("click", function() {
+    // range reset
+    var ranges = $(".range__item");
+    for(var i = 0; i < ranges.length; i++) {
+        var min = $(ranges[i]).find(".js-filter__hidden-values").attr("min");
+        var max = $(ranges[i]).find(".js-filter__hidden-values").attr("max");
+        $(ranges[i]).find(".js-filter__text_min").html(min);
+        $(ranges[i]).find(".js-filter__text_max").html(max);
+        $(ranges[i]).find(".irs-bar").css({
+            width: "100%",
+            left: "0"
+        });
+        $(ranges[i]).find(".from").css("left", "0");
+        $(ranges[i]).find(".to").css("left", "100%");
+    }
+
+    // checkbox reset
+    $(".filter-checkbox").prop("checked", false);
+
+    // reset filter obj
+    // for(key in filter) {
+    //     var element = filter[key];
+    //     var type = typeof element;
+
+    //     if(type == "string") {
+    //         element = "";
+    //     } else if(type == "object") {
+    //         for(subkey in element) {
+    //             element[subkey] = "";
+    //         }
+    //     }
+    // }
+});
+
+// end__filter
+
+
+
+
+
+
+
+// OLD_CODE
+
+// function debounce(func, wait, immediate) {
+//     var timeout;
+//     return function() {
+//         var context = this, args = arguments;
+//         var later = function() {
+//             timeout = null;
+//             if (!immediate) func.apply(context, args);
+//         };
+//         var callNow = immediate && !timeout;
+//         clearTimeout(timeout);
+//         timeout = setTimeout(later, wait);
+//         if (callNow) func.apply(context, args);
+//     };
+// };
+// var debouncedRanges = debounce(onRangeChange, 200);
+
+//test array
+    // var residence = [
+    //               {
+    //                 name: "Rybalsky",
+    //                 site: "rybalsky.com.ua",
+    //                 meter_cost: "12 000",
+    //                 metro: "Дружбы Народов",
+    //                 street: "Рибальського, 21",
+    //                 min_cost: "750 000",
+    //                 rooms: "1455",
+    //                 img: "",
+    //                 logo: ""
+    //               },
+    //               {
+    //                 name: "Arsenal",
+    //                 site: "rybalsky.com.ua",
+    //                 meter_cost: "12 000",
+    //                 metro: "Дружбы Народов",
+    //                 street: "Рибальського, 21",
+    //                 min_cost: "750 000",
+    //                 rooms: "155"
+    //               },
+    //               {
+    //                 name: "Happy House",
+    //                 site: "rybalsky.com.ua",
+    //                 meter_cost: "12 000",
+    //                 metro: "Дружбы Народов",
+    //                 street: "Рибальського, 21",
+    //                 min_cost: "750 000",
+    //                 rooms: "155"
+    //               }
+    //             ];
+
+
+
+//test array
+    // var flats = [
+    //               {
+    //                 common_cost: "3 031 681",
+    //                 meters: "83.16",
+    //                 meter_cost: "36 456",
+    //                 status: "green",
+    //                 floor: "9",
+    //                 flat_num: "56",
+    //                 rooms_num: "2"
+    //               },
+    //               {
+    //                 common_cost: "3 031 681",
+    //                 meters: "83.16",
+    //                 meter_cost: "36 456",
+    //                 status: "green",
+    //                 floor: "10",
+    //                 flat_num: "56",
+    //                 rooms_num: "4"
+    //               },
+    //               {
+    //                 common_cost: "3 031 681",
+    //                 meters: "83.16",
+    //                 meter_cost: "36 456",
+    //                 status: "green",
+    //                 floor: "10",
+    //                 flat_num: "56",
+    //                 rooms_num: "4"
+    //               }
+    //             ];

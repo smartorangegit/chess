@@ -1,13 +1,6 @@
-$('.js-filter__range').ionRangeSlider({
-    min: 0,
-    max: 600,
-    type: 'double',
-    prettify: true,
-    hide_min_max: true,
-    hide_from_to: true
-});
 
-$(".form__phone").mask("+38(0_ _) _ _ _ _ _ _ _");
+
+$(".form__phone").mask('+38 (099) 999-99-99');
 
 // location-active-link
 $(".location-list__link").on("click", function() {
@@ -24,7 +17,7 @@ if($(".location-list__item").length == 1) {
 // end__location-active-link
 
 // change other content when change current slide (described function)
-function changeText(slider, textBlock) {
+function changeSlideText(slider, textBlock) {
     var text = textBlock.find(".text-element-js");
 
     text[0].style.display="block";
@@ -35,4 +28,39 @@ function changeText(slider, textBlock) {
     });
 };
 // end__change other content when change current slide
+
+
+// favorite-block
+$(".favorites-button").on("click", function() {
+    $(this).find(".favorites-button__icon").addClass("favorites-button__icon_active");
+    $(this).find(".favorites-button__text").addClass("favorites-button__text_active");
+    $(this).find(".favorites-button__count").addClass("favorites-button__count_active");
+
+    $(".favorites").slideDown();
+});
+
+$(".favorites-close").on("click", function() {
+    $(".favorites-button").find(".favorites-button__icon").removeClass("favorites-button__icon_active");
+    $(".favorites-button").find(".favorites-button__text").removeClass("favorites-button__text_active");
+    $(".favorites-button").find(".favorites-button__count").removeClass("favorites-button__count_active");
+
+    $(this).closest(".favorites").slideUp();
+});
+// end__favorite-block
+
+// TAB'S
+$(".favorites-title-list__item").on("click", function() {
+    var titleItems = $('.favorites-title-list__item');
+    var activeTitleItem = $(this);
+    var contentItems = $('.favorites-table-list__item');
+    var index = titleItems.index(this);
+    var activeContentItem = contentItems.eq(index);
+
+    titleItems.removeClass('favorites-title-list__item_active');
+    activeTitleItem.addClass('favorites-title-list__item_active');
+
+    contentItems.removeClass('favorites-table-list__item_active');
+    activeContentItem.addClass('favorites-table-list__item_active');
+});
+// end__TAB'S
 

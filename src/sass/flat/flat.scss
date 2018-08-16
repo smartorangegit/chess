@@ -147,6 +147,7 @@
 		width: 210/1100*100%;
 		display: flex;
 		justify-content: space-between;
+		align-items: flex-end;
 
 		margin-bottom: 15px;
 		margin-right: 85/1100*100%;
@@ -219,12 +220,13 @@
 	width: 180px;
 	display: flex;
 	align-items: center;
-	background-color: $blue;
+	background-color: $orange;
 	font-size: 14/16*1rem;
 	line-height: 28px;
 	color: #fff;
-	border: 1px solid $blue;
+	border: 1px solid $orange;
 	border-radius: 10px;
+	text-shadow: 0.5px 0.5px 3px #000;
 
 	&:after, &:before {
 		display: none;

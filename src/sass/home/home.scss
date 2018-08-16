@@ -4,7 +4,7 @@
 
     &__container {
         width: 100%;
-        max-width: 1400px;
+        // max-width: 1400px;
         margin: 0 auto;
     }
 }
@@ -12,6 +12,16 @@
 .home-slider {
     width: 100%;
     height: 100%;
+
+    &-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 1400px;
+        width: 1400px;
+        height: 100%;
+    }
 
     &-wrap {
         width: 100%;
@@ -64,29 +74,7 @@
 .home-top-info {
     position: relative;
     padding: 20px;
-    border-radius: 5px;
-    border-top: 3px solid $blue;
-    border-bottom: 3px solid #91E2FB;
-    border-left-color: transparent;
-    border-right-color: transparent;
     box-sizing: border-box;
-
-    &:before, &:after {
-        @extend %absolute-center_v;
-        width: 2px;
-        height: 99%;
-        border-radius: 40%;
-        background: linear-gradient(to bottom, $blue, #91E2FB);
-        content: " ";
-        z-index: 2;
-    }
-
-    &:before {
-        left: -1px;
-    }
-    &:after {
-        right: -1px;
-    }
 
     &-wrap {
         @extend %absolute-center_v;
@@ -134,34 +122,31 @@
 
 .slide-info-list {
     position: absolute;
-    top: 40%;
-    left: 15%;
+    top: 65%;
+    left: 9%;
 
     &__item {
         display: none;
-
-        &:first-child {
-            display: block;
-        }
     }
 
     &__heading {
         font-family: $gothamMedium;
-        font-size: 48/16*1rem;
-        color: #fff;
-        margin-bottom: 15px;
+        font-size: 24/16*1rem;
+        color: $yellow;
+        margin-bottom: 10px;
     }
 
     &__button {
         display: inline-block;
-        padding: 0 10px;
+        padding: 0 22px;
         line-height: 35px;
         border: 2px solid #fff;
         border-radius: 5px;
         font-family: $gothamMedium;
         font-size: 1rem;
-        color: #fff;
-        background-color: rgba(255,255,255, 0.1);
+        text-transform: uppercase;
+        color: $yellow;
+        background-color: rgba(255,255,255, 0.2);
         transition: all 0.4s;
         
         &:hover {
@@ -298,17 +283,22 @@
 
 .residence-list {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     flex-wrap: wrap;
     margin-bottom: 20px;
 
     &__item {
         padding: 5px 0 25px 0;
-        width: 385/1200*100%;
+        width: 32%;
+        margin-right: 1.75%;
         border: 1px solid $light-gray;
         border-radius: 10px;
         margin-bottom: 20px;
         background-color: #fff;
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
     }
 
     &__heading {
@@ -321,18 +311,25 @@
     }
 
     &__link {
-        width: 100%;
+        /*width: 100%;*/
         display: inline-block;
         text-align: center;
         font-family: $gothamLight;
         font-size: 14/16*1rem;
-        color: $dark-gray;
+        color: $yellow;
         margin-bottom: 8px;
+        padding: 3px 14px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: #63696F;
+        border-radius: 5px;
     }
 
     &__image {
         height: 100%;
         min-width: 100%;
+        max-width: 100%;
 
         &-wrap {
             width: 100%;
@@ -408,86 +405,89 @@
     }
 }
 
-.pagination {
+.home-popup-wrap {
+    display: none;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 100;
+
+    .container {
+        height: 100%;
+    }
+}
+
+.home-popup {
+    @extend %absolute-center;
+    width: 1140/1400*100%;
+    padding: 25px 25px 45px 25px;
     background-color: #fff;
-    padding: 9px 0;
-    border: 1px solid $light-gray;
+    border-radius: 10px;
+}
 
-    &__button {
+
+.home-popup__heading {
+    width: 100%;
+    text-align: center;
+    font-size: 30/16*1rem;
+    font-family: $gotham;
+    color: $dark-gray;
+
+    &_medium {
+        font-family: $gothamMedium;
+    }
+
+    &-wrap {
         position: relative;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #000;
-        font-family: $gothamLight;
-        font-size: 18/16*1rem;
-        border: 1px solid $blue;
-        border-radius: 5px;
-
-        &:hover {
-            color: $blue;
-        }
+        width: 100%;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $dark-gray;
+        margin-bottom: 30px;
     }
 
-    &__icon {
-        width: 15px;
-        height: 15px;
-        fill: #000;
-
-        &_revers {
-            transform: rotate(-180deg);
-        }
-    }
-
-    &__text {
-        font-family: $gothamLight;
-        color: $gray;
-
-        &_medium {
-            font-family: $gothamMedium;
-        }
-    }
-
-    &__link {
-        display: flex;
-        align-items: center;
+    &-icon {
+        width: 25px;
+        height: 25px;
+        fill: $dark-gray;
+        position: absolute;
+        top: 5px;
+        right: 0;
+        cursor: pointer;
     }
 }
-.pagination-prev:hover, .pagination-next:hover {
-    .pagination__icon {
-        fill: $blue;
-    }
-}
-.pagination-prev__button{
-    margin-right: 14px;
-}
-.pagination-next__button {
-    margin-left: 14px;
-}
-.pagination-content {
+
+.home-popup-content {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
-.pagination-num-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.home-popup__video-wrap {
+    width: 50%;
+    height: 300px;
+    margin-right: 75/1090*100%;
+}
+.home-popup__video {
+    width: 100%;
+    height: 100%;
+}
 
-    &__item {
-        margin-right: 11px;
+.home-popup__text {
+    margin-top: 10%;
+    font-size: 1rem;
+    font-family: $gothamMedium;
+    color: $dark-gray;
+    line-height: 1.5;
 
-        &:last-child {
-            margin-right: 0;
-        }
+    &-wrap {
+        width: 435/1090*100%;
+        position: relative;
+    }
+
+    &-image {
+        position: absolute;
+        bottom: 30px;
+        left: -6%;
     }
 }
-
-
-
-

@@ -40,15 +40,23 @@
 		}
 	}
 
-	&__text {
-		font-size: 1rem;
-		font-family: $gotham;
-		color: $dark-gray;
-		line-height: 1.5;
+	// &__text {
+	// 	font-size: 1rem;
+	// 	font-family: $gotham;
+	// 	color: $dark-gray;
+	// 	line-height: 1.5;
 
-		&_mb {
-			margin-bottom: 25px;
-		}
+	// 	&_mb {
+	// 		margin-bottom: 25px;
+	// 	}
+	// }
+
+	p {
+		font-size: 1rem;
+	    font-family: gotham,Arial,sans-serif;
+	    color: #454c53;
+	    line-height: 1.5;
+	    margin-bottom: 10px;
 	}
 }
 
@@ -198,12 +206,26 @@
 		&:nth-child(3n) {
 			margin-right: 0;
 		}
+
+		span {
+			font-size: 1rem;
+		    font-family: gotham,Arial,sans-serif;
+		    color: #454c53;
+		    line-height: 1.5;
+		}
 	}
 }
 
 .residence-main-list_yard {
 	&__item {
 		margin-bottom: 7px;
+
+		span {
+			font-size: 1rem;
+		    font-family: gotham,Arial,sans-serif;
+		    color: #454c53;
+		    line-height: 1.5;
+		}
 	}
 }
 

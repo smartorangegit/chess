@@ -126,15 +126,15 @@
                     <ul class="flat-buttons">
                         <li class="flat-buttons__item">
                             <svg class="flat-buttons__icon"><use xlink:href="#back-button"></use></svg>
-                            <a href="#" class="button flat-buttons__button">К описанию комплекса</a>
+                            <a href="#" class="button flat-buttons__button border-gradient">К описанию комплекса</a>
                         </li>
                         <li class="flat-buttons__item">
                             <svg class="flat-buttons__icon"><use xlink:href="#back-button"></use></svg>
-                            <a href="#" class="button flat-buttons__button">К выбору квартиры</a>
+                            <a href="#" class="button flat-buttons__button border-gradient">К выбору квартиры</a>
                         </li>
                         <li class="flat-buttons__item">
                             <svg class="flat-buttons__icon"><use xlink:href="#star"></use></svg>
-                            <a href="#" class="button flat-buttons__button">Добавить в избранное</a>
+                            <a href="#" class="button flat-buttons__button border-gradient">Добавить в избранное</a>
                         </li>
                     </ul>
                 </div>

@@ -54,11 +54,13 @@
   position: absolute; display: block;
   left: 0;
   cursor: default;
+  display: none;
 }
 .irs-max {
   position: absolute; display: block;
   right: 0;
   cursor: default;
+  display: none;
 }
 .irs-from, .irs-to, .irs-single {
   position: absolute; display: block;

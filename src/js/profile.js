@@ -11,6 +11,6 @@ $('.profile-flat-slider').slick({
 
 // slider change text
     //this function locate in common.js
-changeText($(".profile-flat-slider"), $(".profile-flat-heading"));
-changeText($(".profile-flat-slider"), $(".profile-flat-info"));
+changeSlideText($(".profile-flat-slider"), $(".profile-flat-heading"));
+changeSlideText($(".profile-flat-slider"), $(".profile-flat-info"));
 // end__slider change text

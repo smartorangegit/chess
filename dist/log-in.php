@@ -30,7 +30,7 @@
                     </div>
                     <div class="form__input-wrap">
                         <label for="phone" class="form__label">Телефон:</label>
-                        <input type="text" id="phone" class="form__input form__phone" placeholder="+38 (0_ _) _ _ _  _ _  _ _">
+                        <input type="text" id="phone" class="form__input form__phone" placeholder="+38 (0__) ___-__-__">
                     </div>
                     <div class="form__input-wrap">
                         <label for="password" class="form__label">Пароль:</label>

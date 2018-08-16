@@ -1,0 +1,66 @@
+@media screen and (max-width: 1220px) {
+	.flat-top {
+		padding-right: 0;
+		
+		&__image {
+			max-width: 70%;
+		}
+	}
+	.flat-meter-list {
+		&__name {
+			font-size: 0.8rem;
+		}
+		&__value {
+			font-size: 0.8rem;
+		}
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.flat-top {
+		&__image {
+			max-width: 75%;
+		}
+	}
+
+	.flat-info {
+		padding: 15px 0;
+
+		&__name {
+			font-size: 0.9rem;
+		}
+		&__value {
+			font-size: 0.9rem;
+		}
+	}
+
+	.flat-meter-list {
+		&__item {
+			width: 25%;
+			margin-right: 12%;
+			margin-bottom: 8px;
+			
+			&:nth-child(3n) {
+				margin-right: 0;	
+			}
+			&:nth-child(4n) {
+				margin-right: 12%;	
+			}
+		}
+	}
+
+	.flat-buttons {
+		&__item {
+			padding: 0 3%;
+		}
+	}
+
+	.booking-button {
+		line-height: 30px;
+		width: 160px;
+	}
+
+	.flat-form {
+		width: 100%;
+	}
+}

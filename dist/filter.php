@@ -66,32 +66,32 @@
                                 <ul class="filter-checkbox-list">
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">1</span> 
-                                        <input id="checkbox_1" type="checkbox" class="filter-checkbox">
+                                        <input id="checkbox_1" type="checkbox" class="filter-checkbox" value="1">
                                         <label for="checkbox_1" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">2</span> 
-                                        <input id="checkbox_2" type="checkbox" class="filter-checkbox">
+                                        <input id="checkbox_2" type="checkbox" class="filter-checkbox" value="2">
                                         <label for="checkbox_2" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">3</span> 
-                                        <input id="checkbox_3" type="checkbox" class="filter-checkbox">
+                                        <input id="checkbox_3" type="checkbox" class="filter-checkbox" value="3">
                                         <label for="checkbox_3" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">4</span> 
-                                        <input id="checkbox_4" type="checkbox" class="filter-checkbox">
+                                        <input id="checkbox_4" type="checkbox" class="filter-checkbox" value="4">
                                         <label for="checkbox_4" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
-                                        <span class="filter-checkbox__text">5+</span> 
-                                        <input id="checkbox_5" type="checkbox" class="filter-checkbox">
+                                        <span class="filter-checkbox__text">5+</span>
+                                        <input id="checkbox_5" type="checkbox" class="filter-checkbox" value="5+">
                                         <label for="checkbox_5" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
-                                        <span class="filter-checkbox__text">Cв</span> 
-                                        <input id="checkbox_6" type="checkbox" class="filter-checkbox">
+                                        <span class="filter-checkbox__text">Cв</span>
+                                        <input id="checkbox_6" type="checkbox" class="filter-checkbox" value="CB">
                                         <label for="checkbox_6" class="filter-checkbox-list__label"></label>
                                     </li>
 
@@ -100,33 +100,45 @@
                             <div class="filter-top-range">
                                 <div class="range__item range__item_long js-filter__slider_ta">
                                   <span class="filter_name">Площадь кв. м:</span >
-                                    <div class="filter__ranges filter__ranges_ta">
+                                    <div class="filter__ranges">
                                         <?php /*Place PHP values here*/?>
-                                            <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                            <input name="area" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                         <?php /*Place PHP values here*/?>
-                                        <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                        <input class="filter__range js-filter__range" type="text">
                                         <span class="range__text range__text_min js-filter__text_min">0</span>
                                         <span class="range__text range__text_max js-filter__text_max">100</span>
                                     </div>
                                 </div>
-                                <div class="range__item range__item_long js-filter__slider_ta">
+                                <div class="range__item range__item_long">
                                   <span class="filter_name">Общая стоимость</span >
                                     <div class="filter__ranges filter__ranges_ta">
                                         <?php /*Place PHP values here*/?>
-                                            <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                            <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                         <?php /*Place PHP values here*/?>
-                                        <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                        <input class="filter__range js-filter__range"  type="text">
                                         <span class="range__text range__text_min js-filter__text_min">0</span>
                                         <span class="range__text range__text_max js-filter__text_max">100</span>
                                     </div>
                                 </div>
-                                <div class="range__item range__item_long js-filter__slider_ta">
+                                <!-- <div class="range__item range__item_long">
                                   <span class="filter_name">Этаж</span >
                                     <div class="filter__ranges filter__ranges_ta">
                                         <?php /*Place PHP values here*/?>
-                                            <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                            <input nmae="floors" type="range" min="5" max="100" class="filter__hidden-values
+                                            js-filter__hidden-values" style="display: none;">
                                         <?php /*Place PHP values here*/?>
-                                        <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                        <input class="filter__range js-filter__range"type="text">
+                                        <span class="range__text range__text_min js-filter__text_min">0</span>
+                                        <span class="range__text range__text_max js-filter__text_max">100</span>
+                                    </div>
+                                </div> -->
+                                <div class="range__item range__item_long">
+                                  <span class="filter_name">Этаж</span >
+                                    <div class="filter__ranges filter__ranges_ta">
+                                        <?php /*Place PHP values here*/?>
+                                            <input name="floors" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
+                                        <?php /*Place PHP values here*/?>
+                                        <input class="filter__range js-filter__range"  type="text">
                                         <span class="range__text range__text_min js-filter__text_min">0</span>
                                         <span class="range__text range__text_max js-filter__text_max">100</span>
                                     </div>
@@ -137,7 +149,7 @@
                                     Расширенные фильтры
                                     <svg class="filter-top__button-icon"><use xlink:href="#left-arrow"></use></svg>
                                 </button>
-                                <button class="button header__button filter__button ">
+                                <button class="button header__button filter__button border-gradient">
                                     Сбросить
                                 </button>
                             </div>
@@ -149,117 +161,89 @@
             <div class="filter-full">
                 <div class="container">
                     <div class="filter-full-range">
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Жилая площадь, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Жилая площадь, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Жилая площадь, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
-
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Кухня, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Кухня, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Кухня, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
-
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Жилая площадь, м<sup>2</sup></span >
+                        <div class="range__item">
+                          <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                 <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
-                                <span class="range__text range__text_min js-filter__text_min">0</span>
-                                <span class="range__text range__text_max js-filter__text_max">100</span>
-                            </div>
-                        </div>
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Жилая площадь, м<sup>2</sup></span >
-                            <div class="filter__ranges filter__ranges_ta">
-                                <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
-                                <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
-                                <span class="range__text range__text_min js-filter__text_min">0</span>
-                                <span class="range__text range__text_max js-filter__text_max">100</span>
-                            </div>
-                        </div>
-                        <div class="range__item js-filter__slider_ta">
-                          <span class="filter_name">Жилая площадь, м<sup>2</sup></span >
-                            <div class="filter__ranges filter__ranges_ta">
-                                <?php /*Place PHP values here*/?>
-                                    <input type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
-                                <?php /*Place PHP values here*/?>
-                                <input class="filter__range filter__range_ta js-filter__range" id="square" type="text">
+                                <input class="filter__range js-filter__range"  type="text">
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
                         </div>
                     </div>
                     <div class="filter-full__button-wrap">
-                        <!-- <button class="filter-top__button_more">
-                            Расширенные фильтры
-                            <svg class="filter-top__button-icon"><use xlink:href="#left-arrow"></use></svg>
-                        </button> -->
-                        <button class="button header__button filter__button filter-full__button_apply">
+                        <button class="button header__button filter__button border-gradient filter-full__button_apply filter__button-js">
                             Применить
                         </button>
-                        <button class="button header__button filter__button">
+                        <button class="button header__button filter__button border-gradient">
                             Сбросить
                         </button>
                         <button class="filter-full__button_more">
@@ -316,7 +300,7 @@
                                 <span class="filter-settings-list__text">Кухня, м<sup>2</sup>:</span> 
                             </li>
                         </ul>
-                        <button class="button header__button filter__button">
+                        <button class="button header__button filter__button border-gradient">
                             Сбросить
                         </button>
                     </div> 
@@ -326,9 +310,9 @@
             <div class="result-short">
                 <div class="container">
                     <div class="result-short-content">
-                        <span class="result-short__text">
+                        <p class="result-short__text">
                             Найдено <span class="result-short__text_blue">298</span> помещений. Из них свободно: <span class="result-short__text_blue">172</span>
-                        </span>
+                        </p>
                         <ul class="result-short-list">
                             <li class="result-short-list__item">
                                 <div class="color-box color-box_green"></div>
@@ -385,9 +369,9 @@
                         <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
                         <div class="result-plan-info">
                             <div class="result-plan-info__price">
-                                <p class="result-plan-info__text">3 031 681 грн</p>
-                                <p class="result-plan-info__text">83,16 м<sup>2</sup> – 36 456 грн/м<sup>2</sup></p>
-                                <div class="color-box result-plan__color-box color-box_green"></div>
+                                <p class="result-plan-info__text">Бронь</p>
+                                <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
+                                <div class="color-box result-plan__color-box color-box_yellow"></div>
                             </div>
                             <div class="result-plan-info__floor">
                                 <p class="result-plan-info__text">9 этаж</p>
@@ -395,24 +379,8 @@
                             </div>
                         </div>
                         <a href="#" class="rooms__link result-plan__rooms-link">2K</a>
-                        <a href="#" class="button result-plan__button">Подробнее</a>
-                    </li>
-                    <li class="result-plan-list__item">
-                        <img src="img/filter/plan/plan_2.png" alt="plan-image" class="result-plan-list__image">
-                        <div class="result-plan-info">
-                            <div class="result-plan-info__price">
-                                <p class="result-plan-info__text">3 031 681 грн</p>
-                                <p class="result-plan-info__text">83,16 м<sup>2</sup> – 36 456 грн/м<sup>2</sup></p>
-                                <div class="color-box result-plan__color-box color-box_green"></div>
-                            </div>
-                            <div class="result-plan-info__floor">
-                                <p class="result-plan-info__text">9 этаж</p>
-                                <p class="result-plan-info__text">№ 56</p>
-                            </div>
-                        </div>
-                        <a href="#" class="rooms__link result-plan__rooms-link">2K</a>
-                        <a href="#" class="button result-plan__button">Подробнее</a>
-                        <!-- <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p> -->
+                        <!-- <a href="#" class="button result-plan__button">Подробнее</a> -->
+                        <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
                     </li>
                     <li class="result-plan-list__item">
                         <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
@@ -432,12 +400,12 @@
                         <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
                     </li>
                     <li class="result-plan-list__item">
-                        <img src="img/filter/plan/plan_2.png" alt="plan-image" class="result-plan-list__image">
+                        <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
                         <div class="result-plan-info">
                             <div class="result-plan-info__price">
-                                <p class="result-plan-info__text">3 031 681 грн</p>
-                                <p class="result-plan-info__text">83,16 м<sup>2</sup> – 36 456 грн/м<sup>2</sup></p>
-                                <div class="color-box result-plan__color-box color-box_green"></div>
+                                <p class="result-plan-info__text">Бронь</p>
+                                <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
+                                <div class="color-box result-plan__color-box color-box_yellow"></div>
                             </div>
                             <div class="result-plan-info__floor">
                                 <p class="result-plan-info__text">9 этаж</p>
@@ -445,10 +413,41 @@
                             </div>
                         </div>
                         <a href="#" class="rooms__link result-plan__rooms-link">2K</a>
-                        <a href="#" class="button result-plan__button">Подробнее</a>
-                        <!-- <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p> -->
+                        <!-- <a href="#" class="button result-plan__button">Подробнее</a> -->
+                        <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
                     </li>
                 </ul>
+            </div>
+            <div class="pagination filter-pagination result-plan-pagination">
+                <div class="container">
+                    <div class="pagination-content">
+                        <div class="pagination-prev">
+                            <a href="#" class="pagination__link">
+                                <span class="pagination-prev__button pagination__button">
+                                    <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
+                                </span>
+                            </a>
+                        </div>
+                        <ul class="pagination-num-list">
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">1</a>
+                            </li>
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">2</a>
+                            </li>
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">3</a>
+                            </li>
+                        </ul>
+                        <div class="pagination-next">
+                            <a href="#" class="pagination__link">
+                                <span class="pagination__button pagination-next__button">
+                                    <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -463,7 +462,14 @@
                     <ul class="entrance-floor">
                         <!-- <li class="entrance-floor__item">1</li> -->
                     </ul>
-                    <div class="entrance-wrap">
+                    <div class="entrance-wrap"entrance-tooltip>
+                        <div class="entrance-tooltip">
+                            <p class="entrance-tooltip__text">№ 89</p>
+                            <p class="entrance-tooltip__text">1738 477 грн.</p>
+                            <p class="entrance-tooltip__text">47,67 м<sup>2</sup> – 36 469 грн/м<sup>2</sup></p>
+                            <img src="img/flat/2s_2f_1_4.png" alt="flat" class="entrance-tooltip__image">
+                            <div data-color="green" class="color-box entrance-tooltip__color-box">1K</div>
+                        </div>
                         <!-- <div class="entrance">
                             <p class="entrance__num">1</p>
                             <div class="entrance-flats-wrap">
@@ -853,39 +859,40 @@
                     </div>
                 </div>
             </div>   
-        </section>
-
-        <div class="pagination">
-            <div class="container">
-                <div class="pagination-content">
-                    <div class="pagination-prev">
-                        <a href="#" class="pagination__link">
-                            <span class="pagination-prev__button pagination__button">
-                                <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
-                            </span>
-                        </a>
-                    </div>
-                    <ul class="pagination-num-list">
-                        <li class="pagination-num-list__item">
-                            <a href="#" class="pagination-num-list__link pagination__button">1</a>
-                        </li>
-                        <li class="pagination-num-list__item">
-                            <a href="#" class="pagination-num-list__link pagination__button">2</a>
-                        </li>
-                        <li class="pagination-num-list__item">
-                            <a href="#" class="pagination-num-list__link pagination__button">3</a>
-                        </li>
-                    </ul>
-                    <div class="pagination-next">
-                        <a href="#" class="pagination__link">
-                            <span class="pagination__button pagination-next__button">
-                                <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
-                            </span>
-                        </a>
+            <div class="pagination filter-pagination result-list-pagination">
+                <div class="container">
+                    <div class="pagination-content">
+                        <div class="pagination-prev">
+                            <a href="#" class="pagination__link">
+                                <span class="pagination-prev__button pagination__button">
+                                    <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
+                                </span>
+                            </a>
+                        </div>
+                        <ul class="pagination-num-list">
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">1</a>
+                            </li>
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">2</a>
+                            </li>
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">3</a>
+                            </li>
+                        </ul>
+                        <div class="pagination-next">
+                            <a href="#" class="pagination__link">
+                                <span class="pagination__button pagination-next__button">
+                                    <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+    
         
         <?php include_once('includes/footer.php'); ?> 
 
