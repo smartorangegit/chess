@@ -168,7 +168,8 @@
 	}
 
 	&__image {
-		height: 100%;
+		min-height: 100%;
+		width: 100%;
 	}
 
 	&__image_hover {
@@ -239,6 +240,12 @@
 	margin-bottom: 40px;
 	flex-wrap: wrap;
 }
+.residence-building__info {
+	width: 100%;
+}
+.residence-building__link {
+	width: 320/559*100%;
+}
 
 /*popup*/
 .full-image {
@@ -284,7 +291,7 @@
 	&__button {
 		position: absolute;
 		top: 50%;
-		transform: translate(-50%);
+		transform: translateY(-50%);
 		border: none;
 		outline: none;
 		background-color: transparent;
@@ -302,11 +309,11 @@
 		}
 
 		&-prev {
-			left: -60px;
+			left: -90px;
 			/*&:hover {transform: translate(-10px, -50%);}*/
 		}
 		&-next {
-			right: -115px;
+			right: -90px;
 			/*&:hover {transform: translateX(-5px, -50%);}*/
 		}
 	}

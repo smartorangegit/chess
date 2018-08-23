@@ -14,9 +14,9 @@
         <div class="location">
             <div class="container">
                 <ul class="location-list">
-                    <li class="location-list__item">
+                    <li class="location-list__item profile-location-list__item">
                         <a href="home.php" class="location-list__link location-list__link_last">
-                            <svg class="home-icon"><use xlink:href="#home"></use></svg>
+                            <svg class="home-icon profile__home-icon"><use xlink:href="#home"></use></svg>
                         </a>
                     </li>
                 </ul>
@@ -26,39 +26,45 @@
         <section class="profile-form-wrap">
             <h1 class="prifile__heading">ЛИЧНЫЙ КАБИНЕТ</h1>
             <div class="profile-form-container">
-                <div class="profile-form-top">
-                    <div class="profile-form-top__block">
-                        <p class="profile-form-top__email">sobko.alex@gmail.com</p>
-                        <button class="button header__button profile-form-top__button">Выход</button>
-                    </div>
-                    <div class="profile-form-top__block">
-                        <p class="profile-form-top__heading">Смена пароля</p>
-                    </div>
-                </div>
                 <form class="form flat-form profile-form">
-                    <div class="form__input-wrap flat-form__input-wrap">
-                        <label for="name" class="form__label">ФИО:</label>
-                        <input type="text" id="name" class="form__input" placeholder="Фамилия Имя Отчество">
+                    <div class="profile-form-block">
+                        <div class="profile-form-top">
+                            <div class="profile-form-top__block">
+                                <p class="profile-form-top__email">sobko.alex@gmail.com</p>
+                                <button class="button header__button profile-form-top__button">Выход</button>
+                            </div>
+                        </div>
+                        <div class="form__input-wrap">
+                            <label for="name" class="form__label">ФИО:</label>
+                            <input type="text" id="name" class="form__input" placeholder="Фамилия Имя Отчество">
+                        </div>
+                        <div class="form__input-wrap">
+                            <label for="mail" class="form__label">Email:</label>
+                            <input type="email" id="mail" class="form__input" placeholder="E-mail">
+                        </div>
+                        <div class="form__input-wrap">
+                            <label for="phone" class="form__label">Телефон:</label>
+                            <input type="text" id="phone" class="form__input form__phone" placeholder="+38 (0_ _) _ _ _  _ _  _ _">
+                        </div>
                     </div>
-                    <div class="form__input-wrap flat-form__input-wrap">
-                        <label for="password" class="form__label">Старый пароль:</label>
-                        <input type="password" id="password" class="form__input">
-                    </div>
-                    <div class="form__input-wrap flat-form__input-wrap">
-                        <label for="mail" class="form__label">Email:</label>
-                        <input type="email" id="mail" class="form__input" placeholder="E-mail">
-                    </div>
-                    <div class="form__input-wrap flat-form__input-wrap">
-                        <label for="password_new" class="form__label">Новый пароль:</label>
-                        <input type="password" id="password_new" class="form__input">
-                    </div>
-                    <div class="form__input-wrap flat-form__input-wrap">
-                        <label for="phone" class="form__label">Телефон:</label>
-                        <input type="text" id="phone" class="form__input form__phone" placeholder="+38 (0_ _) _ _ _  _ _  _ _">
-                    </div>
-                    <div class="form__input-wrap flat-form__input-wrap">
-                        <label for="password_repeat_new" class="form__label">Повторить новый пароль:</label>
-                        <input type="password" id="password_repeat_new" class="form__input">
+                    <div class="profile-form-block">
+                        <div class="profile-form-top">
+                            <div class="profile-form-top__block">
+                                <p class="profile-form-top__heading">Смена пароля</p>
+                            </div>
+                        </div>
+                        <div class="form__input-wrap">
+                            <label for="password" class="form__label">Старый пароль:</label>
+                            <input type="password" id="password" class="form__input">
+                        </div>
+                        <div class="form__input-wrap">
+                            <label for="password_new" class="form__label">Новый пароль:</label>
+                            <input type="password" id="password_new" class="form__input">
+                        </div>
+                        <div class="form__input-wrap">
+                            <label for="password_repeat_new" class="form__label">Повторить новый пароль:</label>
+                            <input type="password" id="password_repeat_new" class="form__input">
+                        </div>
                     </div>
                 </form>
                 <button class="profile-form__button">

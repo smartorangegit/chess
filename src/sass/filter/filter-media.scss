@@ -127,3 +127,14 @@
 		}
 	}
 }
+
+@media screen and (max-width: 900px) {
+	.range__item {
+		width: 100%;
+		margin-bottom: 20px;
+		justify-content: space-between;
+	}
+	.range__text {
+		top: -14px;
+	}
+}

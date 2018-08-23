@@ -1,0 +1,20 @@
+@media screen and (max-width: 799px) {
+	.log__heading {
+		font-size: 14/16*1rem;
+		line-height: 1;
+	}
+
+	.log__descript {
+		padding: 12px;
+	}
+
+	.form-wrap {
+		padding: 20px 10px;
+		box-sizing: border-box;
+		margin-bottom: 20px;
+	}
+
+	.form__button_sign-in {
+		font-size: 0.8rem;
+	}
+}

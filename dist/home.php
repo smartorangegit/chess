@@ -75,7 +75,7 @@
                     </li>
                 </ul>
                 <div class="home-top-info-wrap">
-                    <div class="home-top-info border-gradient">
+                    <div class="home-top-info">
                         <p class="home-top-info__heading"><span class="home-top-info__heading_blue">VIME</span> – вільний метр</p>
                         <p class="home-top-info__text">Все <span class="home-top-info__text_medium">свободные квартиры</span> на одном ресурсе. <br> Моментальная <span class="home-top-info__text_medium">он-лайн бронь.</span></p>
                         <a href="#" class="button home-top-info__button border-gradient">Подобрать на карте</a>
@@ -90,7 +90,7 @@
                     <form action="" class="filter__form">
                         <div class="home-filter__top">
                             <div class="home-filter__select-wrap">
-                                <select id="city" class="home-filter__select" onchange="citySelect()">
+                                <select id="project_city" class="home-filter__select" onchange="citySelect()">
                                     <option class="city" value="">Город</option>
                                     <option class="city" value="kiev">Киев</option>
                                     <option class="city" value="lviv">Львов</option>
@@ -99,7 +99,7 @@
                                 <!-- <svg class="home-filter__arrow"><use xlink:href="#left-arrow"></use></svg> -->
                             </div>
                             <div class="home-filter__select-wrap">
-                                <select id="district" class="home-filter__select" onchange="districtSelect()">
+                                <select id="project_region" class="home-filter__select" onchange="districtSelect()">
                                     <option class="district" value="">Район</option>
                                     <option class="district" value="podil">1</option>
                                     <option class="district" value="sheva">2</option>
@@ -115,7 +115,7 @@
                                 </select>
                             </div>
                             <div class="home-filter__select-wrap">
-                                <select id="developer" class="home-filter__select" onchange="developerSelect()">
+                                <select id="development_id" class="home-filter__select" onchange="developerSelect()">
                                     <option class="developer" value="">Застройщик</option>
                                     <option class="developer" value="first">1</option>
                                     <option class="developer" value="second">2</option>
@@ -147,34 +147,34 @@
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">5+</span> 
-                                        <input id="checkbox_5" type="checkbox" class="filter-checkbox" value="5+">
+                                        <input id="checkbox_5" type="checkbox" class="filter-checkbox" value="5">
                                         <label for="checkbox_5" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">Св</span> 
-                                        <input id="checkbox_6" type="checkbox" class="filter-checkbox" value="CB">
+                                        <input id="checkbox_6" type="checkbox" class="filter-checkbox" value="0">
                                         <label for="checkbox_6" class="filter-checkbox-list__label"></label>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="home-filter__bottom">
-                            <!-- <div class="range__item">
+                            <div class="range__item">
                               <span class="filter_name">Цена за м<sup>2</sup>, от</span >
                                 <div class="filter__ranges">
                                     <?php /*Place PHP values here*/?>
-                                        <input name="meter_cost" type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                        <input name="project_price" type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
                                     <?php /*Place PHP values here*/?>
                                     <input class="filter__range js-filter__range" type="text">
                                     <span class="range__text range__text_min js-filter__text_min">0</span>
                                     <span class="range__text range__text_max js-filter__text_max">100</span>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="range__item">
                               <span class="filter_name">К-во кв. м:</span >
                                 <div class="filter__ranges">
                                     <?php /*Place PHP values here*/?>
-                                        <input name="all_room" type="range" min="10" max="200" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                        <input name="all_room" type="range" min="0" max="20000" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
                                     <?php /*Place PHP values here*/?>
                                     <input class="filter__range filter__range_ta js-filter__range" type="text">
                                     <span class="range__text range__text_min js-filter__text_min">0</span>
@@ -185,7 +185,7 @@
                               <span class="filter_name">Общая стоимость</span >
                                 <div class="filter__ranges">
                                     <?php /*Place PHP values here*/?>
-                                        <input name="price" type="range" min="20" max="300" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                        <input name="price" type="range" min="0" max="1000000" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
                                     <?php /*Place PHP values here*/?>
                                     <input class="filter__range filter__range_ta js-filter__range" type="text">
                                     <span class="range__text range__text_min js-filter__text_min">0</span>
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                         <div class="home-filter__button-wrap">
-                            <button type="submit" class="button home-filter__button border-gradient  filter__button-js">Выбрать</button>
+                            <button type="submit" class="button home-filter__button border-gradient filter__button-js">Выбрать</button>
                             <button class="button home-filter__button  border-gradient filter__button_clear-js">Сбросить</button>
                         </div>
                     </form>
@@ -212,7 +212,7 @@
                         <p class="residence-list__link">rybalsky.com.ua</p>
                         <div class="residence-list__image-wrap">
                             <img src="img/residence/res_1.jpg" alt="image" class="residence-list__image">
-                            <span class="residence-list__price">от 12 000 грн. м<sup>2</sup></span>
+                            <span class="residence-list__price">от 10 000 грн. м<sup>2</sup></span>
                         </div>
                         <ul class="residence-list-info">
                             <li class="residence-list-info__item">
@@ -239,7 +239,7 @@
                         <p class="residence-list__link">rybalsky.com.ua</p>
                         <div class="residence-list__image-wrap">
                             <img src="img/residence/res_1.jpg" alt="image" class="residence-list__image">
-                            <span class="residence-list__price">от 12 000 грн. м<sup>2</sup></span>
+                            <span class="residence-list__price">от 11 000 грн. м<sup>2</sup></span>
                         </div>
                         <ul class="residence-list-info">
                             <li class="residence-list-info__item">
@@ -304,6 +304,9 @@
                     <ul class="pagination-num-list">
                         <!-- <li class="pagination-num-list__item">
                             <a href="#" class="pagination-num-list__link pagination__button">1</a>
+                        </li>
+                        <li class="pagination-num-list__item">
+                            <a href="#" class="pagination-num-list__link pagination__button">1</a>
                         </li> -->
                     </ul>
                     <div class="pagination-next">
@@ -345,6 +348,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/common.min.js"></script>
 <script src="js/home.min.js"></script>
-<script src="js/filter.min.js"></script>
 </body>
 </html>

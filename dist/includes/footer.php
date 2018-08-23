@@ -7,9 +7,9 @@
 		<div class="footer-bottom">
 			<span class="footer__text footer__text_mr">&copy; Все права защищены.</span>
 			<span class="footer__text">Использование материалов разрешено только при наличии активной ссылки на источник.</span>
-			<a href="http://smartorange.com.ua/">
+			<!-- <a href="http://smartorange.com.ua/">
 				<img src="img/smart-orange-logo.png" alt="smartOrange" class="smart-orange-logo">
-			</a>
+			</a> -->
 		</div>
 	</div>
 </footer>

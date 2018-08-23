@@ -38,7 +38,7 @@
                     <h1 class="flat__heading">КВАРТИРА № 89 (2К)</h1>
                     <div class="flat-top">
                         <div class="flat-top-list-wrap">
-                            <ul class="flat-top-list">
+                            <ul class="flat-top-list flat-top-list_no_border">
                                 <li class="flat-top-list__item">
                                     <p class="flat-top-list__name">Подъезд</p>
                                     <p class="flat-top-list__value">1</p>

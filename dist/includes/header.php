@@ -23,11 +23,11 @@
 	<div class="header-content">
 		<div class="container clearfix">
 			<div class="header__button-wrap">
-				<div class="favorites-button">
+				<!-- <div class="favorites-button">
 					<svg class="favorites-button__icon"><use xlink:href="#star"></use></svg>
 					<p class="favorites-button__text">Избранное</p>
 					<p class="favorites-button__count">1</p>
-				</div>
+				</div> -->
 				<button class="button header__button border-gradient">Регистрация</button>
 				<!-- <button class="button header__button header__button_login">sobko.alex@gmail.com</button> -->
 				<button class="button header__button border-gradient">Вход</button>

@@ -64,3 +64,189 @@
 		width: 100%;
 	}
 }
+
+@media screen and (max-width: 799px) {
+	.flat-container {
+		width: 96%;
+	}
+
+	.flat-top__image {
+		max-height: 260px;
+	}
+
+	.flat-meter-list {
+		justify-content: space-between;
+		&__item {
+			width: 40%;
+			margin-right: 0;
+
+			&:nth-child(4n) {
+				margin-right: 0;
+			}
+		}
+		&__name {
+			font-size: 1rem;
+		}
+		&__value {
+			font-size: 1rem;
+		}
+	}
+
+	.flat-buttons__button {
+		text-align: center;
+		line-height: 1.2;
+	}
+}
+
+@media screen and (max-width: 599px) {
+	.flat {
+		padding: 20px 0;
+
+		&__heading {
+			margin-bottom: 20px;
+		}
+	}
+
+	.flat-top {
+		width: 100%;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-bottom: 20px;
+
+		&__image {
+			max-width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+
+	@media screen and (max-width: 499px) {
+		.flat-top__image {
+			max-height: 230px;
+		}
+	}
+	@media screen and (max-width: 399px) {
+		.flat-top__image {
+			max-height: 200px;
+		}
+	}
+
+	.flat-top-list {
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		border-top: 1px solid #000;
+		border-bottom: 1px solid #000;
+		padding-top: 12px;
+		margin-bottom: 20px;
+
+		&:after {
+			display: none;
+		}
+
+		&-wrap {
+			width: 100%;
+			order: 2;
+		}
+
+		&__value {
+			margin-bottom: 0;
+		}
+
+		&_no_border {
+			border-bottom: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	.booking-button {
+		padding: 5px;
+
+		&_margin_top {
+			margin-top: 0;
+		}
+	}
+
+	.flat-info {
+		flex-wrap: wrap;
+		justify-content: space-around;
+
+		&__name {
+			margin-bottom: 12px;
+		}
+
+		&__value-wrap {
+			justify-content: center;
+		}
+		&__value {
+			font-size: 1.125rem;
+		}
+	}
+	.flat-info-list__item {
+		margin-bottom: 20px;
+
+		&:nth-child(3n) {
+			width: 100%;
+		}
+		&:nth-child(4n) {
+			width: 100%;
+		}
+	}
+
+	.flat-meter-list {
+		padding: 15px 10px;
+		box-sizing: border-box;
+
+		&__item {
+			width: 100%;
+			margin-right: 0%;
+	
+			&:nth-child(4n) {
+				margin-right: 0%;	
+			}
+		}
+
+		&__name {
+			font-size: 1rem;
+		}
+		&__value {
+			font-size: 1rem;
+		}
+	}
+
+	.flat-buttons {
+		flex-direction: column;
+		width: 270/360*100%;
+		margin: 0 auto;
+
+		&__item {
+			border: none;
+			margin-bottom: 20px;
+			align-items: center;
+			padding: 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&__button {
+			width: 235/270*100%;
+			padding: 5px 0 5px 15px;
+			font-size: 0.85rem;
+		}
+	}
+
+	.flat-form {
+		justify-content: center;
+
+		&__input-wrap {
+			width: 100%;
+			margin-right: 0;
+		}
+
+		.flat-form__warning {
+			width: 100%;
+			text-align: center;
+		}
+	}
+}

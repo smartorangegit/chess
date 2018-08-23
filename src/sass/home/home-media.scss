@@ -117,3 +117,93 @@
 		}
 	}
 }
+
+@media screen and (max-width: 599px) {
+	.home-top-info {
+		padding: 17px 3px 10px 12px;
+
+		&-wrap {
+			width: 85%;
+			padding: 7px 10px;
+			top: 20px;
+			right: 50%;
+			transform: translateX(50%);
+		}
+
+		&__heading {
+			font-size: 1rem;
+			padding-bottom: 3px;
+			border-color: $dark-gray;
+		}
+		&__text {
+			padding-left: 0;
+			font-size: 11/16*1rem;
+		}
+		&__button {
+			letter-spacing: 0;
+		}
+	}
+
+	.home-slider-wrap {height: 250px;}
+	.slider__button {top: 80%; z-index: 2;}
+
+	.slide-info-list {
+		top: 70%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+
+	.home-filter__top {
+		justify-content: flex-start;
+		margin-bottom: 25px;
+	}
+
+	.home-filter__select-wrap {
+		width: 30%;
+		margin-bottom: 20px;
+		padding-left: 10px;
+		box-sizing: border-box;
+
+		&:nth-child(3n) {
+			width: 100%;
+		}
+	}
+
+	.home-filter-checkbox {
+		&-wrap {
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			padding-left: 10px;
+			margin-top: 0;
+			box-sizing: border-box;
+		}
+	}
+	.filter-checkbox-list {
+		margin-top: 20px;
+	}
+
+	.home-filter__bottom {
+		flex-wrap: wrap;
+	}
+
+	.home-filter__button {
+		margin: 0;
+		width: 30%;
+		margin-bottom: 10px;
+		line-height: 25px;
+
+		&-wrap {flex-direction: column;}
+	}
+
+	.residence-list {
+		&__item {
+			width: 100%;
+			margin-right: 0;
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+}

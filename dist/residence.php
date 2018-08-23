@@ -222,34 +222,38 @@
             <div class="container">
                 <div class="residence-building-list">
                     <div class="building residence-building__item">
-                        <div class="building-info">
-                            <h1 class="building__heading">Rybalsky — Дом 3</h1>
-                            <p class="building__location">Киевская область, Киев</p>
-                            <ul class="building-info-list">
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Этажность</span>
-                                    <span class="building-info-list__text">7-10</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Количество квартир</span>
-                                    <span class="building-info-list__text">174</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Площадь квартир</span>
-                                    <span class="building-info-list__text">от 42 до 171 м2</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Срок сдачи</span>
-                                    <span class="building-info-list__text">IV квартал 2018</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="residence-building__link" href="#">
+                            <div class="residence-building-info">
+                                <h1 class="building__heading">Rybalsky — Дом 3</h1>
+                                <p class="building__location">Киевская область, Киев</p>
+                                <ul class="building-info-list">
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Этажность</span>
+                                        <span class="building-info-list__text">7-10</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Количество квартир</span>
+                                        <span class="building-info-list__text">174</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Площадь квартир</span>
+                                        <span class="building-info-list__text">от 42 до 171 м2</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Срок сдачи</span>
+                                        <span class="building-info-list__text">IV квартал 2018</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </a>
                         <div class="building__image-wrap">
-                            <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
+                            <a href="#">
+                                <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
+                            </a>
                         </div>
                         <ul class="building-flats-list">
                             <li class="building-flats-list__item">
-                                <span class="building-flats-list__num">1K</span>
+                                <a href="#" class="building-flats-list__num">1K</a>
                                 <span class="building-flats-list__text building-flats-list__text_blue">61 квартира</span>
                                 <span class="building-flats-list__text">от 1 515 893 грн</span>
                             </li>
@@ -276,34 +280,38 @@
                         </ul>
                     </div>
                     <div class="building residence-building__item">
-                        <div class="building-info">
-                            <h1 class="building__heading">Rybalsky — Дом 3</h1>
-                            <p class="building__location">Киевская область, Киев</p>
-                            <ul class="building-info-list">
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Этажность</span>
-                                    <span class="building-info-list__text">7-10</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Количество квартир</span>
-                                    <span class="building-info-list__text">174</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Площадь квартир</span>
-                                    <span class="building-info-list__text">от 42 до 171 м2</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Срок сдачи</span>
-                                    <span class="building-info-list__text">IV квартал 2018</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="residence-building__link" href="#">
+                            <div class="residence-building-info">
+                                <h1 class="building__heading">Rybalsky — Дом 3</h1>
+                                <p class="building__location">Киевская область, Киев</p>
+                                <ul class="building-info-list">
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Этажность</span>
+                                        <span class="building-info-list__text">7-10</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Количество квартир</span>
+                                        <span class="building-info-list__text">174</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Площадь квартир</span>
+                                        <span class="building-info-list__text">от 42 до 171 м2</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Срок сдачи</span>
+                                        <span class="building-info-list__text">IV квартал 2018</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </a>
                         <div class="building__image-wrap">
-                            <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
+                            <a href="#">
+                                <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
+                            </a>
                         </div>
                         <ul class="building-flats-list">
                             <li class="building-flats-list__item">
-                                <span class="building-flats-list__num">1K</span>
+                                <a href="#" class="building-flats-list__num">1K</a>
                                 <span class="building-flats-list__text building-flats-list__text_blue">61 квартира</span>
                                 <span class="building-flats-list__text">от 1 515 893 грн</span>
                             </li>
@@ -330,34 +338,38 @@
                         </ul>
                     </div>
                     <div class="building residence-building__item">
-                        <div class="building-info">
-                            <h1 class="building__heading">Rybalsky — Дом 3</h1>
-                            <p class="building__location">Киевская область, Киев</p>
-                            <ul class="building-info-list">
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Этажность</span>
-                                    <span class="building-info-list__text">7-10</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Количество квартир</span>
-                                    <span class="building-info-list__text">174</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Площадь квартир</span>
-                                    <span class="building-info-list__text">от 42 до 171 м2</span>
-                                </li>
-                                <li class="building-info-list__item">
-                                    <span class="building-info-list__text">Срок сдачи</span>
-                                    <span class="building-info-list__text">IV квартал 2018</span>
-                                </li>
-                            </ul>
-                        </div>
+                        <a class="residence-building__link" href="#">
+                            <div class="building-info residence-building__info">
+                                <h1 class="building__heading">Rybalsky — Дом 3</h1>
+                                <p class="building__location">Киевская область, Киев</p>
+                                <ul class="building-info-list">
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Этажность</span>
+                                        <span class="building-info-list__text">7-10</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Количество квартир</span>
+                                        <span class="building-info-list__text">174</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Площадь квартир</span>
+                                        <span class="building-info-list__text">от 42 до 171 м2</span>
+                                    </li>
+                                    <li class="building-info-list__item">
+                                        <span class="building-info-list__text">Срок сдачи</span>
+                                        <span class="building-info-list__text">IV квартал 2018</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </a>
                         <div class="building__image-wrap">
-                            <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
+                            <a href="#">
+                                <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
+                            </a>
                         </div>
                         <ul class="building-flats-list">
                             <li class="building-flats-list__item">
-                                <span class="building-flats-list__num">1K</span>
+                                <a href="#" class="building-flats-list__num">1K</a>
                                 <span class="building-flats-list__text building-flats-list__text_blue">61 квартира</span>
                                 <span class="building-flats-list__text">от 1 515 893 грн</span>
                             </li>

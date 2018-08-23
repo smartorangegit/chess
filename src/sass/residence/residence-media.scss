@@ -59,3 +59,160 @@
 		display: none;
 	}
 }
+
+@media screen and (max-width: 799px) {
+	.residence-building__item {
+		width: 90%;
+	}
+
+	.residence-slider-info {
+		width: 270px;
+		padding: 15px 7px;
+
+		&__text {
+			font-size: 0.8rem;
+		}
+	}
+
+	.full-image-container {
+		width: 550px;
+	}
+	.full-image__cancel {
+		top: -80px;
+		right: -10px;
+	}
+	.full-image-slider {
+		&__button {
+			top: 110%;
+
+
+			&-prev {
+				left: 30%;
+			}
+			&-next {
+				right: 30%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 599px) {
+	.residence-slider-wrap {
+		height: auto;
+	}
+
+	.residence-slider {
+		height: auto;
+
+		&__item {
+			flex-wrap: wrap;
+		}
+
+		/*slick-custom*/
+	    .slick-list {
+	        height: auto;
+	    }
+	    .slick-slide {
+	        height: auto;
+	    }
+	    .slick-track {
+	        height: auto;
+	    }
+	    .slick-slide div {
+	        height: 100%;
+
+	    }
+	}
+	.residence-slider__button-prev, .residence-slider__button-next {
+		top: calc(50% + 7px);
+		height: calc(50% - 7px);
+	}
+
+	.profile-flat-slider__button-icon {
+		width: 15px;
+		height: 15px;
+	}
+
+	.one-image-box, .many-image-box {
+		width: 100%;
+		height: 250px !important;
+		margin-bottom: 15px;
+
+		&:nth-child(2n) {
+			margin-bottom: 0;
+		}
+	}
+	.many-image-box {
+		padding-left: 0;
+	}
+
+	.plus-icon {
+		width: 30px;
+		height: 30px;
+	}
+
+	.residence-main-content {
+		padding: 25px 0;
+		margin-bottom: 20px;
+
+		&__heading {
+			margin-bottom: 8px;
+			font-size: 18/16*1rem;
+
+			&_lower {
+				font-size: 1rem;
+			}
+		}
+
+		p {
+			margin-bottom: 5px;
+			font-size: 1rem;
+			text-align: justify;
+		}
+	}
+
+	.residence-main-list_home__item {
+		min-width: 100%;
+		max-width: 100%;
+		margin-right: 0;
+		
+		span {
+			font-size: 1rem;
+		}
+	}
+
+	.residence-main-list_yard__item span {font-size: 1rem;}
+
+	.residence-building__item {
+		width: 100%;
+	}
+	.residence-building__link {
+		width: 100%;
+		order: 1;
+	}
+
+	.full-image-container {
+		width: 300px;
+	}
+	.full-image__cancel {
+		top: -120px;
+		right: -5px;
+	}
+	.full-image-slider {
+		&-wrap {
+			height: 260px;
+		}
+
+		&__button {
+			top: 120%;
+
+
+			&-prev {
+				left: 20%;
+			}
+			&-next {
+				right: 20%;
+			}
+		}
+	}
+}

@@ -32,7 +32,7 @@
         <section class="filter-wrap">
             <div class="container">
                 <div class="filter-top">
-                    <div class="building">
+                    <div class="building" data-house="1" data-id="1">
                         <div class="building-info">
                             <h1 class="building__heading">Rybalsky — Дом 3</h1>
                             <p class="building__location">Киевская область, Киев</p>
@@ -86,12 +86,12 @@
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">5+</span>
-                                        <input id="checkbox_5" type="checkbox" class="filter-checkbox" value="5+">
+                                        <input id="checkbox_5" type="checkbox" class="filter-checkbox" value="5">
                                         <label for="checkbox_5" class="filter-checkbox-list__label"></label>
                                     </li>
                                     <li class="filter-checkbox-list__item">
                                         <span class="filter-checkbox__text">Cв</span>
-                                        <input id="checkbox_6" type="checkbox" class="filter-checkbox" value="CB">
+                                        <input id="checkbox_6" type="checkbox" class="filter-checkbox" value="0">
                                         <label for="checkbox_6" class="filter-checkbox-list__label"></label>
                                     </li>
 
@@ -102,7 +102,7 @@
                                   <span class="filter_name">Площадь кв. м:</span >
                                     <div class="filter__ranges">
                                         <?php /*Place PHP values here*/?>
-                                            <input name="area" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
+                                            <input name="all_room" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                         <?php /*Place PHP values here*/?>
                                         <input class="filter__range js-filter__range" type="text">
                                         <span class="range__text range__text_min js-filter__text_min">0</span>
@@ -113,30 +113,18 @@
                                   <span class="filter_name">Общая стоимость</span >
                                     <div class="filter__ranges filter__ranges_ta">
                                         <?php /*Place PHP values here*/?>
-                                            <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
+                                            <input name="price" type="range" min="10000" max="600000" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                         <?php /*Place PHP values here*/?>
                                         <input class="filter__range js-filter__range"  type="text">
                                         <span class="range__text range__text_min js-filter__text_min">0</span>
                                         <span class="range__text range__text_max js-filter__text_max">100</span>
                                     </div>
                                 </div>
-                                <!-- <div class="range__item range__item_long">
-                                  <span class="filter_name">Этаж</span >
-                                    <div class="filter__ranges filter__ranges_ta">
-                                        <?php /*Place PHP values here*/?>
-                                            <input nmae="floors" type="range" min="5" max="100" class="filter__hidden-values
-                                            js-filter__hidden-values" style="display: none;">
-                                        <?php /*Place PHP values here*/?>
-                                        <input class="filter__range js-filter__range"type="text">
-                                        <span class="range__text range__text_min js-filter__text_min">0</span>
-                                        <span class="range__text range__text_max js-filter__text_max">100</span>
-                                    </div>
-                                </div> -->
                                 <div class="range__item range__item_long">
                                   <span class="filter_name">Этаж</span >
                                     <div class="filter__ranges filter__ranges_ta">
                                         <?php /*Place PHP values here*/?>
-                                            <input name="floors" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
+                                            <input name="floor" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
                                         <?php /*Place PHP values here*/?>
                                         <input class="filter__range js-filter__range"  type="text">
                                         <span class="range__text range__text_min js-filter__text_min">0</span>
@@ -149,7 +137,7 @@
                                     Расширенные фильтры
                                     <svg class="filter-top__button-icon"><use xlink:href="#left-arrow"></use></svg>
                                 </button>
-                                <button class="button header__button filter__button border-gradient">
+                                <button class="button border-gradient header__button filter__button filter__button_clear-js">
                                     Сбросить
                                 </button>
                             </div>
@@ -311,7 +299,7 @@
                 <div class="container">
                     <div class="result-short-content">
                         <p class="result-short__text">
-                            Найдено <span class="result-short__text_blue">298</span> помещений. Из них свободно: <span class="result-short__text_blue">172</span>
+                            Найдено <span class="result-short__text_blue result-short_all-js">298</span> помещений. Из них свободно: <span class="result-short__text_blue result-short_free-js">172</span>
                         </p>
                         <ul class="result-short-list">
                             <li class="result-short-list__item">
@@ -334,13 +322,13 @@
                         <div class="result-short-select">
                             <span class="result-short__text result-short__text_medium">ВИД</span>
                             <div class="result-short__select-wrap">
-                                <svg class="result-short__select-icon"><use xlink:href="#labyrinth"></use></svg>
+                                <svg class="result-short__select-icon"><use xlink:href="#menu-grid"></use></svg>
                                 <!-- <select class="result-short__select">
                                     <option value="0">Планировки</option>
                                     <option value="1">Плитка</option>
                                     <option value="2">Список</option>
                                 </select> -->
-                                <p class="result-short__select">Планировки</p>
+                                <p class="result-short__select">Плитка</p>
                                 <ul class="view-list">
                                     <li class="view-list__item">
                                         <svg  id="labyrinth" class="view-list__icon"><use xlink:href="#labyrinth"></use></svg>
@@ -366,41 +354,9 @@
             <div class="container">
                 <ul class="result-plan-list">
                     <li class="result-plan-list__item">
-                        <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
-                        <div class="result-plan-info">
-                            <div class="result-plan-info__price">
-                                <p class="result-plan-info__text">Бронь</p>
-                                <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
-                                <div class="color-box result-plan__color-box color-box_yellow"></div>
-                            </div>
-                            <div class="result-plan-info__floor">
-                                <p class="result-plan-info__text">9 этаж</p>
-                                <p class="result-plan-info__text">№ 56</p>
-                            </div>
-                        </div>
-                        <a href="#" class="rooms__link result-plan__rooms-link">2K</a>
-                        <!-- <a href="#" class="button result-plan__button">Подробнее</a> -->
-                        <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
-                    </li>
-                    <li class="result-plan-list__item">
-                        <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
-                        <div class="result-plan-info">
-                            <div class="result-plan-info__price">
-                                <p class="result-plan-info__text">Бронь</p>
-                                <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
-                                <div class="color-box result-plan__color-box color-box_yellow"></div>
-                            </div>
-                            <div class="result-plan-info__floor">
-                                <p class="result-plan-info__text">9 этаж</p>
-                                <p class="result-plan-info__text">№ 56</p>
-                            </div>
-                        </div>
-                        <a href="#" class="rooms__link result-plan__rooms-link">2K</a>
-                        <!-- <a href="#" class="button result-plan__button">Подробнее</a> -->
-                        <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
-                    </li>
-                    <li class="result-plan-list__item">
-                        <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
+                        <a href="#" class="result-plan-list__image-link">
+                            <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
+                        </a>
                         <div class="result-plan-info">
                             <div class="result-plan-info__price">
                                 <p class="result-plan-info__text">Бронь</p>
@@ -429,15 +385,9 @@
                             </a>
                         </div>
                         <ul class="pagination-num-list">
-                            <li class="pagination-num-list__item">
+                            <!-- <li class="pagination-num-list__item">
                                 <a href="#" class="pagination-num-list__link pagination__button">1</a>
-                            </li>
-                            <li class="pagination-num-list__item">
-                                <a href="#" class="pagination-num-list__link pagination__button">2</a>
-                            </li>
-                            <li class="pagination-num-list__item">
-                                <a href="#" class="pagination-num-list__link pagination__button">3</a>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="pagination-next">
                             <a href="#" class="pagination__link">
@@ -462,13 +412,13 @@
                     <ul class="entrance-floor">
                         <!-- <li class="entrance-floor__item">1</li> -->
                     </ul>
-                    <div class="entrance-wrap"entrance-tooltip>
+                    <div class="entrance-wrap">
                         <div class="entrance-tooltip">
-                            <p class="entrance-tooltip__text">№ 89</p>
-                            <p class="entrance-tooltip__text">1738 477 грн.</p>
-                            <p class="entrance-tooltip__text">47,67 м<sup>2</sup> – 36 469 грн/м<sup>2</sup></p>
-                            <img src="img/flat/2s_2f_1_4.png" alt="flat" class="entrance-tooltip__image">
-                            <div data-color="green" class="color-box entrance-tooltip__color-box">1K</div>
+                            <p class="entrance-tooltip__text">№ <span class="entrance-tooltip__num">0</span></p>
+                            <p class="entrance-tooltip__text"><span class="entrance-tooltip__price">0</span> грн.</p>
+                            <p class="entrance-tooltip__text"><span class="entrance-tooltip__square">0</span> м<sup>2</sup> – <span class="entrance-tooltip__price_meter">0</span> грн/м<sup>2</sup></p>
+                            <img src="" alt="flat" class="entrance-tooltip__image">
+                            <div data-color="green" class="color-box entrance-tooltip__color-box"><span class="entrance-tooltip__rooms">0</span> K</div>
                         </div>
                         <!-- <div class="entrance">
                             <p class="entrance__num">1</p>
@@ -783,11 +733,11 @@
             <div class="container">
                 <div class="result-list-top">
                     <span class="result-list-top__text">Показать по:</span>
-                    <select name="" id="" class="result-list-top__select">
-                        <option value="">4</option>
-                        <option value="">3</option>
-                        <option value="">2</option>
-                        <option value="">1</option>
+                    <select id="table_rows" class="result-list-top__select" onchange="selectHandler()">
+                        <!-- <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option> -->
                     </select>
                 </div>
                 <div class="table_shadow">
@@ -796,18 +746,17 @@
                             <thead class="filter-table__head">
                                 <th class="filter-table__heading filter-table_no_padding">Этаж</th>
                                 <th class="filter-table__heading">Статус</th>
+                                <th class="filter-table__heading">Жилая площадь,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Прихожая,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Кухня,м<sup>2</sup></th>
                                 <th class="filter-table__heading">Гостинная,м<sup>2</sup></th>
+                                <th class="filter-table__heading">Лоджия,м<sup>2</sup></th>
                                 <th class="filter-table__heading">Спальня,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Ванная,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Гостинная,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Ванная,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
                                 <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
                             </thead>    
-                            <tbody>
+                            <tbody class="filter-table__body">
                                 <tr class="filter-table__row">
-                                    <td class="filter-table__col filter-table_no_padding">1</td>
+                                    <td class="filter-table__col">1</td>
                                     <td class="filter-table__col"><div data-color="gray" class="color-box filter-table__color-box"></div></td>
                                     <td class="filter-table__col">24</td>
                                     <td class="filter-table__col">1</td>
@@ -818,48 +767,12 @@
                                     <td class="filter-table__col">24</td>
                                     <td class="filter-table__col">24</td>
                                 </tr>
-                                <tr class="filter-table__row">
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col"><div data-color="green" class="color-box filter-table__color-box"></div></td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col">45</td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col">45</td>
-                                    <td class="filter-table__col">24</td>
-                                </tr>
-                                <tr class="filter-table__row">
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col"><div data-color="yellow" data-color="dark-gray" class="color-box filter-table__color-box"></div></td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col">45</td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col">45</td>
-                                    <td class="filter-table__col">24</td>
-                                </tr>
-                                <tr class="filter-table__row">
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col"><div data-color="dark-gray" class="color-box filter-table__color-box"></div></td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col">45</td>
-                                    <td class="filter-table__col">24</td>
-                                    <td class="filter-table__col">1</td>
-                                    <td class="filter-table__col">45</td>
-                                    <td class="filter-table__col">24</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>   
-            <div class="pagination filter-pagination result-list-pagination">
+            <div class="pagination filter-pagination table-pagination">
                 <div class="container">
                     <div class="pagination-content">
                         <div class="pagination-prev">
@@ -872,12 +785,6 @@
                         <ul class="pagination-num-list">
                             <li class="pagination-num-list__item">
                                 <a href="#" class="pagination-num-list__link pagination__button">1</a>
-                            </li>
-                            <li class="pagination-num-list__item">
-                                <a href="#" class="pagination-num-list__link pagination__button">2</a>
-                            </li>
-                            <li class="pagination-num-list__item">
-                                <a href="#" class="pagination-num-list__link pagination__button">3</a>
                             </li>
                         </ul>
                         <div class="pagination-next">
