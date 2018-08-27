@@ -202,6 +202,8 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             if(+filter.page >= 2) {
                 filter.page = +filter.page - 1;
                 $(links[activeIndex-1]).addClass("pagination-num-list__link_active");
+            } else {
+                $(links[0]).addClass("pagination-num-list__link_active");
             }
 
             $.ajax(paginAjaxObj);
@@ -210,9 +212,11 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             e.preventDefault();
             var activeIndex = links.index($(".pagination-num-list__link_active"));
 
-            links.removeClass("pagination-num-list__link_active");
-            $(links[activeIndex+1]).addClass("pagination-num-list__link_active");
-            filter.page = +filter.page + 1;
+            if(+filter.page < links.length) {
+                links.removeClass("pagination-num-list__link_active");
+                $(links[activeIndex+1]).addClass("pagination-num-list__link_active");
+                filter.page = +filter.page + 1;
+            }
 
             $.ajax(paginAjaxObj);
         });

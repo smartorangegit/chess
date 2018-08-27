@@ -4,7 +4,6 @@ $('.residence-slider').slick({
     slidesToScroll: 1,
     speed: 1000,
     autoplaySpeed: 500,
-    // infinite: false,
     arrows: true,
   	prevArrow: '.residence-slider__button-prev',
 	nextArrow: '.residence-slider__button-next'
@@ -21,7 +20,7 @@ $(".residence-slider").on('beforeChange', function(event, slick, currentSlide, n
 });
 // end__show-hide residence-slider__button-prev
 
-// show-hide-fullscreen-image
+// show-hide-fullscreen-image-popup
 $(".many-image-box__image_hover").on("click", function() {
 	var residenceImages = $(".many-image-box__image");
 	var currentImageSrc = $(this).siblings(".many-image-box__image").attr("src");
@@ -37,12 +36,24 @@ $(".many-image-box__image_hover").on("click", function() {
 
 	function addSliderItems(sliderClassName) {
 		rewriteSlider(sliderClassName);
-
 		var slider = $("." + sliderClassName);
+		// create array width elements in right direction(first element is clicked image)
+		var imageArr = [], 
+			newImageArr = [],
+			newImageArrBegining = [], 
+			newImageArrEnding = [];
 
-		for(var i = 0; i < residenceImages.length; i++) {
-			var imageSrc = $(residenceImages[i]).attr("src");
+		residenceImages.each(function(i, item) {
+			imageArr.push(item);
+		});
 
+		newImageArrEnding = imageArr.slice(0, currentIndex);
+		newImageArrBegining = imageArr.slice(currentIndex);
+		newImageArr = newImageArrBegining.concat(newImageArrEnding);
+		// end__create array...
+
+		for(var i = 0; i < newImageArr.length; i++) {
+			var imageSrc = $(newImageArr[i]).attr("src");
 			var result = slider.append(
 					'<li class=' + sliderClassName + '__item' + '>' +
 		                "<img src=" + imageSrc + " class=" + sliderClassName + "__image" + ">" + 
@@ -78,27 +89,13 @@ $(".many-image-box__image_hover").on("click", function() {
 	});
 	// end__initialize slick plugin
 
-	// function showSelectImage() {
-	// 	var slides = $(".full-image-slider").find(".slick-slide");
-	// 	for(var i = 0; i < slides.length; i++) {
-	// 		$(slides[i]).removeClass("slick-active");
-	// 		$(slides[i]).removeClass("slick-current");
-	// 	}
-	// 	// $(slides[currentIndex]).addClass(".slick-current");
-	// 	// $(slides[currentIndex]).addClass(".slick-active");
-	// 	// var a = $(".full-image-slider").find(".slick-current");
-	// 	$(slides[currentIndex]).find(".full-image-slider__image").attr("src", currentImageSrc);
-	// 	console.log($(slides[currentIndex+1]));
-	// }
-	// showSelectImage();
 	$(".full-image-slider").find(".slick-current").find(".full-image-slider__image")
 				.attr("src", currentImageSrc);
 	$(".full-image").fadeIn();
-
 });
 
 $(".full-image__cancel").on("click", function() {
 	$(this).closest(".full-image").fadeOut();
 });
-// end__show-fullscreen-image
+// end__show-fullscreen-image-popup
 

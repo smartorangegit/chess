@@ -303,7 +303,7 @@ $(".filter-full__button_more").on("click", function() {
     // show_selected_flats_table
     function flatsShowTable(data, flatsQuantity) {
         var flatsArr = getFlats(data, flatsQuantity);
-        var bathroom, hall, kitchen, livingRoom, bedroom, balcony, livingSpace;
+        var bathroom, hall, kitchen, livingRoom, bedroom, balcony, livingSpace = "Нет значения";
 
         function appartmentStatus(appart) {
             switch (appart.sale) {
@@ -343,7 +343,6 @@ $(".filter-full__button_more").on("click", function() {
                             bathroom = rooms.property_flat; 
                         } else if(rooms.property_name == "Жилая площадь") {
                             livingSpace = rooms.property_flat;
-                            // console.log("skfvdk");
                         } 
                     }
                 }

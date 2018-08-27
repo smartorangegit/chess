@@ -157,7 +157,7 @@ $('.home-slider').slick({
             success: function(data){
                 console.log(data);
                 residenceShow(data.data);
-                paginationItemShow(data.quantity, residenceShow);
+                paginationItemShow("79", residenceShow);
             },
             error: function(data){
                console.log(data);
