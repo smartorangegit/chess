@@ -343,6 +343,7 @@ $(".filter-full__button_more").on("click", function() {
                             bathroom = rooms.property_flat; 
                         } else if(rooms.property_name == "Жилая площадь") {
                             livingSpace = rooms.property_flat;
+                            // console.log("skfvdk");
                         } 
                     }
                 }

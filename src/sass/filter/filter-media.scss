@@ -118,11 +118,11 @@
 			width: 48%;
 			margin-right: 4%;
 
-			&:nth-child(2n) {
-				margin-right: 0;
-			}
 			&:nth-child(3n) {
 				margin-right: 4%;
+			}
+			&:nth-child(2n) {
+				margin-right: 0;
 			}
 		}
 	}
@@ -137,4 +137,174 @@
 	.range__text {
 		top: -14px;
 	}
+}
+
+@media screen and (max-width: 799px) {
+	.filter-short {
+		width: 75%;
+	}
+
+	.filter-settings-list__item {
+		width: 50%;
+	}
+
+	.filter-full__button {
+		&-wrap {
+			padding-bottom: 50px;
+
+			.filter__button {
+				line-height: 30px;
+			}
+		}
+
+		&_more {
+			width: 100%;
+			font-size: 0.9rem;
+			right: 50%;
+			transform: translateX(50%);
+			justify-content: center;
+		}
+	}
+}
+
+@media screen and (max-width: 599px) {
+	.filter-top .building {
+		width: 100%;
+	}
+
+	.filter-short {
+		width: 100%;
+	}
+
+	.filter-short-checkbox-wrap {
+		flex-wrap: wrap;
+	}
+
+	.filter-top__button {
+		&-wrap {
+			flex-direction: column;
+			align-items: center;
+
+			.filter__button {
+				order: 0;
+				width: 190/360*100%;
+				margin-bottom: 15px;
+				text-transform: uppercase;
+				font-size: 0.9rem;
+			}
+		}
+
+		&_more {
+			order: 1;
+			font-size: 0.9rem;
+		}
+	}
+
+	.filter-full-range {
+		.range__item {
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			margin-bottom: 15px;
+		}
+		.filter__ranges {
+			width: 100%;
+		}
+		.filter_name {
+			margin-bottom: 25px;
+		}
+	}
+
+	.filter-settings {
+		&-content {
+			flex-direction: column;
+
+		}
+
+		&-list {
+			width: 100%;
+			&__item {
+				width: 100%;
+			}
+			&__text {
+				font-size: 0.9rem;
+			}
+		}
+	}
+
+	.result-short {
+		&-content {
+			justify-content: center;
+		}
+
+		&-list {
+			order: 0;
+			flex-wrap: wrap;
+			margin-bottom: 30px;
+
+			&__item {
+				width: calc(50% - 5px);
+				margin-bottom: 15px;
+
+				&:nth-child(2n) {
+					margin-right: 0;
+				}
+				&:nth-child(3) {
+					margin-bottom: 0;
+				}
+				&:nth-child(4) {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	.result-short__text, .result-short__select, .view-list__text {
+		font-size: 0.77rem;
+	}
+	
+	.title-floor {
+		left: -13%;
+	}
+	.title-entrance {
+		left: -1%;
+	}
+	.entrance-floor {
+		left: -2%;
+	}
+
+
+	.result-plan-list {
+		width: 100%;
+		
+		&__item {
+			width: 100%;
+			margin-right: 0;
+			&:nth-child(3n) {
+				margin-right: 0%;
+			}
+		}
+	}
+	.result-plan-info {
+		&__price {
+			padding: 0 10px;
+		}
+
+		&__text {
+			text-align: left;
+		}
+	}
+	.result-plan__color-box {
+		left: -2%;
+	}
+
+	.filter-table {
+		&__heading {
+			padding: 10px 20px;
+			font-size: 0.9rem;
+		}
+
+		&__col {
+			padding: 10px 20px;
+			font-size: 0.9rem;	
+		}
+	} 
 }

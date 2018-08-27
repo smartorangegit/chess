@@ -222,7 +222,7 @@
             <div class="container">
                 <div class="residence-building-list">
                     <div class="building residence-building__item">
-                        <a class="residence-building__link" href="#">
+                        <a class="residence-building__link" href="filter.php">
                             <div class="residence-building-info">
                                 <h1 class="building__heading">Rybalsky — Дом 3</h1>
                                 <p class="building__location">Киевская область, Киев</p>
@@ -247,7 +247,7 @@
                             </div>
                         </a>
                         <div class="building__image-wrap">
-                            <a href="#">
+                            <a href="filter.php">
                                 <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
                             </a>
                         </div>

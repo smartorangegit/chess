@@ -65,7 +65,6 @@ $(".form__phone").mask('+38 (099) 999-99-99');
 // end__TAB'S
 
 
-
 // functions_for_filter
     function getDefaulValue(el) {
         var valueArr = [];
