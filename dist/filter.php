@@ -374,7 +374,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="pagination filter-pagination result-plan-pagination">
+            <!-- <div class="pagination filter-pagination result-plan-pagination">
                 <div class="container">
                     <div class="pagination-content">
                         <div class="pagination-prev">
@@ -385,9 +385,9 @@
                             </a>
                         </div>
                         <ul class="pagination-num-list">
-                            <!-- <li class="pagination-num-list__item">
+                            <li class="pagination-num-list__item">
                                 <a href="#" class="pagination-num-list__link pagination__button">1</a>
-                            </li> -->
+                            </li>
                         </ul>
                         <div class="pagination-next">
                             <a href="#" class="pagination__link">
@@ -398,10 +398,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
 
-        <section class="result-tile-wrap">
+        <section class="result-tile-wrap result-tile_active-js">
             <div class="container">
                 <div class="result-tile">
                     <div class="floor-plan">
@@ -733,11 +733,11 @@
             <div class="container">
                 <div class="result-list-top">
                     <span class="result-list-top__text">Показать по:</span>
-                    <select id="table_rows" class="result-list-top__select" onchange="selectHandler()">
-                        <!-- <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1">1</option> -->
+                    <select id="select_pagination" class="result-list-top__select" onchange="selectHandler()">
+                        <option value="12">12</option>
+                        <option value="24">24</option>
+                        <option value="36">36</option>
+                        <option value="48">48</option>
                     </select>
                 </div>
                 <div class="table_shadow">
@@ -772,7 +772,35 @@
                     </div>
                 </div>
             </div>   
-            <div class="pagination filter-pagination table-pagination">
+            
+             <!-- <div class="pagination filter-pagination">
+                <div class="container">
+                    <div class="pagination-content">
+                        <div class="pagination-prev">
+                            <a href="#" class="pagination__link">
+                                <span class="pagination-prev__button pagination__button">
+                                    <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
+                                </span>
+                            </a>
+                        </div>
+                        <ul class="pagination-num-list">
+                            <li class="pagination-num-list__item">
+                                <a href="#" class="pagination-num-list__link pagination__button">1</a>
+                            </li>
+                        </ul>
+                        <div class="pagination-next">
+                            <a href="#" class="pagination__link">
+                                <span class="pagination__button pagination-next__button">
+                                    <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+
+        <div class="pagination filter-pagination">
                 <div class="container">
                     <div class="pagination-content">
                         <div class="pagination-prev">
@@ -797,7 +825,6 @@
                     </div>
                 </div>
             </div>
-        </section>
 
     
         

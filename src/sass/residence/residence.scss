@@ -302,6 +302,11 @@
 			width: 45px;
 			height: 45px;
 			fill: #fff;
+			transition: all 0.2s;
+
+			&:hover {
+				fill: $blue;
+			}
 
 			&_revers {
 				transform: rotate(-180deg);
@@ -375,5 +380,16 @@
 	height: 30px;
 	fill: #fff;
 	cursor: pointer;
+	transition: all 0.2s;
+
+	&:hover {
+		fill: $light-gray;
+	}
+}
+
+.big-map {
+	width: 100%;
+	height: 100%;
+	background-color: #999;
 }
 /*end__popup*/

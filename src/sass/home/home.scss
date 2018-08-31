@@ -71,6 +71,34 @@
     }
 }
 
+.slider__button {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: all 0.5s;
+    cursor: pointer;
+
+    &-next {
+        right: 7%;
+        transform: translateY(-50%) rotate(-180deg);
+    }
+
+    &-prev {
+        left: 7%;
+        transform: translateY(-50%);
+    }
+
+    &-icon {
+        width: 40px;
+        height: 40px;
+        fill: #fff;
+    }
+}
+
 .home-top-info {
     position: relative;
     padding: 20px;
@@ -131,7 +159,7 @@
 .slide-info-list {
     position: absolute;
     top: 65%;
-    left: 9%;
+    left: 8%;
 
     &__item {
         display: none;

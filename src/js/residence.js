@@ -54,12 +54,19 @@ $(".many-image-box__image_hover").on("click", function() {
 
 		for(var i = 0; i < newImageArr.length; i++) {
 			var imageSrc = $(newImageArr[i]).attr("src");
+			var imageId = $(newImageArr[i]).attr("id");
+			if(imageId == undefined) {
+				imageId = "image";
+			} else {
+				imageId = "full-size-map";
+			};
+			// console.log(imageId);
 			var result = slider.append(
 					'<li class=' + sliderClassName + '__item' + '>' +
-		                "<img src=" + imageSrc + " class=" + sliderClassName + "__image" + ">" + 
+		                "<img id=" + imageId +" src=" + imageSrc + " class=" + sliderClassName + "__image" + ">" + 
 		            "</li>"
 			);
-		}
+		}  
 
 		return result;
 	}
@@ -89,8 +96,18 @@ $(".many-image-box__image_hover").on("click", function() {
 	});
 	// end__initialize slick plugin
 
-	$(".full-image-slider").find(".slick-current").find(".full-image-slider__image")
-				.attr("src", currentImageSrc);
+	(function addingGoogleMap() {
+		var mapImage = $("#full-size-map");
+		var mapItem = mapImage.closest(".full-image-slider__item");
+		mapImage.remove();
+
+		$(mapItem).append(
+			"<div id='map' class='big-map'</div>"
+		);
+
+		initMap();
+	}());
+
 	$(".full-image").fadeIn();
 });
 
@@ -98,4 +115,31 @@ $(".full-image__cancel").on("click", function() {
 	$(this).closest(".full-image").fadeOut();
 });
 // end__show-fullscreen-image-popup
+
+
+function initMap() {
+	var lat = document.getElementsByClassName("residence-main")[0].getAttribute("data-lat");
+	var lng = document.getElementsByClassName("residence-main")[0].getAttribute("data-lng");
+    var uluru = {lat: +lat, lng: +lng};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: uluru,
+        gestureHandling: 'greedy'
+	});
+    
+    var icon = {
+        url: "img/map-marker.png", // url
+        // size: new google.maps.Size(200, 150),
+        // scaledSize: new google.maps.Size(200, 150), // scaled size
+        origin: new google.maps.Point(0, 0), // origin
+        // anchor: new google.maps.Point(87, 232) // anchor
+    };
+    
+    var marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+        icon: icon
+    });
+}
+
 

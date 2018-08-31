@@ -60,34 +60,6 @@ body {
   background-image: linear-gradient(to bottom, $blue 0%, #91E2FB 100%), linear-gradient(to bottom, $blue 0%, #91E2FB 100%);
 }
 
-.slider__button {
-	position: absolute;
-	top: 50%;
-	width: 40px;
-	height: 40px;
-	background-color: transparent;
-	border: none;
-	outline: none;
-	transition: all 0.5s;
-	cursor: pointer;
-
-	&-next {
-		right: 8%;
-		transform: translateY(-50%) rotate(-180deg);
-	}
-
-	&-prev {
-		left: 8%;
-		transform: translateY(-50%);
-	}
-
-	&-icon {
-		width: 40px;
-		height: 40px;
-		fill: #fff;
-	}
-}
-
 /*location-block*/
 .location {
 	width: 100%;
@@ -288,7 +260,6 @@ sup {
 /*end__building*/
 
 /*pagination*/
-// .result-plan-pagination {display: none};
 .pagination {
 	display: none;
     width: 100%;
@@ -363,6 +334,7 @@ sup {
     justify-content: center;
 
     &__item {
+    	position: relative;
         margin-right: 11px;
 
         &:last-child {
@@ -372,6 +344,27 @@ sup {
 
     &__link_active {
     	color: $blue;
+    }
+
+    &__dot_right {
+    	margin-right: 21px;
+    	&:after {
+			position: absolute;
+			right: -16px;
+			bottom: 0;
+			color: $dark-gray;
+			content: "...";
+    	}
+    }
+    &__dot_left {
+    	margin-left: 10px;
+    	&:before {
+			position: absolute;
+			left: -16px;
+			bottom: 0;
+			color: $dark-gray;
+			content: "...";
+    	}
     }
 }
 /*end__pagination*/

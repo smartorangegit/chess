@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <section class="residence-main">
+        <section data-lat="50.449113" data-lng="30.457215" class="residence-main">
             <div class="container">
                 <h1 class="residence__heading">Квартал RYBALSKY</h1>
                 <p class="residence__location">Киевская область, Киев</p>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="many-image-box">
                                     <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                                        <img id="map-image" src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
                                         <div class="many-image-box__image_hover">
                                             <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
                                         </div>
@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="residence-slider__item">
+                            <!-- <li class="residence-slider__item">
                                 <div class="many-image-box">
                                     <div class="many-image-box__image-wrap">
                                         <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                         <button class="profile-flat-slider__button residence-slider__button-prev">
                             <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_1"><use xlink:href="#left-arrow"></use></svg>
@@ -419,6 +419,7 @@
 
         <?php include_once('includes/footer.php'); ?> 
 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkkNgvCFDLDhP_qSDZhMRyzOG8bZ3hJYs"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/common.min.js"></script>
         <script src="js/residence.min.js"></script>

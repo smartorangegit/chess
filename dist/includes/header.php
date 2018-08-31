@@ -23,11 +23,11 @@
 	<div class="header-content">
 		<div class="container clearfix">
 			<div class="header__button-wrap">
-				<!-- <div class="favorites-button">
+				<div class="favorites-button">
 					<svg class="favorites-button__icon"><use xlink:href="#star"></use></svg>
 					<p class="favorites-button__text">Избранное</p>
 					<p class="favorites-button__count">1</p>
-				</div> -->
+				</div>
 				<button class="button header__button border-gradient">Регистрация</button>
 				<!-- <button class="button header__button header__button_login">sobko.alex@gmail.com</button> -->
 				<button class="button header__button border-gradient">Вход</button>
@@ -43,7 +43,6 @@
 					<li class="favorites-title-list__item favorites-title-list__item_active">Готовые обьекты</li>
 					<li class="favorites-title-list__item">Строящиеся объекты</li>
 					<li class="favorites-title-list__item">Коммерческая недвижимость</li>
-					<li class="favorites-title-list__item">Аренда</li>
 				</ul>
 				<ul class="favorites-table-list">
 					<li class="favorites-table-list__item favorites-table-list__item_active">
@@ -56,6 +55,7 @@
 								<th class="favorites-table__heading">Общая стоимость, грн</th>
 								<th class="favorites-table__heading">Тип</th>
 								<th class="favorites-table__heading">Забронировать</th>
+								<th class="favorites-table__heading">Удалить</th>
 							</thead>
 							<tbody class="favorites-table__body">
 								<tr class="favorites-table__row">
@@ -68,6 +68,9 @@
 									<td class="favorites-table__col">
 										<svg class="favorites-table__booking-icon"><use xlink:href="#home-security"></use></svg>
 									</td>
+									<td class="favorites-table__col">
+										<svg class="favorites-table__booking-icon favorites-table__booking-icon_smaller"><use xlink:href="#cancel"></use></svg>
+									</td>
 								</tr>
 								<tr class="favorites-table__row">
 									<td class="favorites-table__col">Квартал RYBALSKY </td>
@@ -78,6 +81,9 @@
 									<td class="favorites-table__col">2B</td>
 									<td class="favorites-table__col">
 										<svg class="favorites-table__booking-icon"><use xlink:href="#home-security"></use></svg>
+									</td>
+									<td class="favorites-table__col">
+										<svg class="favorites-table__booking-icon favorites-table__booking-icon_smaller"><use xlink:href="#cancel"></use></svg>
 									</td>
 								</tr>
 							</tbody>
@@ -93,6 +99,7 @@
 								<th class="favorites-table__heading">Общая стоимость, грн</th>
 								<th class="favorites-table__heading">Тип</th>
 								<th class="favorites-table__heading">Забронировать</th>
+								<th class="favorites-table__heading">Удалить</th>
 							</thead>
 							<tbody class="favorites-table__body">
 								<tr class="favorites-table__row">
@@ -104,6 +111,9 @@
 									<td class="favorites-table__col">2B</td>
 									<td class="favorites-table__col">
 										<svg class="favorites-table__booking-icon"><use xlink:href="#home-security"></use></svg>
+									</td>
+									<td class="favorites-table__col">
+										<svg class="favorites-table__booking-icon favorites-table__booking-icon_smaller"><use xlink:href="#cancel"></use></svg>
 									</td>
 								</tr>
 							</tbody>

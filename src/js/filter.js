@@ -79,18 +79,28 @@ $(".filter-full__button_more").on("click", function() {
         var index = $(this).index();
         if(index === 0) {
             $(".result-plan").fadeIn();
-            $(".result-tile-wrap").css("display", "none");
+            $(".result-tile-wrap").removeClass("result-tile_active-js").css("display", "none");
             $(".result-list").css("display", "none");
         } else if(index === 2) {
-            $(".result-tile-wrap").fadeIn();
+            $(".result-tile-wrap").addClass("result-tile_active-js").fadeIn();
             $(".result-list").css("display", "none");
             $(".result-plan").css("display", "none");
         } else if(index === 1) {
             $(".result-list").fadeIn();
-            $(".result-tile-wrap").css("display", "none");
+            $(".result-tile-wrap").removeClass("result-tile_active-js").css("display", "none");
             $(".result-plan").css("display", "none");
         }
+
+        showFilterPagination();
     });
+
+    function showFilterPagination() {
+        if($(".result-tile-wrap").hasClass("result-tile_active-js")) {
+            $(".filter-pagination").css("display", "none");
+        } else {
+            $(".filter-pagination").css("display", "block");
+        }
+    };
 // end__change-view
 
 // flat-tooltip-show
@@ -139,7 +149,7 @@ $(".filter-full__button_more").on("click", function() {
 // end__flat-tooltip-show
 
 // filter
-    // some of function describe in common.js
+    // some of function describe in common.js 
 
     var filterDefautl = {
         count: "12",
@@ -161,32 +171,52 @@ $(".filter-full__button_more").on("click", function() {
 
     getRoomsNumber();
 
-    function getFlats(data, flatsQuantity) {
+    // submit
+    $('.filter__button-js').on("click", function(e) {
+        e.preventDefault();
+        $(".residence-list__item").remove();
+        console.log(filter);
+
+        $.ajax({
+            url: "http://apivime.smarto.com.ua/ajax",
+            type: "POST",
+            dataType: "json",
+            data: filter,
+            success: function(data){
+                console.log(data);
+                entranceShow(data);
+                flatsShow(data.dataList);
+                flatsShowTable(data.dataList);
+
+                paginationItemShow(data.quantity, flatsShow, flatsShowTable);
+
+                $(".result-short_all-js").html(data.quantity);
+                $(".result-short_free-js").html(data.quantityFree);
+            },
+            error: function(data){
+               console.log(data);
+            }
+        });
+    });
+    // end__submit
+
+    function getFlats(data) {
         var flats = [];
-        var freeFlats = [];
 
         for(var key in data) {
             var item1 = data[key];
             flats.push(item1);
         }
 
-        flats.forEach(function(item) {
-            if(item.sale == "1") {
-                    freeFlats.push(item);
-            }
-        });
-
-        $(".result-short_all-js").html(flatsQuantity);
-        $(".result-short_free-js").html(freeFlats.length);
-
         return flats;
     };
 
+
     // show_selected_flats
-    function flatsShow(data, flatsQuantity) {
+    function flatsShow(data) {
         $(".result-plan-list__item").remove();
 
-        var flatsArr = getFlats(data, flatsQuantity);
+        var flatsArr = getFlats(data);
 
         function appartmentStatus(flatsArr) {
             switch (flatsArr.sale) {
@@ -300,10 +330,30 @@ $(".filter-full__button_more").on("click", function() {
     };
     // end__show_selected_flats
 
+    // select-pagination
+    function selectHandler() {
+        var value = document.getElementById("select_pagination").value;
+        filter.count = value;
+
+        $.ajax({
+            url: "http://apivime.smarto.com.ua/ajax",
+            type: "POST",
+            dataType: "json",
+            data: filter,
+            success: function(data){
+                flatsShowTable(data.dataList);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    }
+    // end__select-pagination
+
     // show_selected_flats_table
-    function flatsShowTable(data, flatsQuantity) {
-        var flatsArr = getFlats(data, flatsQuantity);
-        var bathroom, hall, kitchen, livingRoom, bedroom, balcony, livingSpace = "Нет значения";
+    function flatsShowTable(data) {
+        var flatsArr = getFlats(data);
+        var bathroom=hall=kitchen=livingRoom=bedroom=balcony=livingSpace="Нет значения";
 
         function appartmentStatus(appart) {
             switch (appart.sale) {
@@ -368,7 +418,6 @@ $(".filter-full__button_more").on("click", function() {
     // show_selected_entrance
     function entranceShow(data) {
         $(".entrance").remove();
-
         var third = data.data;
 
         function getAppartment(appart) {
@@ -486,33 +535,6 @@ $(".filter-full__button_more").on("click", function() {
         showFlorPlan();
     };
     // end__show_selected_entrance
-
-    // submit
-    $('.filter__button-js').on("click", function(e) {
-        e.preventDefault();
-        $(".residence-list__item").remove();
-        console.log(filter);
-
-        $.ajax({
-            url: "http://apivime.smarto.com.ua/ajax",
-            type: "POST",
-            dataType: "json",
-            data: filter,
-            success: function(data){
-                console.log(data);
-                entranceShow(data);
-                flatsShow(data.dataList, data.quantity);
-                flatsShowTable(data.dataList, data.quantity);
-                
-                paginationItemShow(data.quantity, flatsShow);
-                paginationItemShow(data.quantity, flatsShowTable);
-            },
-            error: function(data){
-               console.log(data);
-            }
-        });
-    });
-    // end__submit
 // end__filter
 
 

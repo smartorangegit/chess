@@ -235,7 +235,7 @@
 		width: 100%;
 	}
 	&__heading {
-		padding: 0 30px;
+		padding: 0 15px;
 		font-size: 14/16*1rem;
 		font-family: $gotham;
 		color: $dark-gray;
@@ -254,12 +254,21 @@
 		}
 	}
 	&__col {
-		padding: 5px 30px;
+		padding: 5px 15px;
 		font-size: 1rem;
 		font-family: $gothamMedium;
 		color: $dark-gray;
 		text-align: center;
 		vertical-align: middle;
+
+		a {
+			color: $dark-gray;
+			transition: all 0.2s;
+
+			&:hover {
+				color: $blue;
+			}
+		}
 	}
 }
 
@@ -282,6 +291,11 @@
 
 	&:hover {
 		fill: $blue;
+	}
+
+	&_smaller {
+		width: 20px;
+		height: 20px;
 	}
 }
 /*end__favorite*/
