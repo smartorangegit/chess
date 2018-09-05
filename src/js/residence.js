@@ -1,6 +1,6 @@
 $('.residence-slider').slick({
     autoplay: false,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
     speed: 1000,
     autoplaySpeed: 500,
@@ -13,8 +13,7 @@ $('.residence-slider').slick({
 $(".residence-slider").on('beforeChange', function(event, slick, currentSlide, nextSlide){
 	$(".residence-slider__button-prev").css("opacity", "1");
 	var currrentIndex = $(".residence-slider").find('.slick-current').index();
-	var itemsNumber = ($(".residence-slider__item").length-1)/2;
-	if(currrentIndex == itemsNumber) {
+	if(currrentIndex == 0) {
 		$(".residence-slider__button-prev").css("opacity", "0");
 	}
 });
@@ -55,18 +54,19 @@ $(".many-image-box__image_hover").on("click", function() {
 		for(var i = 0; i < newImageArr.length; i++) {
 			var imageSrc = $(newImageArr[i]).attr("src");
 			var imageId = $(newImageArr[i]).attr("id");
+
 			if(imageId == undefined) {
 				imageId = "image";
 			} else {
 				imageId = "full-size-map";
 			};
-			// console.log(imageId);
+
 			var result = slider.append(
-					'<li class=' + sliderClassName + '__item' + '>' +
+					"<li class=" + sliderClassName + "__item" + ">" +
 		                "<img id=" + imageId +" src=" + imageSrc + " class=" + sliderClassName + "__image" + ">" + 
 		            "</li>"
 			);
-		}  
+		};  
 
 		return result;
 	}
@@ -131,7 +131,7 @@ function initMap() {
         url: "img/map-marker.png", // url
         // size: new google.maps.Size(200, 150),
         // scaledSize: new google.maps.Size(200, 150), // scaled size
-        origin: new google.maps.Point(0, 0), // origin
+        origin: new google.maps.Point(0, 0) // origin
         // anchor: new google.maps.Point(87, 232) // anchor
     };
     

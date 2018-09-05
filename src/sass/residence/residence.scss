@@ -61,21 +61,27 @@
 }
 
 /*slider*/
+.residence-top {
+	width: 100%;
+	height: 385px;
+	display: flex;
+}
 .residence-slider {
 	width: 100%;
 	height: 100%;
 
 	&-wrap {
 		position: relative;
-		width: 100%;
-		height: 385px;
+		width: 50%;
+		height: 100%;
 	}
 
 	&__item {
-		width: 100%;
+		width: 50%;
 		height: 100%;
 		display: flex !important;
 		justify-content: space-between;
+		flex-wrap: wrap;
 	}
 
 	&-info {
@@ -131,6 +137,7 @@
 	width: 50%;
 	overflow: hidden;
 	position: relative;
+	height: 100%;
 
 	&__image {
 		/*width: 100%;*/
@@ -140,7 +147,7 @@
 }
 .many-image-box {
 	height: 100%;
-	width: 50%;
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -149,8 +156,8 @@
 
 	&__image-wrap {
 		position: relative;
-		max-height: 49%;
-		max-width: 49.5%;
+		max-height: 49.5%;
+		width: 100%;
 		margin-bottom: 7px;
 		overflow: hidden;	
 		cursor: pointer;
@@ -162,7 +169,7 @@
 			margin-bottom: 0;
 		}
 
-		&:hover .many-image-box__image_hover{
+		&:hover .many-image-box__image_hover {
 			top: 0;
 		}
 	}
@@ -189,6 +196,12 @@
 .plus-icon {
 	width: 50px;
 	height: 50px;
+	fill: #fff;
+	transition: all 0.2s;
+
+	&:hover {
+		fill: $blue;
+	}
 }
 /*end__slider*/
 

@@ -89,9 +89,12 @@
                 <div class="container">
                     <form action="" class="filter__form">
                         <div class="home-filter__top">
-                            <div class="home-filter__select-wrap">
+                            <div class="home-filter__select-wrap custom-select">
                                 <select id="project_city" class="home-filter__select" onchange="citySelect()">
                                     <option class="city" value="">Город</option>
+                                    <option class="city" value="kiev">Киев</option>
+                                    <option class="city" value="lviv">Львов</option>
+                                    <option class="city" value="dnipro">Днепр</option>
                                     <option class="city" value="kiev">Киев</option>
                                     <option class="city" value="lviv">Львов</option>
                                     <option class="city" value="dnipro">Днепр</option>

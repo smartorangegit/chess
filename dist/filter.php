@@ -731,7 +731,7 @@
 
         <section class="result-list">
             <div class="container">
-                <div class="result-list-top">
+                <div class="result-list-top home-filter__select-wrap">
                     <span class="result-list-top__text">Показать по:</span>
                     <select id="select_pagination" class="result-list-top__select" onchange="selectHandler()">
                         <option value="12">12</option>

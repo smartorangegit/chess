@@ -26,141 +26,242 @@
             </div>
         </div>
 
+       <!--  <div class="residence-slider-wrap">
+            <ul class="residence-slider">
+                <li class="residence-slider__item">
+                    <div class="one-image-box">
+                        <img src="img/residence/res_1.jpg" alt="photo" class="one-image-box__image">
+                        <ul class="residence-slider-info">
+                            <li class="residence-slider-info__item">
+                                <span class="residence-slider-info__text">
+                                    Этажность
+                                </span>
+                                <span class="residence-slider-info__text">
+                                    7-10
+                                </span>
+                            </li>
+                            <li class="residence-slider-info__item">
+                                <span class="residence-slider-info__text">
+                                    Количество квартир
+                                </span>
+                                <span class="residence-slider-info__text">
+                                    174
+                                </span>
+                            </li>
+                            <li class="residence-slider-info__item">
+                                <span class="residence-slider-info__text">
+                                    Площадь квартир
+                                </span>
+                                <span class="residence-slider-info__text">
+                                    от 42 до 171 м<sup>2</sup>
+                                </span>
+                            </li>
+                            <li class="residence-slider-info__item">
+                                <span class="residence-slider-info__text">
+                                    Срок сдачи
+                                </span>
+                                <span class="residence-slider-info__text">
+                                    IV квартал 2018
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="many-image-box">
+                        <div class="many-image-box__image-wrap">
+                            <img id="map-image" src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="residence-slider__item">
+                    <div class="many-image-box">
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="many-image-box">
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                        <div class="many-image-box__image-wrap">
+                            <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                            <div class="many-image-box__image_hover">
+                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <button class="profile-flat-slider__button residence-slider__button-prev">
+                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_1"><use xlink:href="#left-arrow"></use></svg>
+                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_2"><use xlink:href="#left-arrow"></use></svg>
+            </button>
+            <button class="profile-flat-slider__button residence-slider__button-next">
+                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_revers_1"><use xlink:href="#left-arrow"></use></svg>
+                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_revers_2"><use xlink:href="#left-arrow"></use></svg>
+            </button>
+        </div> -->
+
         <section data-lat="50.449113" data-lng="30.457215" class="residence-main">
             <div class="container">
                 <h1 class="residence__heading">Квартал RYBALSKY</h1>
                 <p class="residence__location">Киевская область, Киев</p>
                 <div class="residence-main-content">
-                    <div class="residence-slider-wrap">
-                        <ul class="residence-slider">
-                            <li class="residence-slider__item">
-                                <div class="one-image-box">
-                                    <img src="img/residence/res_1.jpg" alt="photo" class="one-image-box__image">
-                                    <ul class="residence-slider-info">
-                                        <li class="residence-slider-info__item">
-                                            <span class="residence-slider-info__text">
-                                                Этажность
-                                            </span>
-                                            <span class="residence-slider-info__text">
-                                                7-10
-                                            </span>
-                                        </li>
-                                        <li class="residence-slider-info__item">
-                                            <span class="residence-slider-info__text">
-                                                Количество квартир
-                                            </span>
-                                            <span class="residence-slider-info__text">
-                                                174
-                                            </span>
-                                        </li>
-                                        <li class="residence-slider-info__item">
-                                            <span class="residence-slider-info__text">
-                                                Площадь квартир
-                                            </span>
-                                            <span class="residence-slider-info__text">
-                                                от 42 до 171 м<sup>2</sup>
-                                            </span>
-                                        </li>
-                                        <li class="residence-slider-info__item">
-                                            <span class="residence-slider-info__text">
-                                                Срок сдачи
-                                            </span>
-                                            <span class="residence-slider-info__text">
-                                                IV квартал 2018
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="many-image-box">
-                                    <div class="many-image-box__image-wrap">
-                                        <img id="map-image" src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                    <div class="residence-top">
+                        <div class="one-image-box">
+                            <img src="img/residence/res_1.jpg" alt="photo" class="one-image-box__image">
+                            <ul class="residence-slider-info">
+                                <li class="residence-slider-info__item">
+                                    <span class="residence-slider-info__text">
+                                        Этажность
+                                    </span>
+                                    <span class="residence-slider-info__text">
+                                        7-10
+                                    </span>
+                                </li>
+                                <li class="residence-slider-info__item">
+                                    <span class="residence-slider-info__text">
+                                        Количество квартир
+                                    </span>
+                                    <span class="residence-slider-info__text">
+                                        174
+                                    </span>
+                                </li>
+                                <li class="residence-slider-info__item">
+                                    <span class="residence-slider-info__text">
+                                        Площадь квартир
+                                    </span>
+                                    <span class="residence-slider-info__text">
+                                        от 42 до 171 м<sup>2</sup>
+                                    </span>
+                                </li>
+                                <li class="residence-slider-info__item">
+                                    <span class="residence-slider-info__text">
+                                        Срок сдачи
+                                    </span>
+                                    <span class="residence-slider-info__text">
+                                        IV квартал 2018
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="residence-slider-wrap">
+                            <ul class="residence-slider">
+                                <li class="residence-slider__item">
+                                    <div class="many-image-box">
+                                        <div class="many-image-box__image-wrap">
+                                            <img id="map-image" src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                                            <div class="many-image-box__image_hover">
+                                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                            </div>
+                                        </div>
+                                        <div class="many-image-box__image-wrap">
+                                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                                            <div class="many-image-box__image_hover">
+                                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                </li>
+                                <li class="residence-slider__item">
+                                    <div class="many-image-box">
+                                        <div class="many-image-box__image-wrap">
+                                            <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
+                                            <div class="many-image-box__image_hover">
+                                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                            </div>
+                                        </div>
+                                        <div class="many-image-box__image-wrap">
+                                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                                            <div class="many-image-box__image_hover">
+                                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                </li>
+                                <li class="residence-slider__item">
+                                    <div class="many-image-box">
+                                        <div class="many-image-box__image-wrap">
+                                            <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
+                                            <div class="many-image-box__image_hover">
+                                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                            </div>
+                                        </div>
+                                        <div class="many-image-box__image-wrap">
+                                            <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
+                                            <div class="many-image-box__image_hover">
+                                                <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- <li class="residence-slider__item">
-                                <div class="many-image-box">
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="many-image-box">
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-2.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-3.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                    <div class="many-image-box__image-wrap">
-                                        <img src="img/residence/res-photo-1.jpg" alt="" class="many-image-box__image">
-                                        <div class="many-image-box__image_hover">
-                                            <svg class="plus-icon"><use xlink:href="#plus"></use></svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li> -->
-                        </ul>
-                        <button class="profile-flat-slider__button residence-slider__button-prev">
-                            <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_1"><use xlink:href="#left-arrow"></use></svg>
-                            <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_2"><use xlink:href="#left-arrow"></use></svg>
-                        </button>
-                        <button class="profile-flat-slider__button residence-slider__button-next">
-                            <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_revers_1"><use xlink:href="#left-arrow"></use></svg>
-                            <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_revers_2"><use xlink:href="#left-arrow"></use></svg>
-                        </button>
+                                </li>
+                            </ul>
+                            <button class="profile-flat-slider__button residence-slider__button-prev">
+                                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_1"><use xlink:href="#left-arrow"></use></svg>
+                                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_2"><use xlink:href="#left-arrow"></use></svg>
+                            </button>
+                            <button class="profile-flat-slider__button residence-slider__button-next">
+                                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_revers_1"><use xlink:href="#left-arrow"></use></svg>
+                                <svg class="profile-flat-slider__button-icon profile-flat-slider__button-icon_revers_2"><use xlink:href="#left-arrow"></use></svg>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="residence-main-content-container">

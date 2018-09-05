@@ -38,6 +38,10 @@
 			font-size: 0.9rem;
 		}
 	}
+
+	.select-items div,.select-selected {
+	  font-size: 0.8rem;
+	}
 }
 
 @media screen and (max-width: 1023px) {
@@ -61,10 +65,7 @@
 	.button {
 		font-size: 11/16*1rem;
 		padding: 0 5px;
-		letter-spacing: 0;
-		background-size: 1px;
-		border-top-width: 1px;
-		border-bottom-width: 1px;  
+		letter-spacing: 0; 
 	}
 
 	.location-list {

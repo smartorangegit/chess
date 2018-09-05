@@ -173,14 +173,14 @@
 	}
 
 	.home-filter__select-wrap {
-		width: 30%;
+		// width: 30%;
 		margin-bottom: 20px;
 		padding-left: 10px;
 		box-sizing: border-box;
 
-		&:nth-child(3n) {
-			width: 100%;
-		}
+		// &:nth-child(3n) {
+		// 	width: 100%;
+		// }
 	}
 
 	.home-filter-checkbox {

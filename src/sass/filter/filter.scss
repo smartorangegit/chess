@@ -100,10 +100,11 @@
     }
 }
 .filter-checkbox__text {
+	margin-top: 3px;
     margin-right: 10px;
     color: $dark-gray;
     font-family: $gotham;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 .filter-checkbox {
     display: none;
@@ -126,7 +127,7 @@
         width: 15px;
         height: 15px;
         background-color: #fff;
-        background: url(../img/home/select-arrow.png) center center no-repeat;
+        background: url(../img/checked.svg) center center no-repeat;
         border-radius: 3px;
     }
 

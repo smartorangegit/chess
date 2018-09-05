@@ -49,16 +49,16 @@ body {
 		color: #fff;
 	}
 }
-.border-gradient {
-  border-top: 2px solid $blue;
-  border-bottom: 2px solid #91E2FB;
-  border-radius: 5px;
-  box-sizing: border-box;
-  background-position: 0 0, 100% 0;
-  background-repeat: no-repeat;
-  background-size: 2px 100%;
-  background-image: linear-gradient(to bottom, $blue 0%, #91E2FB 100%), linear-gradient(to bottom, $blue 0%, #91E2FB 100%);
-}
+// .border-gradient {
+//   border-top: 2px solid $blue;
+//   border-bottom: 2px solid #91E2FB;
+//   border-radius: 5px;
+//   box-sizing: border-box;
+//   background-position: 0 0, 100% 0;
+//   background-repeat: no-repeat;
+//   background-size: 2px 100%;
+//   background-image: linear-gradient(to bottom, $blue 0%, #91E2FB 100%), linear-gradient(to bottom, $blue 0%, #91E2FB 100%);
+// }
 
 /*location-block*/
 .location {
@@ -368,3 +368,76 @@ sup {
     }
 }
 /*end__pagination*/
+
+
+/*the container must be positioned relative:*/
+.home-filter__select-wrap {
+  position: relative;
+  font-family: Arial;
+}
+.home-filter__select-wrap select {
+  display: none; /*hide original SELECT element:*/
+}
+.select-selected {
+	padding-right: 22px;
+    background: url(../img/home/select-arrow.png) right center no-repeat;
+}
+
+.result-list-top {
+	.select-selected {
+		border: 1px solid $yellow;
+		border-radius: 5px;
+		padding: 4px 50px 4px 14px;
+		background: url(../img/filter/result-select-bg.png) right center no-repeat;
+	    background-color: #fff;
+	}
+	.select-items {
+		min-width: 90px;
+		max-width: 90px;
+		left: 110px;
+	}
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #000;
+  color: $dark-gray;
+  font-family: $gotham;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.select-items div {
+	padding: 10px 0 5px 5px;
+	box-sizing: border-box;
+	border-bottom: 1px solid $light-gray;
+
+	&:first-child {
+		padding-top: 0;
+	}
+	&:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+}
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  min-width: 123px;
+  padding: 12px 7px;
+  box-sizing: border-box;
+  box-shadow: 3px 2px 10px rgba(0,0,0,0.2);
+  border-radius: 7px;
+  background-color: #fff;
+  margin-top: 8px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  color: $blue;
+}

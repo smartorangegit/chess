@@ -78,6 +78,7 @@
 			margin-right: 0;
 			box-sizing: border-box;
 			margin-bottom: 10px;
+			width: 50%;
 
 			&:nth-child(2n) {
 				padding-left: 5px; 
@@ -89,13 +90,6 @@
 			&:nth-child(2n+1) {
 				text-align: right;
 				padding-right: 5px;
-			}
-
-			&:nth-child(1) {
-				width: 50%;
-			}
-			&:nth-child(2) {
-				width: 50%;
 			}
 
 			&:nth-child(3) {
@@ -115,7 +109,17 @@
 			display: inline-block;
 			width: 100%;
 			font-size: 0.67rem;
-			// text-transform: none;
+		}
+	}
+
+	@media screen and (max-width: 340px) {
+		.nav-list__item {
+			&:nth-child(3) {
+				width: auto;
+			}
+			&:nth-child(4) {
+				width: auto;
+			}
 		}
 	}
 

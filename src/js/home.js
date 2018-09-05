@@ -2,8 +2,8 @@ $('.home-slider').slick({
     autoplay: false,
     slidesToShow: 3,
     slidesToScroll: 1,
-    speed: 1000,
-    autoplaySpeed: 500,
+    speed: 2000,
+    autoplaySpeed: 0,
     centerMode: true,
     centerPadding: "100px",
     arrows: true,
@@ -166,3 +166,4 @@ $('.home-slider').slick({
     });
     // end__submit
 // end__filter
+
