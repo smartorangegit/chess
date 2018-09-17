@@ -329,19 +329,11 @@
 }
 
 .result-short__select {
-/*	border: none;
-	outline: none;*/
-/*	-webkit-appearance: none;
-    -moz-appearance:    none;
-    appearance:         none;*/
 	padding-right: 50px;
 	color: $dark-gray;
     cursor: pointer;
     transition: all 0.2s;
     background: url(../img/filter/result-select-bg.png) right center no-repeat;
-   /* &:hover {
-    	color: $blue;
-    }*/
 
 	&-wrap {
 		position: relative;
@@ -359,14 +351,6 @@
 		fill: $dark-gray;
 		margin-right: 5px;
 	}
-
-	/*option {
-		color: $dark-gray;
-		font-size: 0.8rem;
-		padding: 5px;
-		border: 1px solid $light-gray;
-		border-radius: 5px;
-	}*/
 }
 
 .view-list {
@@ -424,7 +408,6 @@
 .result-plan-list {
 	width: 100%;
 	display: flex;
-	// justify-content: space-between;
 	flex-wrap: wrap;
 
 	&__item {
@@ -438,9 +421,20 @@
 		text-align: center;
 		background-color: #fff;
 		margin-bottom: 12px;
+		transition: all 0.3s;
 
 		&:nth-child(3n) {
 			margin-right: 0;
+		}
+
+		&:hover {
+			box-shadow: 7px 7px 20px rgba(0,0,0,0.5);
+		}
+		&:hover .result-plan-info {
+			box-shadow: inset 5px 5px 8px rgba(0,0,0,0.2);
+		}
+		&:hover .result-plan__rooms {
+			box-shadow: inset 3px 3px 5px rgba(0,0,0,0.2);
 		}
 	}
 
@@ -462,9 +456,10 @@
 	border-radius: 5px;
 	box-sizing: border-box;
 	margin-bottom: 30px;
+	transition: all 0.2s;
 
 	&__price {
-		padding: 0 35px;
+		padding: 0 30px;
 		min-width: 50%;
 		position: relative;
 		box-sizing: border-box;
@@ -478,6 +473,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		padding: 0 10px;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -500,10 +496,11 @@
 	width: 10px;
 	height: 10px;
 }
-.result-plan__rooms-link {
+.result-plan__rooms {
 	position: absolute;
 	top: 14px;
 	left: 14px;
+	transition: all 0.3s;
 }
 .result-plan__button {
 	display: inline-block;
@@ -541,7 +538,9 @@
 .floor-plan {
 	display: none;
 	text-align: right;
-	width: 106%;
+	width: 110%;
+	padding-right: 15px;
+	box-sizing: border-box;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -707,7 +706,7 @@
 
 /*result-list*/
 .result-list {
-	display: none;
+	display: block;
 }
 
 .table_shadow {
@@ -781,6 +780,7 @@
 	position: relative;
 	background-color: #fff;
 	margin-bottom: 35px;
+	cursor: pointer;
 
 	&__head {
 		width: 100%;
@@ -789,14 +789,17 @@
 
 	&__heading {
 		position: relative;
-		width: 153px;
+		/*width: 153px;*/
 		border-collapse: collapse;
 		padding: 15px 30px;
 		vertical-align: middle;
+		cursor: pointer;
+		transition: all 0.3s;
 
 		&:before {
 			position: absolute;
-			top: 45%;
+			top: 48%;
+			transform: translateY(-48%);
 			right: 10%;
 			border-bottom: 4px solid $dark-gray;
 			border-left: 3px solid transparent;
@@ -805,21 +808,31 @@
 		}
 		&:after {
 			position: absolute;
-			bottom: 32%;
+			bottom: 41%;
+			transform: translateY(41%);
 			right: 10%;
 			border-top: 4px solid $dark-gray;
 			border-left: 3px solid transparent;
 			border-right: 3px solid transparent;
 			content: "";
 		}
+
+		&:hover {
+			background-color: #cecece;
+		}
 	}
 
 	&__row {
 		width: 100%;
 		border-bottom: 1px solid $light-gray;
+		transition: all 0.3s;
 
 		&:nth-child(2n+1) {
 			background-color: #F7F7FA;
+		}
+
+		&:hover {
+			background-color: #cecece;
 		}
 	}
 
@@ -838,6 +851,7 @@
 		padding-left: 10px;
 	}
 }
+
 /*end__result-list*/
 
 /*ion-range*/

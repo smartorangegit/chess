@@ -325,7 +325,7 @@
         </div>
     </section>
 
-   <!--  <div class="home-popup-wrap">
+    <div class="home-popup-wrap">
         <div class="container">
             <div class="home-popup">
                 <div class="home-popup__heading-wrap">
@@ -334,7 +334,10 @@
                 </div>
                 <div class="home-popup-content">
                     <div class="home-popup__video-wrap video_wrapper video_wrapper_full js-videoWrapper">
-                        <iframe src="https://www.youtube.com/embed/C4bU0Pj4Rs4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="home-popup__video"></iframe>
+                        <iframe class="videoIframe js-videoIframe" src="" frameborder="0" allowTransparency="true" allowfullscreen data-src="https://www.youtube.com/embed/G4cJ4wviwS8?autoplay=1&modestbranding=1&rel=0&hl=ru&showinfo=0&color=white"></iframe>
+                        <button class="videoPoster js-videoPoster">
+                            <svg class="youtube__icon"><use xlink:href="#youtube"></use></svg>
+                        </button>
                     </div>
                     <div class="home-popup__text-wrap">
                         <p class="home-popup__text">
@@ -345,7 +348,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <?php include_once('includes/footer.php'); ?> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

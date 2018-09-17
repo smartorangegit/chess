@@ -46,6 +46,21 @@ $(".form__phone").mask('+38 (099) 999-99-99');
 
         $(this).closest(".favorites").slideUp();
     });
+
+    // $(".favorit").on("click", function() {
+    //    $(".favorites-button").css("display", "flex");    
+    // });
+    // $(".favorit-delete").on("click", function() {
+    //    hideFavoritesButton(); 
+    // });
+
+    // (function hideFavoritesButton() {
+    //     if($(".favorites-table__row").length > 0) {
+    //         $(".favorites-button").css("display", "flex");
+    //     } else {
+    //         $(".favorites-button").css("display", "none");
+    //     }
+    // }());
 // end__favorite-block
 
 // TAB'S
@@ -82,6 +97,7 @@ $(".form__phone").mask('+38 (099) 999-99-99');
         /*for each option in the original select element,
         create a new DIV that will act as an option item:*/
         c = document.createElement("DIV");
+        c.setAttribute("class", "select__item");
         c.innerHTML = selElmnt.options[j].innerHTML;
         c.addEventListener("click", function(e) {
             /*when an item is clicked, update the original select box,
@@ -97,7 +113,7 @@ $(".form__phone").mask('+38 (099) 999-99-99');
                 for (k = 0; k < y.length; k++) {
                   y[k].removeAttribute("class");
                 }
-                this.setAttribute("class", "same-as-selected");
+                this.setAttribute("class", "select__item same-as-selected");
                 break;
               }
             }
@@ -208,6 +224,17 @@ $(".form__phone").mask('+38 (099) 999-99-99');
         }
     });
    }
+
+   function getDefaulCheckedCheckbox(filter) {
+        var roomsArr = filter.option["rooms"];
+        var checkbox = $(".filter-checkbox");
+        for(var i = 0; i < checkbox.length; i++) {
+            if($(checkbox[i]).prop("checked")) {
+                roomsArr.push($(checkbox[i]).attr("value"));
+            }
+        }
+        console.log(filter);
+   };
     // end__get_number_of_rooms
 
     // reset_filter_values
@@ -294,7 +321,7 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             data: filter,
             success: function(data){
                 planBuild(data.dataList);
-                tableBuild(data.dataList);
+                tableBuild(data.dataList, data.dataTable);
                 console.log(data.dataList);
             },
             error: function(err){

@@ -145,7 +145,6 @@ $(".filter-full__button_more").on("click", function() {
     };
 
     tooltipShow();
-            
 // end__flat-tooltip-show
 
 // filter
@@ -155,6 +154,7 @@ $(".filter-full__button_more").on("click", function() {
         count: "12",
         typ: "3",
         page: "1",
+        order: [],
         option: {
             price: getDefaulValue($("input[name='price']")),
             all_room: getDefaulValue($("input[name='all_room']")),
@@ -169,6 +169,7 @@ $(".filter-full__button_more").on("click", function() {
 
     rangesValue();
 
+    getDefaulCheckedCheckbox(filter);
     getRoomsNumber();
 
     // submit
@@ -183,10 +184,9 @@ $(".filter-full__button_more").on("click", function() {
             dataType: "json",
             data: filter,
             success: function(data){
-                console.log(data);
                 entranceShow(data);
                 flatsShow(data.dataList);
-                flatsShowTable(data.dataList);
+                flatsShowTable(data.dataList, data.dataTable);
 
                 paginationItemShow(data.quantity, flatsShow, flatsShowTable);
 
@@ -224,96 +224,96 @@ $(".filter-full__button_more").on("click", function() {
                     return "<li class='result-plan-list__item'>" +
                                "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
                                     "<img src='" + flatsArr.img + "' alt='plan-image' class='result-plan-list__image'>" + 
+                                    "<div class='result-plan-info'>" +
+                                        "<div class='result-plan-info__price'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.price + " грн</p>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup> – " + flatsArr.price_m2 + " грн/м<sup>2</sup></p>" +
+                                            "<div class='color-box result-plan__color-box color-box_green'></div>" +
+                                        "</div>" +
+                                        "<div class='result-plan-info__floor'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
+                                            "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<span class='rooms__link result-plan__rooms'>" + flatsArr.rooms +"K</span>" +
+                                    "<span class='button result-plan__button border-gradient'>Подробнее</span>" +
                                 "</a>" +
-                                "<div class='result-plan-info'>" +
-                                    "<div class='result-plan-info__price'>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.price + " грн</p>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup> – " + flatsArr.price_m2 + " грн/м<sup>2</sup></p>" +
-                                        "<div class='color-box result-plan__color-box color-box_green'></div>" +
-                                    "</div>" +
-                                    "<div class='result-plan-info__floor'>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
-                                        "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
-                                    "</div>" +
-                                "</div>" +
-                                "<a href='#' class='rooms__link result-plan__rooms-link'>" + flatsArr.rooms +"K</a>" +
-                                "<a href='" + flatsArr.url + "' class='button result-plan__button border-gradient'>Подробнее</a>" +
                             "</li>";
                 case "2":
                     return "<li class='result-plan-list__item'>" +
                                 "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
                                     "<img src='" + flatsArr.img + "' alt='plan-image' class='result-plan-list__image'>" + 
+                                    "<div class='result-plan-info'>" +
+                                        "<div class='result-plan-info__price'>" +
+                                            "<p class='result-plan-info__text'>Бронь</p>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup></p>" +
+                                            "<div class='color-box result-plan__color-box color-box_yellow'></div>" +
+                                        "</div>" +
+                                        "<div class='result-plan-info__floor'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
+                                            "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<span class='rooms__link result-plan__rooms'>" + flatsArr.rooms +"K</span>" +
+                                    "<p class='result-plan-info__text result-plan-info__text_center'>Помещение недоступно для покупки</p>" +
                                 "</a>" +
-                                "<div class='result-plan-info'>" +
-                                    "<div class='result-plan-info__price'>" +
-                                        "<p class='result-plan-info__text'>Бронь</p>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup></p>" +
-                                        "<div class='color-box result-plan__color-box color-box_yellow'></div>" +
-                                    "</div>" +
-                                    "<div class='result-plan-info__floor'>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
-                                        "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
-                                    "</div>" +
-                                "</div>" +
-                                "<a href='#' class='rooms__link result-plan__rooms-link'>" + flatsArr.rooms +"K</a>" +
-                                "<p class='result-plan-info__text result-plan-info__text_center'>Помещение недоступно для покупки</p>" +
                             "</li>";
                 case "3":
                     return "<li class='result-plan-list__item'>" +
                                "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
                                     "<img src='" + flatsArr.img + "' alt='plan-image' class='result-plan-list__image'>" + 
+                                    "<div class='result-plan-info'>" +
+                                        "<div class='result-plan-info__price'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.price + " грн</p>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup> – " + flatsArr.price_m2 + " грн/м<sup>2</sup></p>" +
+                                            "<div class='color-box result-plan__color-box color-box_gray'></div>" +
+                                        "</div>" +
+                                        "<div class='result-plan-info__floor'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
+                                            "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<span class='rooms__link result-plan__rooms'>" + flatsArr.rooms +"K</span>" +
+                                    "<span class='button result-plan__button border-gradient'>Подробнее</span>" +
                                 "</a>" +
-                                "<div class='result-plan-info'>" +
-                                    "<div class='result-plan-info__price'>" +
-                                        "<p class='result-plan-info__text'>Бронь</p>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup></p>" +
-                                        "<div class='color-box result-plan__color-box color-box_gray'></div>" +
-                                    "</div>" +
-                                    "<div class='result-plan-info__floor'>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
-                                        "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
-                                    "</div>" +
-                                "</div>" +
-                                "<a href='#' class='rooms__link result-plan__rooms-link'>" + flatsArr.rooms +"K</a>" +
-                                "<p class='result-plan-info__text result-plan-info__text_center'>Помещение недоступно для покупки</p>" +
                             "</li>";
                 case "0":
                     return "<li class='result-plan-list__item'>" +
-                                "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
+                               "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
                                     "<img src='" + flatsArr.img + "' alt='plan-image' class='result-plan-list__image'>" + 
+                                    "<div class='result-plan-info'>" +
+                                        "<div class='result-plan-info__price'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.price + " грн</p>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup> – " + flatsArr.price_m2 + " грн/м<sup>2</sup></p>" +
+                                            "<div class='color-box result-plan__color-box color-box_dark-gray'></div>" +
+                                        "</div>" +
+                                        "<div class='result-plan-info__floor'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
+                                            "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<span class='rooms__link result-plan__rooms'>" + flatsArr.rooms +"K</span>" +
+                                    "<span class='button result-plan__button border-gradient'>Подробнее</span>" +
                                 "</a>" +
-                                "<div class='result-plan-info'>" +
-                                    "<div class='result-plan-info__price'>" +
-                                        "<p class='result-plan-info__text'>Бронь</p>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup></p>" +
-                                        "<div class='color-box result-plan__color-box color-box_dark-gray'></div>" +
-                                    "</div>" +
-                                    "<div class='result-plan-info__floor'>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
-                                        "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
-                                    "</div>" +
-                                "</div>" +
-                                "<a href='#' class='rooms__link result-plan__rooms-link'>" + flatsArr.rooms +"K</a>" +
-                                "<p class='result-plan-info__text result-plan-info__text_center'>Помещение недоступно для покупки</p>" +
                             "</li>";
                 default:
                     return "<li class='result-plan-list__item'>" +
-                                "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
+                               "<a href='" + flatsArr.url + "' class='result-plan-list__image-link'>" + 
                                     "<img src='" + flatsArr.img + "' alt='plan-image' class='result-plan-list__image'>" + 
+                                    "<div class='result-plan-info'>" +
+                                        "<div class='result-plan-info__price'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.price + " грн</p>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup> – " + flatsArr.price_m2 + " грн/м<sup>2</sup></p>" +
+                                            "<div class='color-box result-plan__color-box color-box_dark-gray'></div>" +
+                                        "</div>" +
+                                        "<div class='result-plan-info__floor'>" +
+                                            "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
+                                            "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<span class='rooms__link result-plan__rooms'>" + flatsArr.rooms +"K</span>" +
+                                    "<span class='button result-plan__button border-gradient'>Подробнее</span>" +
                                 "</a>" +
-                                "<div class='result-plan-info'>" +
-                                    "<div class='result-plan-info__price'>" +
-                                        "<p class='result-plan-info__text'>Бронь</p>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.all_room + "м<sup>2</sup></p>" +
-                                        "<div class='color-box result-plan__color-box color-box_gray'></div>" +
-                                    "</div>" +
-                                    "<div class='result-plan-info__floor'>" +
-                                        "<p class='result-plan-info__text'>" + flatsArr.floor + " этаж</p>" +
-                                        "<p class='result-plan-info__text'>№ " + flatsArr.number + "</p>" +
-                                    "</div>" +
-                                "</div>" +
-                                "<a href='#' class='rooms__link result-plan__rooms-link'>" + flatsArr.rooms +"K</a>" +
-                                "<p class='result-plan-info__text result-plan-info__text_center'>Помещение недоступно для покупки</p>" +
                             "</li>";
             }
         }
@@ -351,12 +351,27 @@ $(".filter-full__button_more").on("click", function() {
     // end__select-pagination
 
     // show_selected_flats_table
-    function flatsShowTable(data) {
+    function flatsShowTable(data, dataTableHeading) {
         var flatsArr = getFlats(data);
-        var bathroom=hall=kitchen=livingRoom=bedroom=balcony=livingSpace="Нет значения";
+
+        function appartmentsTableHeading(dataTableHeading) {
+            $(".filter-table__heading").remove();
+            var markup = "";
+
+            dataTableHeading.forEach(function(item, i) {
+                markup += "<th data-sort='" + item[1] + "' class='filter-table__heading'>"+
+                                item[0] +
+                          "</th>"
+            });
+
+            return (markup);
+        }
+        $(".filter-table__head").append(appartmentsTableHeading(dataTableHeading));
+        
+        sendSortingData();
 
         function appartmentStatus(appart) {
-            switch (appart.sale) {
+            switch (appart) {
                 case "1":
                     return "<div class='color-box color-box_green filter-table__color-box'></div>"
                 case "2":
@@ -370,50 +385,86 @@ $(".filter-full__button_more").on("click", function() {
             }
         }
 
-        function appartmentsTableItem(flats) {
+        function appartmentsTableRow(flats, tableHeading) {
             $(".filter-table__row").remove();
-            var markup = "";
-            flats.forEach(function(item) {
-                // get flat rooms meters
-                var prop = item.properties;
-                for(var key in prop) {
-                    var rooms = prop[key];
-                    for(var key2 in rooms) {
-                        if(rooms.property_name == "Прихожая") {
-                            hall = rooms.property_flat; 
-                        } else if(rooms.property_name == "Кухня") {
-                            kitchen = rooms.property_flat; 
-                        } else if(rooms.property_name == "Гостиная") {
-                            livingRoom = rooms.property_flat; 
-                        } else if(rooms.property_name == "Лоджия 2") {
-                            balcony = rooms.property_flat; 
-                        } else if(rooms.property_name == "Спальня") {
-                            bedroom = rooms.property_flat;
-                        } else if(rooms.property_name == "Санузел") {
-                            bathroom = rooms.property_flat; 
-                        } else if(rooms.property_name == "Жилая площадь") {
-                            livingSpace = rooms.property_flat;
-                        } 
-                    }
-                }
 
-               markup += "<tr class='filter-table__row'>" +
-                            "<td class='filter-table__col'>" + item.floor + "</td>" +
-                            "<td class='filter-table__col'>" + appartmentStatus(item) + "</td>" +
-                            "<td class='filter-table__col'>" + livingSpace + "</td>" +
-                            "<td class='filter-table__col'>" + hall + "</td>" +
-                            "<td class='filter-table__col'>" + kitchen + "</td>" +
-                            "<td class='filter-table__col'>" + livingRoom + "</td>" +
-                            "<td class='filter-table__col'>" + balcony + "</td>" +
-                            "<td class='filter-table__col'>" + bedroom + "</td>" +
-                            "<td class='filter-table__col'>" + bathroom + "</td>" +
-                        "</tr>"
+            var tableHeads = {};
+            var customApartments = [];
+            var total = '';
+
+            function createTableHeadsObj(tableHeading) {
+                tableHeading.forEach(function(app) {
+                    tableHeads[app[1]] = app[0];
+                });
+            };
+
+            function createCustomAppartmentObj(appartment) {
+                for(var key in appartment.properties) {
+                    appartment[key] = appartment.properties[key].property_flat;
+                }
+                customApartments.push(appartment);
+            }
+
+            createTableHeadsObj(tableHeading);
+            flats.forEach(createCustomAppartmentObj);
+
+            console.log(customApartments);
+
+            customApartments.forEach(function(app, index) {
+                var t = "<tr onclick='location.href=&apos;http://apivime.smarto.com.ua" + app.url + "&apos;' class='filter-table__row'>" + 
+                            "<td class='filter-table__col'>" + app.floor + "</td>" +
+                            "<td class='filter-table__col'>" + appartmentStatus(app.sale) + "</td>" +
+                            "<td class='filter-table__col'>" + app.life_room + "</td>";
+                for(var key in tableHeads) {
+                    if(key === 'floor' || key === 'sale' || key === 'life_room') {
+                        continue;
+                    }
+                    t +="<td class='filter-table__col'>" + 
+                            (app[key] != undefined ? app[key] : 'Нет значения')  +  
+                        '</td>';           
+                }
+                t+='</tr>';
+                total += t;
             });
-            return markup;
+            
+            return total;
         }
-        return $(".filter-table__body").append(appartmentsTableItem(flatsArr));
+        return $(".filter-table__body").append(appartmentsTableRow(flatsArr, dataTableHeading));
     };
     // end__show_selected_flats_table
+
+    // sorting_table_data
+    var tableHeadingCklickCount = 1;
+    function sendSortingData() {
+        $(".filter-table__heading").on("click", function() {
+            $(this).toggleClass("filter-sort_top");;
+            var paramName = $(this).data("sort");
+
+            if(tableHeadingCklickCount%2 === 0) {
+                filter.order = [paramName, "asc"];
+            } else {
+                filter.order = [paramName, "desc"];
+            }
+            tableHeadingCklickCount++;
+
+            $.ajax({
+                url: "http://apivime.smarto.com.ua/ajax",
+                type: "POST",
+                dataType: "json",
+                data: filter,
+                success: function(data){
+                    console.log(data);
+                    flatsShowTable(data.dataList, data.dataTable);
+                    paginationItemShow(data.quantity, flatsShow, flatsShowTable);
+                },
+                error: function(data){
+                   console.log(data);
+                }
+            });
+        });
+    }
+    sendSortingData();
+    // end__sorting_table_data
 
     // show_selected_entrance
     function entranceShow(data) {
@@ -537,13 +588,9 @@ $(".filter-full__button_more").on("click", function() {
     // end__show_selected_entrance
 // end__filter
 
-
-
-
-// function selectHandler() {
-//     var value = document.getElementById("table_rows").value;
-//     console.log(value);
-// } 
+// $(window).on("click", function(e) {
+//     console.log(e.target);
+// });
 
 
 
@@ -565,372 +612,3 @@ $(".filter-full__button_more").on("click", function() {
 // };
 // var debouncedRanges = debounce(onRangeChange, 200);
 
-//test array
-    // var residence = [
-    //               {
-    //                 name: "Rybalsky",
-    //                 site: "rybalsky.com.ua",
-    //                 meter_cost: "12 000",
-    //                 metro: "Дружбы Народов",
-    //                 street: "Рибальського, 21",
-    //                 min_cost: "750 000",
-    //                 rooms: "1455",
-    //                 img: "",
-    //                 logo: ""
-    //               },
-    //               {
-    //                 name: "Arsenal",
-    //                 site: "rybalsky.com.ua",
-    //                 meter_cost: "12 000",
-    //                 metro: "Дружбы Народов",
-    //                 street: "Рибальського, 21",
-    //                 min_cost: "750 000",
-    //                 rooms: "155"
-    //               },
-    //               {
-    //                 name: "Happy House",
-    //                 site: "rybalsky.com.ua",
-    //                 meter_cost: "12 000",
-    //                 metro: "Дружбы Народов",
-    //                 street: "Рибальського, 21",
-    //                 min_cost: "750 000",
-    //                 rooms: "155"
-    //               }
-    //             ];
-
-
-
-//test array
-    // var flats = [
-    //               {
-    //                 common_cost: "3 031 681",
-    //                 meters: "83.16",
-    //                 meter_cost: "36 456",
-    //                 status: "green",
-    //                 floor: "9",
-    //                 flat_num: "56",
-    //                 rooms_num: "2"
-    //               },
-    //               {
-    //                 common_cost: "3 031 681",
-    //                 meters: "83.16",
-    //                 meter_cost: "36 456",
-    //                 status: "green",
-    //                 floor: "10",
-    //                 flat_num: "56",
-    //                 rooms_num: "4"
-    //               },
-    //               {
-    //                 common_cost: "3 031 681",
-    //                 meters: "83.16",
-    //                 meter_cost: "36 456",
-    //                 status: "green",
-    //                 floor: "10",
-    //                 flat_num: "56",
-    //                 rooms_num: "4"
-    //               }
-    //             ];
-
-
-// var third = [
-            //    [
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 2,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 2,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 2,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 2,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //     ],
-            //     [
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 2,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 3
-            //             },
-            //             {
-            //                 status: 2,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //         [
-            //             {
-            //                 status: 0,
-            //                 rooms: 1
-            //             },
-            //             {
-            //                 status: 1,
-            //                 rooms: 2
-            //             },
-            //             {
-            //                 status: 3,
-            //                 rooms: 3
-            //             }
-            //         ],
-            //     ] 
-            // ];
-
-// function entranceShow(data) {
-//         var third = [
-//             //    [
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 2,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 2,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 2,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 2,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //     ],
-//             //     [
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 2,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 3
-//             //             },
-//             //             {
-//             //                 status: 2,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //         [
-//             //             {
-//             //                 status: 0,
-//             //                 rooms: 1
-//             //             },
-//             //             {
-//             //                 status: 1,
-//             //                 rooms: 2
-//             //             },
-//             //             {
-//             //                 status: 3,
-//             //                 rooms: 3
-//             //             }
-//             //         ],
-//             //     ] 
-//             // ];
-
-
-//         function getAppartment(appart) {
-//             switch (appart.sale) {
-//                 case "1":
-//                     return "<li class='entrance-flats__item'>" +
-//                                 "<div class='entrance-flats__color-box color-box_green'>" + appart.rooms + "</div>" + 
-//                             "</li>";
-//                 case "2":
-//                     return "<li class='entrance-flats__item'>" +
-//                                 "<div class='entrance-flats__color-box color-box_yellow'>" + appart.rooms + "</div>" + 
-//                             "</li>";
-//                 case "3":
-//                     return "<li class='entrance-flats__item'>" +
-//                                 "<div class='entrance-flats__color-box color-box_gray'>" + appart.rooms + "</div>" + 
-//                             "</li>";
-//                 case "0":
-//                     return "<li class='entrance-flats__item'>" +
-//                                 "<div class='entrance-flats__color-box color-box_dark-gray'>" + appart.rooms + "</div>" + 
-//                             "</li>";
-//                 default:
-//                     return "<li class='entrance-flats__item'>" +
-//                                 "<div class='entrance-flats__color-box color-box_gray'>" + "</div>" + 
-//                             "</li>";
-//             }
-//         }
-
-//         function maxValue(arr) {
-//             var max = arr.reduce(function(a, b) {
-//                 return Math.max(a, b);
-//             });
-//             return max;
-//         }
-
-//         function entrance(entranceArr) {
-//             var finalMarkup = "";
-//             var floorsNum = [];
-//             console.log(entranceArr);
-//             entranceArr.forEach(function(item, i) {
-//                 finalMarkup += "<div class='entrance'>" + 
-//                                     "<p class='entrance__num'>" + (i+1) + "</p>" + 
-//                                     "<div class='entrance-flats-wrap'>" +
-//                                         floor(item) +
-//                                     "</div>" + 
-//                                 "</div>";
-
-//                 floorsNum.push(item.length); 
-//             });
-
-//             var maxFloor = maxValue(floorsNum);
-
-//             // return finalMarkup;
-//             return {
-//                 finalMarkup: finalMarkup,
-//                 maxFloor: maxFloor
-//             }
-//         }
-
-//         function floor(floorArr) {
-//             var floorMarkup = "";
-
-//             floorArr.forEach(function(item, i) {
-//                 floorMarkup += "<ul data-link='dfvb' class='entrance-flats'>" +
-//                                         flat(item) +
-//                                "</ul>";
-//             });
-
-//             return floorMarkup;
-//         }
-
-//         function flat(first) {
-//             var flatMarkup = "";
-
-//             first.forEach(function(item) {
-//                 flatMarkup += getAppartment(item);
-//             });
-//             console.log(first);
-//             return flatMarkup;
-//         }
-
-//         $(".entrance-wrap").append(entrance(third).finalMarkup);
-
-
-//         function floorsNum(floors) {
-//             for(var i = 0; i < floors; i++) {
-//                 $(".entrance-floor").append(
-//                    "<li class='entrance-floor__item'>" + (i+1) + "</li>" 
-//                 );
-//             }
-//         }
-//         floorsNum(entrance(third).maxFloor);
-//     };

@@ -354,9 +354,11 @@
                         </div>
                         <ul class="building-flats-list">
                             <li class="building-flats-list__item">
-                                <a href="#" class="building-flats-list__num">1K</a>
-                                <span class="building-flats-list__text building-flats-list__text_blue">61 квартира</span>
-                                <span class="building-flats-list__text">от 1 515 893 грн</span>
+                                <a class="building-flats-list__link" href="#">
+                                    <span class="building-flats-list__num">1K</span>
+                                    <span class="building-flats-list__text building-flats-list__text_blue">61 квартира</span>
+                                    <span class="building-flats-list__text">от 1 515 893 грн</span>
+                                </a>
                             </li>
                             <li class="building-flats-list__item">
                                 <span class="building-flats-list__num">2K</span>

@@ -121,25 +121,28 @@ function initMap() {
 	var lat = document.getElementsByClassName("residence-main")[0].getAttribute("data-lat");
 	var lng = document.getElementsByClassName("residence-main")[0].getAttribute("data-lng");
     var uluru = {lat: +lat, lng: +lng};
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: uluru,
-        gestureHandling: 'greedy'
-	});
-    
-    var icon = {
-        url: "img/map-marker.png", // url
-        // size: new google.maps.Size(200, 150),
-        // scaledSize: new google.maps.Size(200, 150), // scaled size
-        origin: new google.maps.Point(0, 0) // origin
-        // anchor: new google.maps.Point(87, 232) // anchor
-    };
-    
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-        icon: icon
-    });
+    var el = document.getElementById('map');
+    if(el) {
+    	var map = new google.maps.Map(el, {
+	        zoom: 14,
+	        center: uluru,
+	        gestureHandling: 'greedy'
+		});
+	    
+	    var icon = {
+	        url: "img/map-marker.png", // url
+	        // size: new google.maps.Size(200, 150),
+	        // scaledSize: new google.maps.Size(200, 150), // scaled size
+	        origin: new google.maps.Point(0, 0) // origin
+	        // anchor: new google.maps.Point(87, 232) // anchor
+	    };
+	    
+	    var marker = new google.maps.Marker({
+	        position: uluru,
+	        map: map
+	        // icon: icon
+	    });
+    }
 }
 
 

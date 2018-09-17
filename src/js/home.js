@@ -55,8 +55,44 @@ $('.home-slider').slick({
     $(".home-popup__heading-icon").on('click', function() {
         $(this).closest(".home-popup-wrap").fadeOut();
     });
+
+    function addToLocalStorage() {
+        if(localStorage.getItem('preloader') === null) {
+            localStorage.setItem('preloader', true);
+            return true
+        } else {
+            return false;
+        }
+    };
+
+    if(addToLocalStorage()) {
+      $(".home-popup-wrap").css("display", "block");
+    } else {
+      $(".home-popup-wrap").css("display", "none");
+    }
 // end__popup
 
+// youtube icon
+$(document).on('click','.js-videoPoster',function(e) {
+  //отменяем стандартное действие button
+  e.preventDefault();
+  var poster = $(this);
+  // ищем родителя ближайшего по классу
+  var wrapper = poster.closest('.js-videoWrapper');
+  videoPlay(wrapper);
+});
+
+//вопроизводим видео, при этом скрывая постер
+function videoPlay(wrapper) {
+  var iframe = wrapper.find('.js-videoIframe');
+  // Берем ссылку видео из data
+  var src = iframe.data('src');
+  // скрываем постер
+  wrapper.addClass('videoWrapperActive');
+  // подставляем в src параметр из data
+  iframe.attr('src',src);
+}
+// end__youtube_icon
 
 // filter
     // some of function describe in common.js 
@@ -81,6 +117,7 @@ $('.home-slider').slick({
 
     var filter = objClone(filterDefautl);
 
+    getDefaulCheckedCheckbox(filter);
     rangesValue();
 
     // get_selects_value
@@ -124,7 +161,7 @@ $('.home-slider').slick({
                                 "</li>" +
                                 "<li class='residence-list-info__item'>" +
                                     "<svg class='residence-list-info__icon'><use xlink:href='#price'></use></svg>" +
-                                    "<p class='residence-list-info__text'>Минимальная стоимость квартиры – <span class='residence-list-info__text_medium'>от " + item.project_price_flat + "грн.</span></p>" +
+                                    "<p class='residence-list-info__text'>Стоимость квартиры – <span class='residence-list-info__text_medium'>от " + item.project_price_flat + "грн.</span></p>" +
                                 "</li>" +
                                 "<li class='residence-list-info__item'>" +
                                     "<svg class='residence-list-info__icon residence-list-info__icon_rotate'><use xlink:href='#print'></use></svg>" +

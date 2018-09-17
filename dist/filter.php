@@ -356,21 +356,40 @@
                     <li class="result-plan-list__item">
                         <a href="#" class="result-plan-list__image-link">
                             <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
+                            <div class="result-plan-info">
+                                <div class="result-plan-info__price">
+                                    <p class="result-plan-info__text">Бронь</p>
+                                    <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
+                                    <div class="color-box result-plan__color-box color-box_yellow"></div>
+                                </div>
+                                <div class="result-plan-info__floor">
+                                    <p class="result-plan-info__text">9 этаж</p>
+                                    <p class="result-plan-info__text">№ 56</p>
+                                </div>
+                            </div>
+                            <span class="rooms__link result-plan__rooms">2K</span>
+                            <span class="button result-plan__button">Подробнее</span>
+                            <!-- <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p> -->
                         </a>
-                        <div class="result-plan-info">
-                            <div class="result-plan-info__price">
-                                <p class="result-plan-info__text">Бронь</p>
-                                <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
-                                <div class="color-box result-plan__color-box color-box_yellow"></div>
+                    </li>
+                    <li class="result-plan-list__item">
+                        <a href="#" class="result-plan-list__image-link">
+                            <img src="img/filter/plan/plan_1.png" alt="plan-image" class="result-plan-list__image">
+                            <div class="result-plan-info">
+                                <div class="result-plan-info__price">
+                                    <p class="result-plan-info__text">Бронь</p>
+                                    <p class="result-plan-info__text">83,5 м<sup>2</sup></p>
+                                    <div class="color-box result-plan__color-box color-box_yellow"></div>
+                                </div>
+                                <div class="result-plan-info__floor">
+                                    <p class="result-plan-info__text">9 этаж</p>
+                                    <p class="result-plan-info__text">№ 56</p>
+                                </div>
                             </div>
-                            <div class="result-plan-info__floor">
-                                <p class="result-plan-info__text">9 этаж</p>
-                                <p class="result-plan-info__text">№ 56</p>
-                            </div>
-                        </div>
-                        <a href="#" class="rooms__link result-plan__rooms-link">2K</a>
-                        <!-- <a href="#" class="button result-plan__button">Подробнее</a> -->
-                        <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
+                            <span class="rooms__link result-plan__rooms">2K</span>
+                            <!-- <span class="button result-plan__button">Подробнее</span> -->
+                            <p class="result-plan-info__text result-plan-info__text_center">Помещение недоступно для покупки</p>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -733,7 +752,7 @@
             <div class="container">
                 <div class="result-list-top home-filter__select-wrap">
                     <span class="result-list-top__text">Показать по:</span>
-                    <select id="select_pagination" class="result-list-top__select" onchange="selectHandler()">
+                    <select id="select_pagination" onchange="selectHandler()" class="result-list-top__select">
                         <option value="12">12</option>
                         <option value="24">24</option>
                         <option value="36">36</option>
@@ -744,18 +763,36 @@
                     <div class="table-container">
                         <table class="filter-table">
                             <thead class="filter-table__head">
-                                <th class="filter-table__heading filter-table_no_padding">Этаж</th>
-                                <th class="filter-table__heading">Статус</th>
-                                <th class="filter-table__heading">Жилая площадь,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Прихожая,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Кухня,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Гостинная,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Лоджия,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Спальня,м<sup>2</sup></th>
-                                <th class="filter-table__heading">Санузел,м<sup>2</sup></th>
+                                <th data-sort="floor" class="filter-table__heading filter-table_no_padding">
+                                    <span>Этаж</span>
+                                </th>
+                                <th data-sort="sale" class="filter-table__heading">
+                                    <span>Статус</span>
+                                </th>
+                                <th data-sort="sale" class="filter-table__heading">
+                                    <span>Жилая площадь,м<sup>2</sup></span>
+                                </th>
+                                <th class="filter-table__heading">
+                                    <span>Прихожая,м<sup>2</sup></span>
+                                </th>
+                                <th class="filter-table__heading">
+                                    <span>Кухня,м<sup>2</sup></span>
+                                </th>
+                                <th class="filter-table__heading">
+                                    <span>Гостинная,м<sup>2</sup></span>
+                                </th>
+                                <th class="filter-table__heading">
+                                    <span>Лоджия,м<sup>2</sup></span>
+                                </th>
+                                <th class="filter-table__heading">
+                                    <span>Спальня,м<sup>2</sup></span>
+                                </th>
+                                <th class="filter-table__heading">
+                                    <span>Санузел,м<sup>2</sup></span>
+                                </th>
                             </thead>    
                             <tbody class="filter-table__body">
-                                <tr class="filter-table__row">
+                                <tr class="filter-table__row" onclick="location.href='https://prnt.sc/kt37cd'">
                                     <td class="filter-table__col">1</td>
                                     <td class="filter-table__col"><div data-color="gray" class="color-box filter-table__color-box"></div></td>
                                     <td class="filter-table__col">24</td>
@@ -826,7 +863,7 @@
                 </div>
             </div>
 
-    
+        <table id="tableNew"></table>
         
         <?php include_once('includes/footer.php'); ?> 
 

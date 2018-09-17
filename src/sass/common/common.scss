@@ -81,18 +81,18 @@ body {
 	align-items: center;
 
 	&__item {
-		border-top: 1px solid $light-gray;
-		border-bottom: 1px solid $light-gray;
+		border-top: 1px solid #dfdfdf;
+		border-bottom: 1px solid #dfdfdf;
 		padding-left: 30px;
 
 		&:first-child {
 			padding-left: 20px;
-			border-left: 1px solid $light-gray;
+			border-left: 1px solid #dfdfdf;
 			border-radius: 5px 0 0 5px;
 		}
 		&:last-child {
 			padding-right: 20px;
-			border-right: 1px solid $light-gray;
+			border-right: 1px solid #dfdfdf;
 			border-radius: 0 5px 5px 0;
 		}
 
@@ -255,6 +255,11 @@ sup {
 			color: $blue;
 			margin-right: 3px;
 		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
 	}
 }
 /*end__building*/
