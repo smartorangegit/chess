@@ -153,7 +153,7 @@
 	width: 100%;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	flex-wrap: wrap;
 	padding: 0 7px;
 	box-sizing: border-box;
@@ -162,8 +162,13 @@
 		margin-right: 0;
 	}
 	.range__item {
+		margin-right: 5%;
 		justify-content: space-between;
 		margin-bottom: 25px;
+
+		&:nth-child(3n) {
+			margin-right: 0;
+		}
 	}
 }
 .filter-full__button {
@@ -234,6 +239,12 @@
 	justify-content: space-between;
 	padding: 0 7px;
 	box-sizing: border-box;
+
+	form {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
 .filter-settings-list {
 	width: 1054/1200*100%;
@@ -254,6 +265,17 @@
 	    color: $dark-gray;
 	    font-family: $gotham;
 	    font-size: 1rem;
+	}
+}
+
+.filter-settings__button {
+	margin-bottom: 10px;
+	padding-left: 0;
+	padding-right: 0;
+	width: 70%;
+
+	&:last-child {
+		margin-bottom: 0;
 	}
 }
 /*end__filter-settings*/
@@ -362,7 +384,7 @@
 	border-radius: 5px;
 	padding-top: 5px;
 	background-color: #fff;
-	z-index: 2;
+	z-index: 5;
 
 
 	&__item {
@@ -538,7 +560,7 @@
 .floor-plan {
 	display: none;
 	text-align: right;
-	width: 110%;
+	width: 100%;
 	padding-right: 15px;
 	box-sizing: border-box;
 	position: absolute;
@@ -546,6 +568,7 @@
 	right: 0;
 	border-radius: 5px;
 	background-color: rgba(209,204,192,0.8);
+	z-index: 3;
 
 	&__link {
 		color: $dark-gray;
@@ -579,6 +602,7 @@
 	}
 
 	&-wrap {
+		/*position: relative;*/
 		display: flex;
 		width: 100%;
 		overflow-x: auto;
@@ -596,6 +620,17 @@
 			border: 1px solid $light-gray;
 			border-radius: 10px;
 		}
+
+		&:before {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 15%;
+			height: 100%;
+			background: linear-gradient(to right, rgba(#fff, 0.1), rgba(#fff,0.9));
+			content: " ";
+			z-index: 2;
+		}
 	}
 }
 
@@ -609,7 +644,7 @@
 	border: 1px solid $light-gray;
 	border-radius: 5px;
 	background-color: #fff;
-	z-index: 2;
+	z-index: 5;
 
 	&__text {
 		text-align: center;
@@ -651,9 +686,26 @@
 
 	&__item {
 		margin-right: 8px;
+		z-index: 4;
 
 		&:last-child {
 			margin-right: 0;
+		}
+
+		&_active {
+			animation: entrance_fade 0.5s;
+			opacity: 0.3;
+			transform: scale(0.9);
+			transition: all 0.3s;
+
+			&:hover {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+
+		&_not_available {
+			opacity: 0.3;
 		}
 	}
 
@@ -667,6 +719,11 @@
 		justify-content: center;
 		color: #fff;
 	}
+}
+
+@keyframes entrance_fade {
+	from {opacity: 1;}
+	to {opacity: 0.3;}
 }
 
 .entrance-floor {
@@ -706,7 +763,7 @@
 
 /*result-list*/
 .result-list {
-	display: block;
+	display: none;
 }
 
 .table_shadow {

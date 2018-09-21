@@ -46,21 +46,6 @@ $(".form__phone").mask('+38 (099) 999-99-99');
 
         $(this).closest(".favorites").slideUp();
     });
-
-    // $(".favorit").on("click", function() {
-    //    $(".favorites-button").css("display", "flex");    
-    // });
-    // $(".favorit-delete").on("click", function() {
-    //    hideFavoritesButton(); 
-    // });
-
-    // (function hideFavoritesButton() {
-    //     if($(".favorites-table__row").length > 0) {
-    //         $(".favorites-button").css("display", "flex");
-    //     } else {
-    //         $(".favorites-button").css("display", "none");
-    //     }
-    // }());
 // end__favorite-block
 
 // TAB'S
@@ -180,7 +165,7 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             var min = inputInfo.attr("min"),
                 max = inputInfo.attr("max");
 
-            // set defoult value
+            // set default value
             inputInfo.siblings('.js-filter__text_min').html(min);
             inputInfo.siblings('.js-filter__text_max').html(max);
 
@@ -200,11 +185,39 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             var name = target.siblings('.js-filter__hidden-values').attr('name');
             target.siblings('.js-filter__text_min').html(e.from);
             target.siblings('.js-filter__text_max').html(e.to);
-            filter.option[name][0] = +e.from;
-            filter.option[name][1] = +e.to;
+            if(filter.option[name] != undefined) {
+                filter.option[name][0] = +e.from;
+                filter.option[name][1] = +e.to;
+            } else {
+                filter.option.properties[name] = [];
+                filter.option.properties[name][0] = +e.from;
+                filter.option.properties[name][1] = +e.to;
+            }
         }
     }
     // end__get_ranges_value
+
+    // get_selects_value
+    function getSelectsValue() {
+        $(".select__item").on("click", function(e) {
+            var parrent = $(this).closest(".home-filter__select-wrap");
+            var value = parrent.find(".select-selected").html();
+            var selectId = parrent.find("select").attr("id");
+
+            switch (selectId) {
+                    case "project_city":
+                        return filter.selectValue["project_city"] = value;
+                    case "project_region":
+                        return filter.selectValue["project_region"] = value;
+                    case "state":
+                        return filter.selectValue["state"] = value;
+                    case "development_id":
+                        return filter.selectValue["development_id"] = value;
+            }
+        });
+    }
+    // end__get_selects_value
+
 
     // get_number_of_rooms
    function getRoomsNumber() {
@@ -225,16 +238,6 @@ $(".form__phone").mask('+38 (099) 999-99-99');
     });
    }
 
-   function getDefaulCheckedCheckbox(filter) {
-        var roomsArr = filter.option["rooms"];
-        var checkbox = $(".filter-checkbox");
-        for(var i = 0; i < checkbox.length; i++) {
-            if($(checkbox[i]).prop("checked")) {
-                roomsArr.push($(checkbox[i]).attr("value"));
-            }
-        }
-        console.log(filter);
-   };
     // end__get_number_of_rooms
 
     // reset_filter_values

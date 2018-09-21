@@ -1,0 +1,42 @@
+.map__location {
+	margin-bottom: 0;
+}
+
+.location-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.map-search {
+	width: 280px;
+	height: 32px;
+	border: 1px solid $blue;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	padding-left: 7px;
+	box-sizing: border-box;
+
+	&__icon {
+		width: 25px;
+		height: 25px;
+		fill: $light-gray;
+		margin-right: 7px;
+	}
+
+	&__input {
+		width: 80%;
+		height: 100%;	
+		border: none;
+		outline: none;
+		background-color: transparent;
+		font-family: $gotham;
+        font-size: 1rem;
+        color: #000;
+	}
+}
+
+.map-page__map {
+	height: 70vh;
+}

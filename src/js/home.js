@@ -117,28 +117,9 @@ function videoPlay(wrapper) {
 
     var filter = objClone(filterDefautl);
 
-    getDefaulCheckedCheckbox(filter);
+    // getDefaulCheckedCheckbox(filter);
     rangesValue();
-
-    // get_selects_value
-    function citySelect() {
-        var value = document.getElementById("project_city").value;
-        filter.selectValue["project_city"] = value;
-    }
-    function districtSelect() {
-        var value = document.getElementById("project_region").value;
-        filter.selectValue["project_region"] = value;
-    }
-    function stateSelect() {
-        var value = document.getElementById("state").value;
-        filter.selectValue["state"] = value;
-    }
-    function developerSelect() {
-        var value = document.getElementById("development_id").value;
-        filter.selectValue["development_id"] = value;
-    }
-    // end__get_selects_value
-
+    getSelectsValue();
     getRoomsNumber();
 
     // show_selected_residance (home-page)

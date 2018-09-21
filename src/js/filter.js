@@ -26,6 +26,7 @@ $(".filter-full__button_more").on("click", function() {
     });
 // end__cahnge color-box color
 
+
 // show-floor-plan
     function showFlorPlan() {
         $(".entrance-flats").hover(
@@ -123,7 +124,7 @@ $(".filter-full__button_more").on("click", function() {
                 if(!$(this).hasClass("entrance-flats__item_not_available")) {
                     tooltip.css({
                         top: diffTop - tooltipHeight - 25,
-                        left: diffLeft - 2*tooltipWidth - 25,
+                        left: diffLeft - 1.4*tooltipWidth,
                         opacity: "1"
                     });
 
@@ -161,15 +162,92 @@ $(".filter-full__button_more").on("click", function() {
             rooms: [],
             floor: getDefaulValue($("input[name='floor']")),
             house: $(".building").data("house"),
-            project_id: $(".building").data("id")
+            project_id: $(".building").data("id"),
+            properties: {}
         }
     };
 
+    // add_expanded_settings_filter
+    function addNewOptionToFilter(filterName, name) {
+        filterName.option.properties[name] =  getDefaulValue($("input[name='" + name + "']"));
+    }
+
+    function rangeMarkup(splitNmae, id, name, min, max) {
+        var markup = "<div id='" + splitNmae + "' class='range__item'>" +
+                      "<span class='filter_name'>" + name + "</span >" + 
+                        "<div class='filter__ranges filter__ranges_ta'>" +
+                            "<input name='" + id + "' type='range' min='" + min + "' max='" + max + "' class='filter__hidden-values js-filter__hidden-values' style='display: none;'>" +
+                            "<input class='filter__range js-filter__range'  type='text'>" +
+                            "<span class='range__text range__text_min js-filter__text_min'></span>" +
+                            "<span class='range__text range__text_max js-filter__text_max'></span>" +
+                        "</div>" +
+                    "</div>";
+        return markup;
+    }
+
+    (function defaultFilterSettings() {
+        var checkboxes = $(".filter-settings").find(".filter-checkbox");
+
+        $(".filter-full-range").find(".range__item").remove();
+
+        checkboxes.each(function(i, item) {
+            var checked = $(item).prop("checked");
+            var name = $(item).data("label");
+            var splitName = name.split(' ').join('');
+            var id = $(item).attr("id");
+            var min = $(item).data("min"),
+                max = $(item).data("max");
+            var range = rangeMarkup(splitName, name, min, max);
+
+            if(checked) {
+                $(".filter-full-range").append(
+                    rangeMarkup(splitName, id, name, min, max)
+                );
+            }
+            addNewOptionToFilter(filterDefautl, id);
+            rangesValue();
+        });
+    }());
+
+    $(".filter-settings-list__label").on("click", function() {
+        var checkbox = $(this).siblings(".filter-checkbox");
+        var checked = checkbox.prop("checked");
+        var name = checkbox.data("label");
+        var splitName = name.split(' ').join('');
+        var id = checkbox.attr("id");
+        var min = checkbox.data("min"),
+            max = checkbox.data("max");
+
+        if(!checked) {
+            $(".filter-full-range").append(
+                rangeMarkup(splitName, id, name, min, max)
+            );
+            addNewOptionToFilter(filter, id);
+            rangesValue();
+        } else {
+            $("#" + splitName + "").remove();
+            filter.option.properties[id][0] = null;
+            filter.option.properties[id][1] = null;
+        }
+    });
+    // end__add_expanded_settings_filter
+
+
     var filter = objClone(filterDefautl);
 
-    rangesValue();
+    (function getDefaulCheckedCheckbox() {
+        var roomsArr = filter.option["rooms"];
+        var checkbox = $(".filter-short-checkbox-wrap").find(".filter-checkbox");
+        for(var i = 0; i < checkbox.length; i++) {
+            if($(checkbox[i]).prop("checked")) {
+                roomsArr.push($(checkbox[i]).attr("value"));
+            }
+        }
+        console.log(filter);
+    }());
 
-    getDefaulCheckedCheckbox(filter);
+    rangesValue();
+    // getDefaulCheckedCheckbox(filter);
     getRoomsNumber();
 
     // submit
@@ -184,6 +262,7 @@ $(".filter-full__button_more").on("click", function() {
             dataType: "json",
             data: filter,
             success: function(data){
+                console.log(data);
                 entranceShow(data);
                 flatsShow(data.dataList);
                 flatsShowTable(data.dataList, data.dataTable);
@@ -341,7 +420,10 @@ $(".filter-full__button_more").on("click", function() {
             dataType: "json",
             data: filter,
             success: function(data){
-                flatsShowTable(data.dataList);
+                console.log(data);
+                flatsShowTable(data.dataList, data.dataTable);
+
+                paginationItemShow(data.quantity, flatsShow, flatsShowTable);
             },
             error: function(data){
                 console.log(data);
@@ -408,8 +490,6 @@ $(".filter-full__button_more").on("click", function() {
             createTableHeadsObj(tableHeading);
             flats.forEach(createCustomAppartmentObj);
 
-            console.log(customApartments);
-
             customApartments.forEach(function(app, index) {
                 var t = "<tr onclick='location.href=&apos;http://apivime.smarto.com.ua" + app.url + "&apos;' class='filter-table__row'>" + 
                             "<td class='filter-table__col'>" + app.floor + "</td>" +
@@ -472,57 +552,66 @@ $(".filter-full__button_more").on("click", function() {
         var third = data.data;
 
         function getAppartment(appart) {
-            switch (appart.sale) {
-                case "1":
-                    return "<li class='entrance-flats__item'" +
-                                "data-image='" + appart.img + "'" +
-                                "data-square='" + appart.all_room + "'" +
-                                "data-price_m='" + appart.price_m2 + "'" +
-                                "data-price='" + appart.price + "'" +
-                                "data-rooms='" + appart.rooms + "'" +
-                                "data-num='" + appart.number + "'>" +
-                                "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_green'>" + appart.rooms + "</a>" + 
-                            "</li>";
-                case "2":
-                    return "<li class='entrance-flats__item'" +
-                                "data-image='" + appart.img + "'" +
-                                "data-square='" + appart.all_room + "'" +
-                                "data-price_m='" + appart.price_m2 + "'" +
-                                "data-price='" + appart.price + "'" +
-                                "data-rooms='" + appart.rooms + "'" +
-                                "data-num='" + appart.number + "'>" +
-                                "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_yellow'>" + appart.rooms + "</a>" + 
-                            "</li>";
-                case "3":
-                    return "<li class='entrance-flats__item'" +
-                                "data-image='" + appart.img + "'" +
-                                "data-square='" + appart.all_room + "'" +
-                                "data-price_m='" + appart.price_m2 + "'" +
-                                "data-price='" + appart.price + "'" +
-                                "data-rooms='" + appart.rooms + "'" +
-                                "data-num='" + appart.number + "'>" +
-                                "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_gray'>" + appart.rooms + "</a>" + 
-                            "</li>";
-                case "0":
-                    return "<li class='entrance-flats__item'" +
-                                "data-image='" + appart.img + "'" +
-                                "data-square='" + appart.all_room + "'" +
-                                "data-price_m='" + appart.price_m2 + "'" +
-                                "data-price='" + appart.price + "'" +
-                                "data-rooms='" + appart.rooms + "'" +
-                                "data-num='" + appart.number + "'>" +
-                                "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_dark-gray'>" + appart.rooms + "</a>" + 
-                            "</li>";
-                default:
-                    return "<li class='entrance-flats__item entrance-flats__item_not_available'" +
-                                "data-image='" + appart.img + "'" +
-                                "data-square='" + appart.all_room + "'" +
-                                "data-price_m='" + appart.price_m2 + "'" +
-                                "data-price='" + appart.price + "'" +
-                                "data-rooms='" + appart.rooms + "'" +
-                                "data-num='" + appart.number + "'>" +
-                                "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_gray'>" + "</a>" + 
-                            "</li>";
+
+            function selectionFlatType(saleType, itemClass) {
+                switch (saleType.sale) {
+                    case "1":
+                        return "<li class='" + itemClass + "'" +
+                                    "data-image='" + appart.img + "'" +
+                                    "data-square='" + appart.all_room + "'" +
+                                    "data-price_m='" + appart.price_m2 + "'" +
+                                    "data-price='" + appart.price + "'" +
+                                    "data-rooms='" + appart.rooms + "'" +
+                                    "data-num='" + appart.number + "'>" +
+                                    "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_green'>" + appart.rooms + "</a>" + 
+                                "</li>";
+                    case "2":
+                        return "<li class='" + itemClass + "'" +
+                                    "data-image='" + appart.img + "'" +
+                                    "data-square='" + appart.all_room + "'" +
+                                    "data-price_m='" + appart.price_m2 + "'" +
+                                    "data-price='" + appart.price + "'" +
+                                    "data-rooms='" + appart.rooms + "'" +
+                                    "data-num='" + appart.number + "'>" +
+                                    "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_yellow'>" + appart.rooms + "</a>" + 
+                                "</li>";
+                    case "3":
+                        return "<li class='" + itemClass + "'" +
+                                    "data-image='" + appart.img + "'" +
+                                    "data-square='" + appart.all_room + "'" +
+                                    "data-price_m='" + appart.price_m2 + "'" +
+                                    "data-price='" + appart.price + "'" +
+                                    "data-rooms='" + appart.rooms + "'" +
+                                    "data-num='" + appart.number + "'>" +
+                                    "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_gray'>" + appart.rooms + "</a>" + 
+                                "</li>";
+                    case "0":
+                        return "<li class='" + itemClass + "'" +
+                                    "data-image='" + appart.img + "'" +
+                                    "data-square='" + appart.all_room + "'" +
+                                    "data-price_m='" + appart.price_m2 + "'" +
+                                    "data-price='" + appart.price + "'" +
+                                    "data-rooms='" + appart.rooms + "'" +
+                                    "data-num='" + appart.number + "'>" +
+                                    "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_dark-gray'>" + appart.rooms + "</a>" + 
+                                "</li>";
+                    default:
+                        return "<li class='" + itemClass + " entrance-flats__item_not_available'" +
+                                    "data-image='" + appart.img + "'" +
+                                    "data-square='" + appart.all_room + "'" +
+                                    "data-price_m='" + appart.price_m2 + "'" +
+                                    "data-price='" + appart.price + "'" +
+                                    "data-rooms='" + appart.rooms + "'" +
+                                    "data-num='" + appart.number + "'>" +
+                                    "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_gray'>" + "</a>" + 
+                                "</li>";
+                }
+            }
+
+            if(appart.filter == 1) {
+               return selectionFlatType(appart, "entrance-flats__item");
+            } else {
+                return selectionFlatType(appart, "entrance-flats__item entrance-flats__item_active");
             }
         }
 
@@ -587,10 +676,6 @@ $(".filter-full__button_more").on("click", function() {
     };
     // end__show_selected_entrance
 // end__filter
-
-// $(window).on("click", function(e) {
-//     console.log(e.target);
-// });
 
 
 

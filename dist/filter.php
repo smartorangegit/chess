@@ -149,7 +149,7 @@
             <div class="filter-full">
                 <div class="container">
                     <div class="filter-full-range">
-                        <div class="range__item">
+                        <!-- <div class="range__item">
                           <span class="filter_name">Общая стоимость</span >
                             <div class="filter__ranges filter__ranges_ta">
                                 <?php /*Place PHP values here*/?>
@@ -181,51 +181,7 @@
                                 <span class="range__text range__text_min js-filter__text_min">0</span>
                                 <span class="range__text range__text_max js-filter__text_max">100</span>
                             </div>
-                        </div>
-                        <div class="range__item">
-                          <span class="filter_name">Общая стоимость</span >
-                            <div class="filter__ranges filter__ranges_ta">
-                                <?php /*Place PHP values here*/?>
-                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
-                                <?php /*Place PHP values here*/?>
-                                <input class="filter__range js-filter__range"  type="text">
-                                <span class="range__text range__text_min js-filter__text_min">0</span>
-                                <span class="range__text range__text_max js-filter__text_max">100</span>
-                            </div>
-                        </div>
-                        <div class="range__item">
-                          <span class="filter_name">Общая стоимость</span >
-                            <div class="filter__ranges filter__ranges_ta">
-                                <?php /*Place PHP values here*/?>
-                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
-                                <?php /*Place PHP values here*/?>
-                                <input class="filter__range js-filter__range"  type="text">
-                                <span class="range__text range__text_min js-filter__text_min">0</span>
-                                <span class="range__text range__text_max js-filter__text_max">100</span>
-                            </div>
-                        </div>
-                        <div class="range__item">
-                          <span class="filter_name">Общая стоимость</span >
-                            <div class="filter__ranges filter__ranges_ta">
-                                <?php /*Place PHP values here*/?>
-                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
-                                <?php /*Place PHP values here*/?>
-                                <input class="filter__range js-filter__range"  type="text">
-                                <span class="range__text range__text_min js-filter__text_min">0</span>
-                                <span class="range__text range__text_max js-filter__text_max">100</span>
-                            </div>
-                        </div>
-                        <div class="range__item">
-                          <span class="filter_name">Общая стоимость</span >
-                            <div class="filter__ranges filter__ranges_ta">
-                                <?php /*Place PHP values here*/?>
-                                    <input name="common_cost" type="range" min="5" max="100" class="filter__hidden-values js-filter__hidden-values" style="display: none;">
-                                <?php /*Place PHP values here*/?>
-                                <input class="filter__range js-filter__range"  type="text">
-                                <span class="range__text range__text_min js-filter__text_min">0</span>
-                                <span class="range__text range__text_max js-filter__text_max">100</span>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="filter-full__button-wrap">
                         <button class="button header__button filter__button border-gradient filter-full__button_apply filter__button-js">
@@ -247,50 +203,37 @@
                     <div class="filter-settings-content">
                         <ul class="filter-settings-list">
                             <li class="filter-settings-list__item">
-                                <input id="settings-check_1" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_1" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
-                            </li>
-                            <li class="filter-settings-list__item">
-                                <input id="settings-check_2" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_2" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
-                            </li>
-                            <li class="filter-settings-list__item">
-                                <input id="settings-check_3" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_3" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
-                            </li>
-                            <li class="filter-settings-list__item">
-                                <input id="settings-check_4" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_4" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
-                            </li>
-                            <li class="filter-settings-list__item">
-                                <input id="settings-check_5" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_5" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
-                            </li>
-
-                            <li class="filter-settings-list__item">
-                                <input id="settings-check_6" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_6" class="filter-checkbox-list__label filter-settings-list__label"></label>
+                                <input checked data-label="Кухня" data-min="2" data-max="100" id="property_1" type="checkbox" class="filter-checkbox filter-settings__checkbox">
+                                <label for="property_1" class="filter-checkbox-list__label filter-settings-list__label"></label>
                                 <span class="filter-settings-list__text">Кухня, м<sup>2</sup>:</span> 
                             </li>
                             <li class="filter-settings-list__item">
-                                <input id="settings-check_7" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_7" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Кухня, м<sup>2</sup>:</span> 
+                                <input checked data-label="Ванная" data-min="3" data-max="5" id="property_2" type="checkbox" class="filter-checkbox filter-settings__checkbox">
+                                <label for="property_2" class="filter-checkbox-list__label filter-settings-list__label"></label>
+                                <span class="filter-settings-list__text">Ванная, м<sup>2</sup>:</span> 
                             </li>
                             <li class="filter-settings-list__item">
-                                <input id="settings-check_8" type="checkbox" class="filter-checkbox">
-                                <label for="settings-check_8" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Кухня, м<sup>2</sup>:</span> 
+                                <input checked data-label="Спальня" data-min="4" data-max="6" id="property_3" type="checkbox" class="filter-checkbox filter-settings__checkbox">
+                                <label for="property_3" class="filter-checkbox-list__label filter-settings-list__label"></label>
+                                <span class="filter-settings-list__text">Спальня, м<sup>2</sup>:</span> 
+                            </li>
+                            <li class="filter-settings-list__item">
+                                <input checked data-label="Жилая площадь" data-min="5" data-max="7" id="property_4" type="checkbox" class="filter-checkbox filter-settings__checkbox">
+                                <label for="property_4" class="filter-checkbox-list__label filter-settings-list__label"></label>
+                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
                             </li>
                         </ul>
                         <button class="button header__button filter__button border-gradient">
                             Сбросить
                         </button>
+                        <!-- <div class="filter-settings__button-wrap">
+                            <button class="button header__button filter__button border-gradient filter-settings__button">
+                                Сохранить
+                            </button>
+                            <button class="button header__button filter__button border-gradient filter-settings__button">
+                                Сбросить
+                            </button>
+                        </div> -->
                     </div> 
                 </div>
             </div>
@@ -862,8 +805,6 @@
                     </div>
                 </div>
             </div>
-
-        <table id="tableNew"></table>
         
         <?php include_once('includes/footer.php'); ?> 
 

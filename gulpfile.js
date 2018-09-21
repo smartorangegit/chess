@@ -97,12 +97,24 @@ gulp.task('residence-js', function() {
 });
 // residence end
 
+// map start
+gulp.task('map-js', function() {
+	return gulp.src([
+		'src/js/map.js',
+		])
+	.pipe(concat('map.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'));
+});
+// map end
+
 gulp.task('js', [
 	'common-js',
 	'header-js',
 	'filter-js',
 	'profile-js',
 	'residence-js',
+	'map-js',
 	'home-js'
 	], function() {
 	return gulp.src([
