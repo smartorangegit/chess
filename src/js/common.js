@@ -201,7 +201,7 @@ $(".form__phone").mask('+38 (099) 999-99-99');
     function getSelectsValue() {
         $(".select__item").on("click", function(e) {
             var parrent = $(this).closest(".home-filter__select-wrap");
-            var value = parrent.find(".select-selected").html();
+            var value = parrent.find(".home-filter__select").val();
             var selectId = parrent.find("select").attr("id");
 
             switch (selectId) {

@@ -37,37 +37,37 @@
                             <div class="home-filter__select-wrap custom-select">
                                 <select id="project_city" class="home-filter__select" onchange="citySelect()">
                                     <option class="city" value="">Город</option>
-                                    <option class="city" value="kiev">Киев</option>
-                                    <option class="city" value="lviv">Львов</option>
-                                    <option class="city" value="dnipro">Днепр</option>
-                                    <option class="city" value="kiev">Киев</option>
-                                    <option class="city" value="lviv">Львов</option>
-                                    <option class="city" value="dnipro">Днепр</option>
+                                    <option class="city" value="1">Киев</option>
+                                    <option class="city" value="2">Львов</option>
+                                    <option class="city" value="3">Днепр</option>
+                                    <option class="city" value="4">Киев</option>
+                                    <option class="city" value="5">Львов</option>
+                                    <option class="city" value="6">Днепр</option>
                                 </select>
                                 <!-- <svg class="home-filter__arrow"><use xlink:href="#left-arrow"></use></svg> -->
                             </div>
                             <div class="home-filter__select-wrap">
                                 <select id="project_region" class="home-filter__select" onchange="districtSelect()">
                                     <option class="district" value="">Район</option>
-                                    <option class="district" value="podil">1</option>
-                                    <option class="district" value="sheva">2</option>
-                                    <option class="district" value="soloma">3</option>
+                                    <option class="district" value="1">1</option>
+                                    <option class="district" value="2">2</option>
+                                    <option class="district" value="3">3</option>
                                 </select>
                             </div>
                             <div class="home-filter__select-wrap">
                                 <select id="state" class="home-filter__select" onchange="stateSelect()">
                                     <option class="state" value="">Состояние строительства</option>
-                                    <option class="state" value="first">1</option>
-                                    <option class="state" value="second">2</option>
-                                    <option class="state" value="third">3</option>
+                                    <option class="state" value="1">1</option>
+                                    <option class="state" value="2">2</option>
+                                    <option class="state" value="3">3</option>
                                 </select>
                             </div>
                             <div class="home-filter__select-wrap">
                                 <select id="development_id" class="home-filter__select" onchange="developerSelect()">
                                     <option class="developer" value="">Застройщик</option>
-                                    <option class="developer" value="first">1</option>
-                                    <option class="developer" value="second">2</option>
-                                    <option class="developer" value="third">3</option>
+                                    <option class="developer" value="1">1</option>
+                                    <option class="developer" value="2">2</option>
+                                    <option class="developer" value="3">3</option>
                                 </select>
                             </div>
                             <div class="home-filter-checkbox-wrap">
@@ -111,7 +111,7 @@
                               <span class="filter_name">Цена за м<sup>2</sup>, от</span >
                                 <div class="filter__ranges">
                                     <?php /*Place PHP values here*/?>
-                                        <input name="project_price" type="range" min="5" max="100" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                        <input name="project_price" type="range" min="5" max="50000" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
                                     <?php /*Place PHP values here*/?>
                                     <input class="filter__range js-filter__range" type="text">
                                     <span class="range__text range__text_min js-filter__text_min">0</span>
@@ -122,7 +122,7 @@
                               <span class="filter_name">К-во кв. м:</span >
                                 <div class="filter__ranges">
                                     <?php /*Place PHP values here*/?>
-                                        <input name="all_room" type="range" min="0" max="20000" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                        <input name="all_room" type="range" min="0" max="200" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
                                     <?php /*Place PHP values here*/?>
                                     <input class="filter__range filter__range_ta js-filter__range" type="text">
                                     <span class="range__text range__text_min js-filter__text_min">0</span>
@@ -133,7 +133,7 @@
                               <span class="filter_name">Общая стоимость</span >
                                 <div class="filter__ranges">
                                     <?php /*Place PHP values here*/?>
-                                        <input name="price" type="range" min="0" max="1000000" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
+                                        <input name="price" type="range" min="0" max="1500000" class="filter__hidden-values filter__hidden-values_ta js-filter__hidden-values" style="display: none;">
                                     <?php /*Place PHP values here*/?>
                                     <input class="filter__range filter__range_ta js-filter__range" type="text">
                                     <span class="range__text range__text_min js-filter__text_min">0</span>

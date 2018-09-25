@@ -55,7 +55,6 @@
 								<th class="favorites-table__heading">Общая стоимость, грн</th>
 								<th class="favorites-table__heading">Тип</th>
 								<th class="favorites-table__heading">Забронировать</th>
-								<th class="favorites-table__heading">Удалить</th>
 							</thead>
 							<tbody class="favorites-table__body">
 								<tr class="favorites-table__row">
@@ -66,7 +65,9 @@
 									<td class="favorites-table__col">1277856</td>
 									<td class="favorites-table__col">2B</td>
 									<td class="favorites-table__col">
-										<svg class="favorites-table__booking-icon"><use xlink:href="#home-security"></use></svg>
+										<a onclick="$(`#rez`).click();" class="button booking-button">
+					                    	Забронировать
+					                   </a>
 									</td>
 									<td class="favorites-table__col">
 										<svg class="favorites-table__booking-icon favorites-table__booking-icon_smaller"><use xlink:href="#cancel"></use></svg>
@@ -80,7 +81,9 @@
 									<td class="favorites-table__col">1277856</td>
 									<td class="favorites-table__col">2B</td>
 									<td class="favorites-table__col">
-										<svg class="favorites-table__booking-icon"><use xlink:href="#home-security"></use></svg>
+										<a onclick="$(`#rez`).click();" class="button booking-button">
+					                    	Забронировать
+					                    </a>
 									</td>
 									<td class="favorites-table__col">
 										<svg class="favorites-table__booking-icon favorites-table__booking-icon_smaller"><use xlink:href="#cancel"></use></svg>
@@ -99,7 +102,6 @@
 								<th class="favorites-table__heading">Общая стоимость, грн</th>
 								<th class="favorites-table__heading">Тип</th>
 								<th class="favorites-table__heading">Забронировать</th>
-								<th class="favorites-table__heading">Удалить</th>
 							</thead>
 							<tbody class="favorites-table__body">
 								<tr class="favorites-table__row">
@@ -110,7 +112,9 @@
 									<td class="favorites-table__col">1277856</td>
 									<td class="favorites-table__col">2B</td>
 									<td class="favorites-table__col">
-										<svg class="favorites-table__booking-icon"><use xlink:href="#home-security"></use></svg>
+										<a onclick="$(`#rez`).click();" class="button booking-button">
+					                    	Забронировать
+					                    </a>
 									</td>
 									<td class="favorites-table__col">
 										<svg class="favorites-table__booking-icon favorites-table__booking-icon_smaller"><use xlink:href="#cancel"></use></svg>

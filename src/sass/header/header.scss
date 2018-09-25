@@ -273,6 +273,19 @@
 				color: $blue;
 			}
 		}
+
+		.booking-button {
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: auto;
+			padding: 0;
+
+			&:hover {
+				color: #fff;
+			}
+		}
 	}
 }
 
