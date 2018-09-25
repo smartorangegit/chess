@@ -603,7 +603,7 @@ $(".filter-full__button_more").on("click", function() {
                                     "data-price='" + appart.price + "'" +
                                     "data-rooms='" + appart.rooms + "'" +
                                     "data-num='" + appart.number + "'>" +
-                                    "<a href='" + appart.url + "' class='entrance-flats__color-box color-box_gray'>" + "</a>" + 
+                                    "<div class='entrance-flats__color-box color-box_gray'>" + "</div>" + 
                                 "</li>";
                 }
             }

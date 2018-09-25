@@ -4,8 +4,8 @@ var filterDefautl = {
     option: {
         price: getDefaulValue($("input[name='price']")),
         all_room: getDefaulValue($("input[name='all_room']")),
-        project_price: getDefaulValue($("input[name='project_price']"))
-        // rooms: []
+        project_price: getDefaulValue($("input[name='project_price']")),
+        rooms: []
     },
     selectValue: {
         project_city: "",
@@ -19,7 +19,7 @@ var filter = objClone(filterDefautl);
 
 rangesValue();
 getSelectsValue();
-// getRoomsNumber();
+getRoomsNumber();
 
 $.ajax({
     url: "http://apivime.smarto.com.ua/ajax",
@@ -47,58 +47,87 @@ function showFilteredProjectOnMap(data) {
 		var fullDataProjects = data.data;
 		var allProjects = createObjWithNecessaryProperties(fullDataProjects);
 		var rangesProp = filter.option;
-		var unsuitableElements = [];
 
-		allProjects.forEach(function(project, i) {
-			for(var prop in rangesProp) {
-				var min = rangesProp[prop][0];
-				var max = rangesProp[prop][1];
-				// if(prop == "rooms") {
-				// 	if(rangesProp[prop].length != 0) {
-				// 		rangesProp[prop].forEach(function(el) {
-				// 			if(project[prop] != el) {
-				// 				console.log(i);
-				// 				unsuitableElements.push(i);
-				// 				break;
-				// 			}
-				// 		});
-				// 	} else {
-				// 		console.log(i);
-				// 		unsuitableElements = [];
-				// 	}
-				// } else {
-				// 	if(+project[prop] >= min == false || +project[prop] <= max == false) {
-				// 		unsuitableElements.push(project);
-				// 	}
-				// }
+		function filteringByRange(recivedData) {
+			var unsuitableElementsIndex = [];
 
-				if(+project[prop] >= min == false || +project[prop] <= max == false) {
-					unsuitableElements.push(i);
+			allProjects.forEach(function(project, i) {
+				for(var prop in recivedData) {
+					var min = recivedData[prop][0];
+					var max = recivedData[prop][1];
+					if(prop == "rooms") {
+						continue;
+					} else if(+project[prop] >= min == false || +project[prop] <= max == false) {
+						unsuitableElementsIndex.push(i);
+					}
 				}
+			});
+
+			// delete repeatet elements in unsuitableElements
+			function unique(arr) {
+			  var obj = {};
+			  for (var i = 0; i < arr.length; i++) {
+			    var str = arr[i];
+			    obj[str] = true;
+			  }
+			  return Object.keys(obj);
 			}
-		});
+			unsuitableElementsIndex = unique(unsuitableElementsIndex);
 
-		// delete repeatet elements in unsuitableElements
-		function unique(unsuitableElements) {
-		  var obj = {};
-		  for (var i = 0; i < unsuitableElements.length; i++) {
-		    var str = unsuitableElements[i];
-		    obj[str] = true;
-		  }
-		  return Object.keys(obj);
-		}
-		unsuitableElements = unique(unsuitableElements);
-		// console.log(unsuitableElements);
+			// delete unsuitable elements from project array
+			for (var i = unsuitableElementsIndex.length -1; i >= 0; i--) {
+	   			allProjects.splice(unsuitableElementsIndex[i],1);
+			}
 
-		// delete unsuitable elements from project array
-		for (var i = unsuitableElements.length -1; i >= 0; i--) {
-   			allProjects.splice(unsuitableElements[i],1);
+			var result = allProjects;
+			return result;
 		}
 
-		console.log(allProjects);
+		function filteringByRoom(recivedData) {
+			var projects = filteringByRange(recivedData);
+			var rooms = recivedData.rooms;
+			var result = [];
 
+			if(rooms.length != 0) {
+				projects.forEach(function(el, i) {
+					rooms.forEach(function(item) {
+						if(el.rooms == item) {
+							result.push(el);
+						}
+					}); 
+				});
+				return result;
+			} else {
+				return projects;
+			}
+		}
+		
+		function filteringBySelect(filter) {
+			var projects = filteringByRoom(filter.option);
+			var selectProp = filter.selectValue;
+			var result = [];
+			// console.log(projects);
 
-		// console.log(allProjects, rangesProp);
+			projects.forEach(function(el, i) {
+				for(var prop in selectProp) {
+					if(selectProp[prop] != "") {
+						if(selectProp[prop] == el[prop]) {
+							result.push(el);
+						}
+					}
+				}
+			});
+
+			if(result.length != 0) {
+				return result;
+			} else {
+				return projects;
+			}
+		}
+
+		var filteredProject = filteringBySelect(filter);
+		initMap(filteredProject);
+		// return alert("dlfv");
 	});	
 }
 
@@ -147,8 +176,8 @@ function initMap(proj) {
 		for(var i = 0; i < markersData.length; i++) {
 			var marker = new google.maps.Marker({
 		        position: {lat: markersData[i].lat, lng: markersData[i].lng},
-		        map: map
-		        // icon: icon
+		        map: map,
+		        icon: icon
 		    });	
 		}
     }
