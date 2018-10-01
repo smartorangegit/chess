@@ -150,9 +150,8 @@
             </div>
         </div>
 
-        <div class="container">
-            <div id="map" class="map-page__map"></div>
-        </div>
+        <div id="map" class="map-page__map"></div>
+
 
         <?php include_once('includes/footer.php'); ?> 
 

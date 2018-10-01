@@ -241,30 +241,32 @@ $(".form__phone").mask('+38 (099) 999-99-99');
     // end__get_number_of_rooms
 
     // reset_filter_values
-    $('.filter__button_clear-js').on("click", function(e) {
-        e.preventDefault();
-        // range reset
-        var ranges = $(".range__item");
-        for(var i = 0; i < ranges.length; i++) {
-            var min = $(ranges[i]).find(".js-filter__hidden-values").attr("min");
-            var max = $(ranges[i]).find(".js-filter__hidden-values").attr("max");
-            $(ranges[i]).find(".js-filter__text_min").html(min);
-            $(ranges[i]).find(".js-filter__text_max").html(max);
-            $(ranges[i]).find(".irs-bar").css({
-                width: "100%",
-                left: "0"
-            });
-            $(ranges[i]).find(".from").css("left", "0");
-            $(ranges[i]).find(".to").css("left", "100%");
-        }
+    (function resetFilter() {
+        $('.filter__button_clear-js').on("click", function(e) {
+            e.preventDefault();
+            // range reset
+            var ranges = $(".range__item");
+            for(var i = 0; i < ranges.length; i++) {
+                var min = $(ranges[i]).find(".js-filter__hidden-values").attr("min");
+                var max = $(ranges[i]).find(".js-filter__hidden-values").attr("max");
+                $(ranges[i]).find(".js-filter__text_min").html(min);
+                $(ranges[i]).find(".js-filter__text_max").html(max);
+                $(ranges[i]).find(".irs-bar").css({
+                    width: "100%",
+                    left: "0"
+                });
+                $(ranges[i]).find(".from").css("left", "0");
+                $(ranges[i]).find(".to").css("left", "100%");
+            }
 
-        // reset checkbox
-        $(".filter-checkbox").prop("checked", false);
+            // reset checkbox
+            $(".filter-checkbox").prop("checked", false);
 
-        // reset filter obj
-        var filter = objClone(filterDefautl);
-        console.log(filter);
-    });
+            // reset filter obj
+            filter = objClone(filterDefautl);
+            console.log(filter);
+        });
+    })();
     // end__reset_filter_values
 
 // end__functions_for_filter

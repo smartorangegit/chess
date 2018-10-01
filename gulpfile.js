@@ -108,6 +108,17 @@ gulp.task('map-js', function() {
 });
 // map end
 
+// floor-plan start
+gulp.task('floor-plan-js', function() {
+	return gulp.src([
+		'src/js/floor-plan.js',
+		])
+	.pipe(concat('floor-plan.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('dist/js'));
+});
+// floor-plan end
+
 gulp.task('js', [
 	'common-js',
 	'header-js',
@@ -115,6 +126,7 @@ gulp.task('js', [
 	'profile-js',
 	'residence-js',
 	'map-js',
+	'floor-plan-js',
 	'home-js'
 	], function() {
 	return gulp.src([

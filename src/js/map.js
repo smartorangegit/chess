@@ -27,21 +27,47 @@ $.ajax({
     dataType: "json",
     data: {typ: "1", page: "1"},
     success: function(data){
-        showAllProjectOnMap(data);
-        showFilteredProjectOnMap(data)
+        initMap(data);
     },
     error: function(data){
        console.log(data);
     }
 });
 
-function showAllProjectOnMap(data) {
-	var fullDataProjects = data.data;
-	var dataRrojects = createObjWithNecessaryProperties(fullDataProjects);
-	initMap(dataRrojects);
+function initMap(data) {
+    var allProj = getAllProject(data);
+	
+    var el = document.getElementById('map');
+    if(el) {
+    	var map = new google.maps.Map(el, {
+	        zoom: 12,
+	        center: {lat: 50.465477, lng: 30.513899},
+	        gestureHandling: 'greedy'
+		});
+
+	    var iconActive = {
+	        url: "img/map-marker-blue.png",
+	        scaledSize: new google.maps.Size(20, 30),
+	        origin: new google.maps.Point(0, 0)
+	    };
+
+	    var project = filterProj(data, map, iconActive);
+
+	    if(project == undefined) {
+	    	markersShow(map, allProj, iconActive); // when page are loaded
+	    } else {
+	    	project;
+	    }
+    }
 }
 
-function showFilteredProjectOnMap(data) {
+function getAllProject(data) {
+	var fullDataProjects = data.data;
+	var dataRrojects = createObjWithNecessaryProperties(fullDataProjects);
+	return dataRrojects;
+}
+
+function filterProj(data, map, icon) {
 	$(".filter__button-js").on("click", function(e) {
 		e.preventDefault();
 		var fullDataProjects = data.data;
@@ -74,7 +100,7 @@ function showFilteredProjectOnMap(data) {
 			}
 			unsuitableElementsIndex = unique(unsuitableElementsIndex);
 
-			// delete unsuitable elements from project array
+			// delete unsuitable elements from projects array
 			for (var i = unsuitableElementsIndex.length -1; i >= 0; i--) {
 	   			allProjects.splice(unsuitableElementsIndex[i],1);
 			}
@@ -106,13 +132,12 @@ function showFilteredProjectOnMap(data) {
 			var projects = filteringByRoom(filter.option);
 			var selectProp = filter.selectValue;
 			var result = [];
-			// console.log(projects);
 
-			projects.forEach(function(el, i) {
+			projects.forEach(function(proj, i) {
 				for(var prop in selectProp) {
 					if(selectProp[prop] != "") {
-						if(selectProp[prop] == el[prop]) {
-							result.push(el);
+						if(selectProp[prop] == proj[prop]) {
+							result.push(proj);
 						}
 					}
 				}
@@ -124,16 +149,18 @@ function showFilteredProjectOnMap(data) {
 				return projects;
 			}
 		}
+		var filterResult = filteringBySelect(filter);
+		
+		var allProj = getAllProject(data);
+		showResultOnMap(map, allProj, filterResult, icon);
 
-		var filteredProject = filteringBySelect(filter);
-		initMap(filteredProject);
-		// return alert("dlfv");
+		return filterResult;
 	});	
 }
 
 function createObjWithNecessaryProperties(data) {
 	var dataProjects = [];
-	var propertys = ["all_room", "projects_coor", "price", "rooms", "project_price", "project_city", "project_region", "types", "development_id"];
+	var propertys = ["project_site", "project_name_mini", "all_room", "projects_coor", "price", "rooms", "project_price", "project_city", "project_region", "types", "development_id"];
 	for(var key in data) {
 		var fullProject = data[key];
 		var project = {};
@@ -146,39 +173,45 @@ function createObjWithNecessaryProperties(data) {
 		});
 		dataProjects.push(project);
 	}
-	// console.log(data);
+	console.log(dataProjects);
 	return dataProjects;
 }
 
-function initMap(proj) {
-    var el = document.getElementById('map');
-    if(el) {
-    	var map = new google.maps.Map(el, {
-	        zoom: 11,
-	        center: {lat: 50.465477, lng: 30.513899},
-	        gestureHandling: 'greedy'
-		});
-	    
-	    var icon = {
-	        url: "img/map-marker.png", // url
-	        origin: new google.maps.Point(0, 0) // origin
-	    };
+function markersShow(map, proj, icon) {
+	var markersData = [];
 
-	    var markersData = [];
+    proj.forEach(function(item) {
+    	var info = {};
+    	info.lat = +item.projects_coor[0];
+    	info.lng = +item.projects_coor[1];
+    	info.name = item.project_name_mini;
+    	info.site = item.project_site;
 
-	    proj.forEach(function(item) {
-	    	var coordinates = {};
-	    	coordinates.lat = +item.projects_coor[0];
-	    	coordinates.lng = +item.projects_coor[1];
-			markersData.push(coordinates);	    	
-	    });
+		markersData.push(info);	    	
+    });
 
-		for(var i = 0; i < markersData.length; i++) {
-			var marker = new google.maps.Marker({
-		        position: {lat: markersData[i].lat, lng: markersData[i].lng},
-		        map: map,
-		        icon: icon
-		    });	
-		}
-    }
+	markersData.forEach(function(item) {
+		var marker = new google.maps.Marker({
+	        position: {lat: item.lat, lng: item.lng},
+	        url: item.site,
+	        title: item.name,
+	        map: map,
+	        icon: icon
+	    });	
+	    // marker.setMap(map);
+	    google.maps.event.addListener(marker, 'click', function() {
+            window.location.href = marker.url;
+        });
+	});
+}
+
+function showResultOnMap(map, allProj, filterResult, icon) {
+	var iconFalse = {
+        url: "img/map-marker.png",
+        scaledSize: new google.maps.Size(20, 30),
+        origin: new google.maps.Point(0, 0)
+    };
+
+    markersShow(map, allProj, iconFalse);
+    markersShow(map, filterResult, icon);
 }
