@@ -226,14 +226,6 @@
                         <button class="button header__button filter__button border-gradient">
                             Сбросить
                         </button>
-                        <!-- <div class="filter-settings__button-wrap">
-                            <button class="button header__button filter__button border-gradient filter-settings__button">
-                                Сохранить
-                            </button>
-                            <button class="button header__button filter__button border-gradient filter-settings__button">
-                                Сбросить
-                            </button>
-                        </div> -->
                     </div> 
                 </div>
             </div>
@@ -266,11 +258,6 @@
                             <span class="result-short__text result-short__text_medium">ВИД</span>
                             <div class="result-short__select-wrap">
                                 <svg class="result-short__select-icon"><use xlink:href="#menu-grid"></use></svg>
-                                <!-- <select class="result-short__select">
-                                    <option value="0">Планировки</option>
-                                    <option value="1">Плитка</option>
-                                    <option value="2">Список</option>
-                                </select> -->
                                 <p class="result-short__select">Плитка</p>
                                 <ul class="view-list">
                                     <li class="view-list__item">
@@ -298,6 +285,15 @@
                 <div class="floor-container">
                     <h4 class="floor__heading">План <span class="floor__heading_num">2</span> этажа</h4>
                     <div class="plan-wrap">
+                        <div class="svg-wrap">
+                            <div class="flat-tooltip_big">
+                                <p>some text</p>
+                            </div>
+                        </div>
+                        <div class="zoom-button-wrap">
+                            <button class="zoom-button__button zoom-button__button_plus">+</button>
+                            <button class="zoom-button__button zoom-button__button_minus">-</button>
+                        </div>
                     </div>
                 </div>
             </div>

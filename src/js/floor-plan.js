@@ -150,8 +150,13 @@ function planDraw(data) {
 
 	console.log(data);
 
+	$(".svg-wrap").css({
+		width: imgWidth+"px",
+		height: imgHeigth+"px"
+	});
+
 	(function buildSVG(middle) {
-		var wrapper = $(".plan-wrap");
+		var wrapper = $(".svg-wrap");
 		var polygons = "";
 		var flatsCenterCoord = getPolygonsCenter(coordinates);
 
@@ -159,7 +164,6 @@ function planDraw(data) {
 			var horizontal = flatsCenterCoord[num].mid[0];
 			var vertical = flatsCenterCoord[num].mid[1];
 			var sale = param[num].sale;
-			console.log(sale);
 
 			switch (sale) {
                 case "1":
@@ -259,12 +263,15 @@ function planDraw(data) {
 			polygons += colorPolygon(item, parameters, i);
 		});
 
-		var svg = "<svg class='floor-svg' width='" + imgWidth + "' height='" + imgHeigth + "' version='1.0' xmlns='http://www.w3.org/2000/svg'>" +
+		var svg = "<svg id='ball' class='floor-svg' width='100%' height='100%' version='1.0' xmlns='http://www.w3.org/2000/svg'>" +
 					"<image xlink:href='img/floor.png' x='0' y='0' height='100%' width='100%' />" +
 						polygons +
 				   "</svg>";
 
 		wrapper.append(svg);
+
+		polygonHover();
+		zooming();
 	}());
 };
 
@@ -291,6 +298,7 @@ function getParam(data) {
 			param.rooms = flat.rooms;
 			param.square = flat.all_room;
 			param.sale = flat.sale;
+			param.id = flat.id;
 
 			finalArr.push(param);
 		}
@@ -352,8 +360,8 @@ function getPolygonsCenter(coordinatesAll) {
 			flatMidCoord.push(midX);
 			flatMidCoord.push(midY);
 
-			// flatAllCoord.min = flatMinCoord;
-			// flatAllCoord.max = flatMaxCoord;
+			flatAllCoord.min = flatMinCoord;
+			flatAllCoord.max = flatMaxCoord;
 			flatAllCoord.mid = flatMidCoord;
 
 			all.push(flatAllCoord);
@@ -362,7 +370,112 @@ function getPolygonsCenter(coordinatesAll) {
 	}
 	
 	return flatsRangeSize(coordinatesAll);
+};
+
+function polygonHover() {
+	$(".floor-svg__polygon").hover(
+		function(e) {
+			var target = this;
+			var targetX = target.getBoundingClientRect().left,
+				targetY = target.getBoundingClientRect().top;
+
+			var wrapper = document.getElementsByClassName("svg-wrap")[0];
+			var wrapperX = wrapper.getBoundingClientRect().left,
+				wrapperY = wrapper.getBoundingClientRect().top;
+
+			var diffTop = targetY - wrapperY,
+				diffLeft = targetX - wrapperX;
+
+			var tooltip = $('.flat-tooltip_big'),
+                tooltipHeight = tooltip.height(),
+                tooltipWidth = tooltip.width();
+
+            tooltip.css({
+                top: diffTop - 0.3*tooltipHeight + "px",
+                left: diffLeft + 0.3*tooltipWidth + "px",
+                opacity: "1"
+            });
+
+            $(target).siblings().css("display", "none");
+		},
+        function(e) {
+        	var target = this;
+            $(target).siblings().css("display", "block");
+
+            $('.flat-tooltip_big').css({
+                opacity: "0",
+                left: "-999px"
+            });
+        }
+	);
 }
+
+// zooming
+function zooming() {
+	var count = 1;
+	$(".zoom-button__button_plus").on("click", function() {
+		if(count < 1.8) {
+			count += 0.2;
+			imageDrag();
+		}
+		$(".floor-svg").css("transform", "scale(" + count + ")");
+	});
+	$(".zoom-button__button_minus").on("click", function() {
+		if(count > 1) {
+			count -= 0.2;
+			imageDrag();
+		} else if(count == 1) {
+			$(".floor-svg").css({
+				left: 0,
+				top: 0
+			});
+		}
+		$(".floor-svg").css("transform", "scale(" + count + ")");
+	});
+};
+// end__zooming
+
+
+function imageDrag() {
+	var image = document.getElementsByClassName("floor-svg")[0];
+	var bigContainer = document.getElementsByTagName("body")[0];
+	var wrapper = document.getElementsByClassName("svg-wrap")[0],
+		wrapperX = wrapper.getBoundingClientRect().right,
+		wrapperY = wrapper.getBoundingClientRect().bottom;
+
+
+	image.onmousedown = function(e) {
+		var wrapperX = wrapper.getBoundingClientRect().left,
+			wrapperY = wrapper.getBoundingClientRect().top;
+
+		$(bigContainer).mousemove(function(e) {
+			$(this).css("cursor", "grab");
+
+			var mouseX = e.clientX,
+				mouseY = e.clientY;
+			var horizontal = mouseX - wrapperX-100,
+				vertical = mouseY - wrapperY-100;
+
+			$(image).css({
+				left: horizontal + "px",
+				top: vertical + "px"
+			});
+
+			globalH = horizontal;
+			globalV = vertical;
+		});
+	};
+
+	bigContainer.ondragstart = function() {
+	  return false;
+	};
+
+	bigContainer.onmouseup = function() {
+		$(bigContainer).off("mousemove");
+		$(bigContainer).css("cursor", "default");
+	};
+};
+
 
 
 

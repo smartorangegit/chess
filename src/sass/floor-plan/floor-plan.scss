@@ -26,11 +26,14 @@
 	&-svg {
 		fill: transparent;
 		stroke: transparent;
+		position: absolute;
+		top: 0;
+		left: 0;
 
 		&__polygon{
 			transition: all 0.5s;
 			z-index: 2;
-			opacity: 0.2;
+			opacity: 0.3;
 
 			&:hover {
 				fill: $blue;
@@ -63,6 +66,7 @@
 			align-items: center;
 			justify-content: center;
 			opacity: 1;
+			user-select: none;
 
 			&_white {
 				fill: #fff;
@@ -85,4 +89,47 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
+}
+
+.svg {
+	&-wrap {
+		position: relative;
+		/*overflow: hidden;*/
+	}
+}
+
+.flat-tooltip_big {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 30px;
+	width: 100px;
+	height: 50px;
+	background-color: #fff;
+	z-index: 50;
+	opacity: 0;
+	box-shadow: 1px 1px 5px 5px rgba(0,0,0,0.1);
+	user-select: none;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.zoom-button {
+	&-wrap {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	&__button {
+		padding: 0px 0;
+		width: 50px;
+		font-size: 3rem;
+		margin-right: 15px;
+	}
 }
