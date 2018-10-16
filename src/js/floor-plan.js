@@ -1,3 +1,5 @@
+
+
 // open expandet settings
  $(".filter-top__button_more").on("click", function() {
     $(this).toggleClass("filter-top__button_more_active");
@@ -12,6 +14,11 @@ $(".filter-full__button_more").on("click", function() {
 });
 // end__open expandet settings
 
+// change-view
+    $(".result-short__select").on("click", function() {
+        $(this).siblings(".view-list").slideToggle();
+    });
+// end__change-view
 
  var filterDefautl = {
     count: "12",
@@ -126,7 +133,26 @@ function request() {
 	    }
 	});
 }
-request();
+// request();
+
+$(".plan-data-js").on("click", function() {
+	console.log(this);
+	request();
+});
+
+// change floor
+$('.floor-nav-list__item').on("click", function(e) {
+    var floorNum = $(this).html();
+    var el = $(this);
+    el.siblings().removeClass("floor-nav-list__item_active");
+    el.addClass("floor-nav-list__item_active");
+    filter.option.floor = floorNum;
+
+    $(".floor-svg").remove();
+
+    request();
+});
+// end__change floor
 
 // submit
 $('.filter__button-js').on("click", function(e) {
@@ -148,7 +174,7 @@ function planDraw(data) {
 	var imgHeigth = data.img[1];
 	var imgLoc = data.img[name];
 
-	console.log(data);
+	console.log(parameters);
 
 	$(".svg-wrap").css({
 		width: imgWidth+"px",
@@ -168,8 +194,8 @@ function planDraw(data) {
 			switch (sale) {
                 case "1":
                     return "<g class='floor-svg__grup'>" +
-							"<a href='#'>" +
-								"<polygon class='floor-svg__polygon' points='" + item + "'/>" +
+							"<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+								"<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
 								"<g>" + 
 									"<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green' width='20' height='20'/>" +
 									"<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
@@ -177,7 +203,7 @@ function planDraw(data) {
 									"</text>" +
 								"</g>" +
 								"<g>" + 
-									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green floor-svg__rect_light' width='65' height='20'/>" +
+									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green_lighter' width='65' height='20'/>" +
 									"<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
 										parameters[num].square + " м<tspan class='sup'>2</tspan>" +
 									"</text>" +
@@ -186,8 +212,8 @@ function planDraw(data) {
 						"</g>";	
                 case "2":
                     return "<g class='floor-svg__grup'>" +
-							"<a href='#'>" +
-								"<polygon class='floor-svg__polygon' points='" + item + "'/>" +
+							"<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+								"<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
 								"<g>" + 
 									"<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow' width='20' height='20'/>" +
 									"<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
@@ -195,7 +221,7 @@ function planDraw(data) {
 									"</text>" +
 								"</g>" +
 								"<g>" + 
-									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow floor-svg__rect_light' width='65' height='20'/>" +
+									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow_lighter' width='65' height='20'/>" +
 									"<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
 										parameters[num].square + " м<tspan class='sup'>2</tspan>" +
 									"</text>" +
@@ -204,8 +230,8 @@ function planDraw(data) {
 						"</g>";	
                 case "3":
                     return "<g class='floor-svg__grup'>" +
-							"<a href='#'>" +
-								"<polygon class='floor-svg__polygon' points='" + item + "'/>" +
+							"<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+								"<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
 								"<g>" + 
 									"<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray' width='20' height='20'/>" +
 									"<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
@@ -213,7 +239,7 @@ function planDraw(data) {
 									"</text>" +
 								"</g>" +
 								"<g>" + 
-									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray floor-svg__rect_light' width='65' height='20'/>" +
+									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray_lighter' width='65' height='20'/>" +
 									"<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
 										parameters[num].square + " м<tspan class='sup'>2</tspan>" +
 									"</text>" +
@@ -222,8 +248,8 @@ function planDraw(data) {
 						"</g>";	
                 case "0":
                     return "<g class='floor-svg__grup'>" +
-							"<a href='#'>" +
-								"<polygon class='floor-svg__polygon' points='" + item + "'/>" +
+							"<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+								"<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
 								"<g>" + 
 									"<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray' width='20' height='20'/>" +
 									"<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
@@ -231,7 +257,7 @@ function planDraw(data) {
 									"</text>" +
 								"</g>" +
 								"<g>" + 
-									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray floor-svg__rect_light' width='65' height='20'/>" +
+									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray_lighter' width='65' height='20'/>" +
 									"<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
 										parameters[num].square + " м<tspan class='sup'>2</tspan>" +
 									"</text>" +
@@ -240,8 +266,8 @@ function planDraw(data) {
 						"</g>";	
                 default:
                     return "<g class='floor-svg__grup'>" +
-							"<a href='#'>" +
-								"<polygon class='floor-svg__polygon' points='" + item + "'/>" +
+							"<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+								"<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
 								"<g>" + 
 									"<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray' width='20' height='20'/>" +
 									"<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
@@ -249,8 +275,8 @@ function planDraw(data) {
 									"</text>" +
 								"</g>" +
 								"<g>" + 
-									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray floor-svg__rect_light' width='65' height='20'/>" +
-									"<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
+									"<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray_lighter' width='65' height='20'/>" +
+									"<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text'>" +
 										parameters[num].square + " м<tspan class='sup'>2</tspan>" +
 									"</text>" +
 								"</g>" +
@@ -263,14 +289,14 @@ function planDraw(data) {
 			polygons += colorPolygon(item, parameters, i);
 		});
 
-		var svg = "<svg id='ball' class='floor-svg' width='100%' height='100%' version='1.0' xmlns='http://www.w3.org/2000/svg'>" +
+		var svg = "<svg class='floor-svg' width='" + imgWidth + "' height='" + imgHeigth + "' version='1.0' xmlns='http://www.w3.org/2000/svg'>" +
 					"<image xlink:href='img/floor.png' x='0' y='0' height='100%' width='100%' />" +
 						polygons +
 				   "</svg>";
 
 		wrapper.append(svg);
 
-		polygonHover();
+		polygonHover(parameters);
 		zooming();
 	}());
 };
@@ -299,6 +325,9 @@ function getParam(data) {
 			param.square = flat.all_room;
 			param.sale = flat.sale;
 			param.id = flat.id;
+			param.totalPrice = flat.price,
+			param.meterPrice = flat.price_m2,
+			param.url = flat.url
 
 			finalArr.push(param);
 		}
@@ -372,43 +401,169 @@ function getPolygonsCenter(coordinatesAll) {
 	return flatsRangeSize(coordinatesAll);
 };
 
-function polygonHover() {
+function polygonHover(param) {
 	$(".floor-svg__polygon").hover(
 		function(e) {
 			var target = this;
-			var targetX = target.getBoundingClientRect().left,
-				targetY = target.getBoundingClientRect().top;
-
-			var wrapper = document.getElementsByClassName("svg-wrap")[0];
-			var wrapperX = wrapper.getBoundingClientRect().left,
-				wrapperY = wrapper.getBoundingClientRect().top;
-
-			var diffTop = targetY - wrapperY,
-				diffLeft = targetX - wrapperX;
-
-			var tooltip = $('.flat-tooltip_big'),
-                tooltipHeight = tooltip.height(),
-                tooltipWidth = tooltip.width();
-
-            tooltip.css({
-                top: diffTop - 0.3*tooltipHeight + "px",
-                left: diffLeft + 0.3*tooltipWidth + "px",
-                opacity: "1"
-            });
-
-            $(target).siblings().css("display", "none");
+			buildTooltip(target);
+			mouseIn(target);
 		},
         function(e) {
         	var target = this;
-            $(target).siblings().css("display", "block");
-
-            $('.flat-tooltip_big').css({
-                opacity: "0",
-                left: "-999px"
-            });
+            mouseOut(target);
         }
 	);
+
+	function buildTooltip(el) {
+		var elementId = $(el).attr("id");
+		var tooltipMarkup = "";
+
+		$(".flat-tooltip_big").remove();
+
+		param.forEach(function(item) {
+			var sale = item.sale;
+			if(elementId == item.id) {
+				switch (sale) {
+		            case "1":
+		                return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+	                                "<div class='flat-tooltip-num'>" +
+	                                    "<div class='flat-tooltip-num__rooms flat-tooltip-num__rooms_green'>" +
+	                                        item.rooms + "K" +
+	                                    "</div>" +
+	                                    "<div class='flat-tooltip-num__num'>" +
+	                                        "№" + item.id +
+	                                    "</div>" +
+	                                "</div>" +
+	                                "<div class='flat-tooltip-price'>" +
+	                                    "<p class='flat-tooltip-price__text'>" +
+	                                       item.totalPrice + " грн." +
+	                                    "</p>" +
+	                                    "<p class='flat-tooltip-price__text flat-tooltip-price__text_lower'>" +
+	                                        item.square + " м<sup>2</sup> – <span class='flat-tooltip-price__text_gray'>"+item.meterPrice+" грн/м<sup>2</sup></span>" +
+	                                    "</p>" +
+	                                "</div>" +
+	                            "</div>"
+		            case "2": 
+		                return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+	                                "<div class='flat-tooltip-num'>" +
+	                                    "<div class='flat-tooltip-num__rooms flat-tooltip-num__rooms_yellow'>" +
+	                                        item.rooms + "K" +
+	                                    "</div>" +
+	                                    "<div class='flat-tooltip-num__num'>" +
+	                                        "№" + item.id +
+	                                    "</div>" +
+	                                "</div>" +
+	                                "<div class='flat-tooltip-price'>" +
+	                                    "<p class='flat-tooltip-price__text'>" +
+	                                       "Бронь"
+	                                    "</p>" +
+	                                    "<p class='flat-tooltip-price__text flat-tooltip-price__text_lower'>" +
+	                                        item.square + " м<sup>2</sup>" +
+	                                    "</p>" +
+	                                "</div>" +
+	                            "</div>"
+		            case "0":
+		                return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+	                                "<div class='flat-tooltip-num'>" +
+	                                    "<div class='flat-tooltip-num__rooms flat-tooltip-num__rooms_dark-gray'>" +
+	                                        item.rooms + "K" +
+	                                    "</div>" +
+	                                    "<div class='flat-tooltip-num__num'>" +
+	                                        "№" + item.id +
+	                                    "</div>" +
+	                                "</div>" +
+	                                "<div class='flat-tooltip-price'>" +
+	                                    "<p class='flat-tooltip-price__text'>" +
+	                                       "Продано" +
+	                                    "</p>" +
+	                                    "<p class='flat-tooltip-price__text flat-tooltip-price__text_lower'>" +
+	                                        item.square + " м<sup>2</sup>" +
+	                                    "</p>" +
+	                                "</div>" +
+	                            "</div>"
+		            case "3":
+		                return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+	                                "<p>Помещение недоступно</p>" +
+	                            "</div>"
+		            default:
+		                return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+	                                "<p>Помещение недоступно</p>" +
+	                            "</div>"
+		        }
+			}
+		});
+		$(".svg-wrap").append(tooltipMarkup);
+	}
+
+	function mouseIn(el) {
+		var targetX = el.getBoundingClientRect().left,
+			targetY = el.getBoundingClientRect().top;
+
+		var wrapper = document.getElementsByClassName("plan-wrap")[0];
+		var wrapperX = wrapper.getBoundingClientRect().left,
+			wrapperY = wrapper.getBoundingClientRect().top;
+
+		var diffTop = targetY - wrapperY,
+			diffLeft = targetX - wrapperX;
+
+		var tooltip = $('.flat-tooltip_big'),
+            tooltipHeight = tooltip.height(),
+            tooltipWidth = tooltip.width();
+
+        tooltip.css({
+            top: diffTop - 0.3*tooltipHeight + "px",
+            left: diffLeft + 0.3*tooltipWidth + "px",
+            opacity: "1"
+        });
+
+        tooltip.hover(
+        	function(e) {
+        		$(this).css({
+		            top: diffTop - 0.3*tooltipHeight + "px",
+		            left: diffLeft + 0.3*tooltipWidth + "px",
+		            opacity: "1"
+		        });
+        	}
+        );
+
+        $(el).siblings().css("display", "none");
+
+        (function fillColor() {
+			var elementId = $(el).attr("id");
+
+        	param.forEach(function(item) {
+				var sale = item.sale;
+				if(elementId == item.id) {
+					switch (sale) {
+			            case "1":
+			                return $(el).css("fill", "#219277");
+			            case "2": 
+			                return $(el).css("fill", "#FFB142")
+			            case "3":
+			                return $(el).css("fill", "#666665")
+			            case "0":
+			                return $(el).css("fill", "#454C53")
+			            default:
+			                return $(el).css("fill", "#454C53")
+					}
+				}
+			});
+        }());
+	}
+
+	function mouseOut(el) {
+		$(el).siblings().css("display", "block");
+
+        $('.flat-tooltip_big').css({
+            opacity: "0",
+            left: "-999px"
+        });
+
+        $(el).css("fill", "transparent");
+	}
 }
+
+
 
 // zooming
 function zooming() {
@@ -416,53 +571,86 @@ function zooming() {
 	$(".zoom-button__button_plus").on("click", function() {
 		if(count < 1.8) {
 			count += 0.2;
-			imageDrag();
 		}
 		$(".floor-svg").css("transform", "scale(" + count + ")");
+		imageDrag(count);
 	});
 	$(".zoom-button__button_minus").on("click", function() {
 		if(count > 1) {
 			count -= 0.2;
-			imageDrag();
-		} else if(count == 1) {
-			$(".floor-svg").css({
-				left: 0,
-				top: 0
-			});
 		}
 		$(".floor-svg").css("transform", "scale(" + count + ")");
+		imageDrag(count);
 	});
+
+	(function whellZoom() {
+		var el = document.getElementsByClassName("plan-wrap")[0];
+		el.addEventListener("wheel", function(e) {
+			e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+			var delta = e.deltaY || e.detail || e.wheelDelta;
+
+			if(delta < 0) {
+				if(count < 2) {
+					count += -delta/3000;
+				} 
+			} else if(delta > 1) {
+				if(count > 1) {
+					count += -delta/3000;
+				}
+			} 
+			$(".floor-svg").css("transform", "translate(0, 0) scale(" + count + ")");
+			imageDrag(count);
+		});
+	})();
+
+	imageDrag(1);
 };
 // end__zooming
 
-
-function imageDrag() {
+// drag-image
+function imageDrag(zoomValue) {
 	var image = document.getElementsByClassName("floor-svg")[0];
+	var container = document.getElementsByClassName("plan-wrap")[0];
 	var bigContainer = document.getElementsByTagName("body")[0];
-	var wrapper = document.getElementsByClassName("svg-wrap")[0],
-		wrapperX = wrapper.getBoundingClientRect().right,
-		wrapperY = wrapper.getBoundingClientRect().bottom;
 
+	container.onmousedown = function(e) {
+		var containerPosition = container.getBoundingClientRect();
+		var imagePosition = image.getBoundingClientRect();
 
-	image.onmousedown = function(e) {
-		var wrapperX = wrapper.getBoundingClientRect().left,
-			wrapperY = wrapper.getBoundingClientRect().top;
+		var mouseX = e.clientX - containerPosition.left,
+			mouseY = e.clientY - containerPosition.top;
+
+		var vertical = imagePosition.top - containerPosition.top - mouseY,
+			horizontal = imagePosition.left - containerPosition.left - mouseX;
+
+		// reset style;
+		$(image).css("transform", "translate(0, 0) scale(" + zoomValue + ")");
 
 		$(bigContainer).mousemove(function(e) {
-			$(this).css("cursor", "grab");
+			var mouseXMove = e.clientX - containerPosition.left,
+				mouseYMove = e.clientY - containerPosition.top;
 
-			var mouseX = e.clientX,
-				mouseY = e.clientY;
-			var horizontal = mouseX - wrapperX-100,
-				vertical = mouseY - wrapperY-100;
+			var horizontalMove = mouseXMove + horizontal,
+				verticalMove = mouseYMove + vertical;
 
-			$(image).css({
-				left: horizontal + "px",
-				top: vertical + "px"
+			$(".floor-container").css({
+				cursor: "-webkit-grab",
+				cursor: "-moz-grab",
+				cursor: "grab"
 			});
 
-			globalH = horizontal;
-			globalV = vertical;
+			// checking zoom value for correct displaying
+			if(zoomValue < 1.5) {
+				$(image).css({
+					left: horizontalMove + (zoomValue*10) + "px",
+					top: verticalMove + (zoomValue*10) + "px"
+				});
+			} else {
+				$(image).css({
+					left: horizontalMove + (zoomValue*100) + "px",
+					top: verticalMove + (zoomValue*100) + "px"
+				});
+			}
 		});
 	};
 
@@ -473,8 +661,13 @@ function imageDrag() {
 	bigContainer.onmouseup = function() {
 		$(bigContainer).off("mousemove");
 		$(bigContainer).css("cursor", "default");
+		$(".floor-container").css({
+			cursor: "default"
+		});
 	};
 };
+// end__drag-image
+
 
 
 

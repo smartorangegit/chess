@@ -23,10 +23,10 @@
                         <a href="#" class="location-list__link location-list__link_last">ПОИСК ПО КАРТЕ</a>
                     </li>
                 </ul>
-                <div class="map-search">
+                <!-- <div class="map-search">
                     <svg class="map-search__icon"><use xlink:href="#search"></use></svg>
                     <input type="text" class="map-search__input">
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="home-top__container">
@@ -150,7 +150,9 @@
             </div>
         </div>
 
-        <div id="map" class="map-page__map"></div>
+        <div class="map-page__map-wrap">
+            <div id="map" class="map-page__map"></div>
+        </div>
 
 
         <?php include_once('includes/footer.php'); ?> 

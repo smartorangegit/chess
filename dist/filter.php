@@ -120,7 +120,7 @@
                                         <span class="range__text range__text_max js-filter__text_max">100</span>
                                     </div>
                                 </div>
-                                <div class="range__item range__item_long">
+                                <div class="range__item range__item_long range__floor">
                                   <span class="filter_name">Этаж</span >
                                     <div class="filter__ranges filter__ranges_ta">
                                         <?php /*Place PHP values here*/?>
@@ -187,7 +187,7 @@
                         <button class="button header__button filter__button border-gradient filter-full__button_apply filter__button-js">
                             Применить
                         </button>
-                        <button class="button header__button filter__button border-gradient">
+                        <button class="button header__button filter__button border-gradient filter__button_clear-js">
                             Сбросить
                         </button>
                         <button class="filter-full__button_more">
@@ -205,25 +205,25 @@
                             <li class="filter-settings-list__item">
                                 <input checked data-label="Кухня" data-min="2" data-max="100" id="property_1" type="checkbox" class="filter-checkbox filter-settings__checkbox">
                                 <label for="property_1" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Кухня, м<sup>2</sup>:</span> 
+                                <label for="property_1" class="filter-settings-list__text">Кухня, м<sup>2</sup>:</label> 
                             </li>
                             <li class="filter-settings-list__item">
                                 <input checked data-label="Ванная" data-min="3" data-max="5" id="property_2" type="checkbox" class="filter-checkbox filter-settings__checkbox">
                                 <label for="property_2" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Ванная, м<sup>2</sup>:</span> 
+                                <label for="property_2" class="filter-settings-list__text">Ванная, м<sup>2</sup>:</label> 
                             </li>
                             <li class="filter-settings-list__item">
                                 <input checked data-label="Спальня" data-min="4" data-max="6" id="property_3" type="checkbox" class="filter-checkbox filter-settings__checkbox">
                                 <label for="property_3" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Спальня, м<sup>2</sup>:</span> 
+                                <label for="property_3" class="filter-settings-list__text">Спальня, м<sup>2</sup>:</label> 
                             </li>
                             <li class="filter-settings-list__item">
                                 <input checked data-label="Жилая площадь" data-min="5" data-max="7" id="property_4" type="checkbox" class="filter-checkbox filter-settings__checkbox">
                                 <label for="property_4" class="filter-checkbox-list__label filter-settings-list__label"></label>
-                                <span class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</span> 
+                                <label for="property_4" class="filter-settings-list__text">Жилая площадь, м<sup>2</sup>:</label> 
                             </li>
                         </ul>
-                        <button class="button header__button filter__button border-gradient">
+                        <button class="button header__button filter__button border-gradient clear-select-js">
                             Сбросить
                         </button>
                         <!-- <div class="filter-settings__button-wrap">
@@ -278,12 +278,16 @@
                                         <p class="view-list__text">Планировки</p>
                                     </li>
                                     <li class="view-list__item">
+                                        <svg id="menu-grid" class="view-list__icon"><use xlink:href="#menu-grid"></use></svg>
+                                        <p class="view-list__text">Плитка</p>
+                                    </li>
+                                    <li class="view-list__item">
                                         <svg id="list" class="view-list__icon"><use xlink:href="#list"></use></svg>
                                         <p class="view-list__text">Список</p>
                                     </li>
-                                    <li class="view-list__item">
-                                        <svg id="menu-grid" class="view-list__icon"><use xlink:href="#menu-grid"></use></svg>
-                                        <p class="view-list__text">Плитка</p>
+                                    <li class="view-list__item plan-data-js">
+                                        <svg id="icon-plan" class="view-list__icon"><use xlink:href="#icon-plan"></use></svg>
+                                        <p class="view-list__text">Этаж</p>
                                     </li>
                                 </ul>
                             </div>
@@ -293,7 +297,21 @@
             </div>
         </section>
 
-        <section class="result-plan">
+        <div class="filter-select">
+            <div class="container">
+                <div class="result-list-top home-filter__select-wrap">
+                    <span class="result-list-top__text">Показать по:</span>
+                    <select id="select_pagination" onchange="selectHandler()" class="result-list-top__select">
+                        <option value="12">12</option>
+                        <option value="24">24</option>
+                        <option value="36">36</option>
+                        <option value="48">48</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <section class="result-plan filter-section-js">
             <div class="container">
                 <ul class="result-plan-list">
                     <li class="result-plan-list__item">
@@ -363,7 +381,7 @@
             </div> -->
         </section>
 
-        <section class="result-tile-wrap result-tile_active-js">
+        <section class="result-tile-wrap filter-section-js">
             <div class="container">
                 <div class="result-tile">
                     <div class="floor-plan">
@@ -691,9 +709,9 @@
             </div>
         </section>
 
-        <section class="result-list">
+        <section class="result-list filter-section-js">
             <div class="container">
-                <div class="result-list-top home-filter__select-wrap">
+                <!-- <div class="result-list-top home-filter__select-wrap">
                     <span class="result-list-top__text">Показать по:</span>
                     <select id="select_pagination" onchange="selectHandler()" class="result-list-top__select">
                         <option value="12">12</option>
@@ -701,7 +719,7 @@
                         <option value="36">36</option>
                         <option value="48">48</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="table_shadow">
                     <div class="table-container">
                         <table class="filter-table">
@@ -752,60 +770,71 @@
                     </div>
                 </div>
             </div>   
-            
-             <!-- <div class="pagination filter-pagination">
-                <div class="container">
-                    <div class="pagination-content">
-                        <div class="pagination-prev">
-                            <a href="#" class="pagination__link">
-                                <span class="pagination-prev__button pagination__button">
-                                    <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
-                                </span>
-                            </a>
-                        </div>
-                        <ul class="pagination-num-list">
-                            <li class="pagination-num-list__item">
-                                <a href="#" class="pagination-num-list__link pagination__button">1</a>
-                            </li>
-                        </ul>
-                        <div class="pagination-next">
-                            <a href="#" class="pagination__link">
-                                <span class="pagination__button pagination-next__button">
-                                    <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
         </section>
 
-        <div class="pagination filter-pagination">
-                <div class="container">
-                    <div class="pagination-content">
-                        <div class="pagination-prev">
-                            <a href="#" class="pagination__link">
-                                <span class="pagination-prev__button pagination__button">
-                                    <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
-                                </span>
-                            </a>
+        <section class="floor-wrap filter-section-js">
+            <div class="container">
+                <div class="floor-nav">
+                    <p class="floor-nav__text">Выберите этаж:</p>
+                    <ul class="floor-nav-list">
+                        <li class="floor-nav-list__item floor-nav-list__item_active">1</li>
+                        <li class="floor-nav-list__item">2</li>
+                        <li class="floor-nav-list__item">3</li>
+                        <li class="floor-nav-list__item">4</li>
+                    </ul>
+                </div>
+                <div class="floor-container">
+                    <h4 class="floor__heading">План <span class="floor__heading_num">2</span> этажа</h4>
+                    <div class="plan-wrap">
+                        <div class="svg-wrap">
                         </div>
-                        <ul class="pagination-num-list">
-                            <li class="pagination-num-list__item">
-                                <a href="#" class="pagination-num-list__link pagination__button">1</a>
-                            </li>
-                        </ul>
-                        <div class="pagination-next">
-                            <a href="#" class="pagination__link">
-                                <span class="pagination__button pagination-next__button">
-                                    <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
-                                </span>
-                            </a>
+                        <div class="zoom-button-wrap">
+                            <button class="zoom-button__button zoom-button__button_plus">
+                                <svg class="zoom-button__icon"><use xlink:href="#zoom-plus"></use></svg>
+                            </button>
+                            <button class="zoom-button__button zoom-button__button_minus">
+                                <svg class="zoom-button__icon"><use xlink:href="#zoom-minus"></use></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        
+        </section>
+
+        <div class="pagination filter-pagination">
+            <div class="container">
+                <div class="pagination-content">
+                    <div class="pagination-prev">
+                        <a href="#" class="pagination__link">
+                            <span class="pagination-prev__button pagination__button">
+                                <svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- <ul class="pagination-num-list">
+                        <li class="pagination-num-list__item">
+                            <a href="#" class="pagination-num-list__link pagination__button">1</a>
+                        </li>
+                    </ul> -->
+                    <div class="pagination-next">
+                        <a href="#" class="pagination__link">
+                            <span class="pagination__button pagination-next__button">
+                                <svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-result-wrap">
+            <div class="no-result">
+                <p class="no-result__text no-result__line">По заданным Вами параметрам нет объектов для отображения.</p>
+                <p class="no-result__text no-result__text_blue">Попробуйте изменить параметры поиска.</p>
+                <svg class="no-result__icon"><use xlink:href="#no-result-search"></use></svg>
+            </div>
+        </div> 
+    
         <?php include_once('includes/footer.php'); ?> 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

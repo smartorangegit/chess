@@ -197,28 +197,6 @@ $(".form__phone").mask('+38 (099) 999-99-99');
     }
     // end__get_ranges_value
 
-    // get_selects_value
-    function getSelectsValue() {
-        $(".select__item").on("click", function(e) {
-            var parrent = $(this).closest(".home-filter__select-wrap");
-            var value = parrent.find(".home-filter__select").val();
-            var selectId = parrent.find("select").attr("id");
-
-            switch (selectId) {
-                    case "project_city":
-                        return filter.selectValue["project_city"] = value;
-                    case "project_region":
-                        return filter.selectValue["project_region"] = value;
-                    case "state":
-                        return filter.selectValue["state"] = value;
-                    case "development_id":
-                        return filter.selectValue["development_id"] = value;
-            }
-        });
-    }
-    // end__get_selects_value
-
-
     // get_number_of_rooms
    function getRoomsNumber() {
      $(".filter-checkbox").on("click", function() {
@@ -237,16 +215,16 @@ $(".form__phone").mask('+38 (099) 999-99-99');
         }
     });
    }
-
     // end__get_number_of_rooms
 
     // reset_filter_values
-    (function resetFilter() {
+    function resetFilter() {
         $('.filter__button_clear-js').on("click", function(e) {
             e.preventDefault();
             // range reset
             var ranges = $(".range__item");
             for(var i = 0; i < ranges.length; i++) {
+                var rangeEl = $(ranges[i]).find(".js-filter__range").data('ionRangeSlider');
                 var min = $(ranges[i]).find(".js-filter__hidden-values").attr("min");
                 var max = $(ranges[i]).find(".js-filter__hidden-values").attr("max");
                 $(ranges[i]).find(".js-filter__text_min").html(min);
@@ -257,16 +235,22 @@ $(".form__phone").mask('+38 (099) 999-99-99');
                 });
                 $(ranges[i]).find(".from").css("left", "0");
                 $(ranges[i]).find(".to").css("left", "100%");
+
+                rangeEl.update({
+                    from: min,
+                    to: max
+                });
             }
 
             // reset checkbox
             $(".filter-checkbox").prop("checked", false);
-
+            $(".filter-full-range").find(".range__item").remove(); //remove expanded range from filter page
             // reset filter obj
+            filterDefautl.option.properties = {};
             filter = objClone(filterDefautl);
-            console.log(filter);
         });
-    })();
+    };
+    resetFilter();
     // end__reset_filter_values
 
 // end__functions_for_filter
@@ -280,18 +264,41 @@ $(".form__phone").mask('+38 (099) 999-99-99');
         }
     };
 
-    function paginationItemShow(quantity, planBuild, tableBuild) {
+    function paginationItemShow(quantity, num, planBuild, tableBuild) {
         $(".pagination-num-list__item").remove();
-        var quantityToShow = 12;
+        var quantityToShow = num;
         var intengerResult = Math.floor(quantity / quantityToShow);
-        var list = $('.pagination-num-list');
+
+        $(".pagination").find(".pagination-content").remove();
+
+        // create new pagination markup
+        $(".pagination").find(".container").append(
+            '<div class="pagination-content">' +
+                    '<div class="pagination-prev">' +
+                        '<a href="#" class="pagination__link">' +
+                            '<span class="pagination-prev__button pagination__button">' +
+                                '<svg class="pagination__icon"><use xlink:href="#left-arrow"></use></svg>' +
+                            '</span>' +
+                        '</a>' +
+                    '</div>' +
+                    '<ul class="pagination-num-list">' +
+                    '</ul>' +
+                    '<div class="pagination-next">' +
+                        '<a href="#" class="pagination__link">' +
+                           ' <span class="pagination__button pagination-next__button">' +
+                                '<svg class="pagination__icon pagination__icon_revers"><use xlink:href="#left-arrow"></use></svg>' +
+                            '</span>' +
+                        '</a>' +
+                    '</div>' +
+                '</div>'
+        );
 
         if(quantity / quantityToShow > 1) {
             showFilterPagination();
         }
 
         for(var i = 0; i <= intengerResult; i++) {
-            list.append(
+            $('.pagination-num-list').append(
                 "<li class='pagination-num-list__item'>" +
                     "<a href='#' class='pagination-num-list__link pagination__button'>" + (i+1) + "</a>" +
                 "</li>"
@@ -327,7 +334,6 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             success: function(data){
                 planBuild(data.dataList);
                 tableBuild(data.dataList, data.dataTable);
-                console.log(data.dataList);
             },
             error: function(err){
                console.log('Error ',err);
@@ -345,8 +351,10 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             nextShowDots();
             $.ajax(paginAjaxObj);
         });
+
         $(".pagination-prev").on("click", function(e) {
             e.preventDefault();
+            
             var activeIndex = links.index($(".pagination-num-list__link_active"));
             links.removeClass("pagination-num-list__link_active");
 
@@ -372,7 +380,6 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             }
 
             nextShowDots();
-
             $.ajax(paginAjaxObj);
         });
     };
@@ -388,12 +395,18 @@ $(".form__phone").mask('+38 (099) 999-99-99');
             $(items[indexActiveItem+1]).css("display", "block");                       
             $(activeItem).addClass("pagination-num-list__dot_left")
                            .css("display", "block");
-            if(indexActiveItem == (listLength - 2)) {
+            if(indexActiveItem == (listLength - 2) || indexActiveItem == (listLength - 3)) {
                 $(items[listLength - 1]).removeClass("pagination-num-list__dot_left");
             } else {
                 $(items[listLength - 1]).addClass("pagination-num-list__dot_left");
             }
-        } 
+        } else if(indexActiveItem == 2) { 
+            $(items[3]).css("display", "block");  
+        } else if(indexActiveItem == 1) { 
+            clearItems(items, listLength);
+            $(items[2]).css("display", "block");  
+            $(items[listLength - 1]).addClass("pagination-num-list__dot_left");
+        }
     };
 
     function prevShowDots() {
@@ -402,17 +415,21 @@ $(".form__phone").mask('+38 (099) 999-99-99');
         var indexActiveItem = items.index(activeItem);
         var listLength = items.length;
 
-        if(indexActiveItem >= 3 && indexActiveItem < (listLength - 2)) {
+        if(indexActiveItem >= 3 && indexActiveItem <= (listLength - 2)) {
             clearItems(items, listLength);
             $(items[indexActiveItem-1]).addClass("pagination-num-list__dot_left")
                                        .css("display", "block");                      
             $(activeItem).css("display", "block");
-            $(items[listLength - 1]).addClass("pagination-num-list__dot_left");
+            if(indexActiveItem == (listLength - 2)) {
+                $(items[listLength - 1]).removeClass("pagination-num-list__dot_left");
+            } else {
+                $(items[listLength - 1]).addClass("pagination-num-list__dot_left");
+            }
         } else if(indexActiveItem == 2) {
             $(items[3]).css("display", "none");
             clearItems(items, listLength);
             $(items[2]).css("display", "block");
-        }
+        } 
 
         $(items[2]).removeClass("pagination-num-list__dot_left");
     };
@@ -426,3 +443,11 @@ $(".form__phone").mask('+38 (099) 999-99-99');
 // end__pagination
 
 
+// login-popup
+function logSucces() {
+    $('.succes-popup').fadeIn();
+    setTimeout(function() {
+        $('.succes-popup').fadeOut();
+    }, 2000);
+}
+// end__login-popup

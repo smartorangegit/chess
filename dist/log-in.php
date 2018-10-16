@@ -46,6 +46,10 @@
                 </form>
             </div>
         </div>
+
+        <div class="no-result succes-popup">
+            <p class="no-result__text no-result__text_blue">Регистрация пройшла успешно</p>
+        </div>
         
         <?php include_once('includes/footer.php'); ?> 
 

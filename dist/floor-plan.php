@@ -272,6 +272,10 @@
                                         <svg id="menu-grid" class="view-list__icon"><use xlink:href="#menu-grid"></use></svg>
                                         <p class="view-list__text">Плитка</p>
                                     </li>
+                                    <li class="view-list__item plan-data-js">
+                                        <svg id="menu-grid" class="view-list__icon"><use xlink:href="#icon-plan"></use></svg>
+                                        <p class="view-list__text">Этаж</p>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -282,17 +286,27 @@
 
         <section class="floor-wrap">
             <div class="container">
+                <div class="floor-nav">
+                    <p class="floor-nav__text">Выберите этаж:</p>
+                    <ul class="floor-nav-list">
+                        <li class="floor-nav-list__item floor-nav-list__item_active">1</li>
+                        <li class="floor-nav-list__item">2</li>
+                        <li class="floor-nav-list__item">3</li>
+                        <li class="floor-nav-list__item">4</li>
+                    </ul>
+                </div>
                 <div class="floor-container">
                     <h4 class="floor__heading">План <span class="floor__heading_num">2</span> этажа</h4>
                     <div class="plan-wrap">
                         <div class="svg-wrap">
-                            <div class="flat-tooltip_big">
-                                <p>some text</p>
-                            </div>
                         </div>
                         <div class="zoom-button-wrap">
-                            <button class="zoom-button__button zoom-button__button_plus">+</button>
-                            <button class="zoom-button__button zoom-button__button_minus">-</button>
+                            <button class="zoom-button__button zoom-button__button_plus">
+                                <svg class="zoom-button__icon"><use xlink:href="#zoom-plus"></use></svg>
+                            </button>
+                            <button class="zoom-button__button zoom-button__button_minus">
+                                <svg class="zoom-button__icon"><use xlink:href="#zoom-minus"></use></svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -303,6 +317,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/common.min.js"></script>
-        <script src="js/floor-plan.min.js"></script>
+        <script src="js/floor-plan.min.js"></script>      
     </body>
 </html>

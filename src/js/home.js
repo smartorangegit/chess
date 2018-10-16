@@ -117,10 +117,26 @@ function videoPlay(wrapper) {
 
     var filter = objClone(filterDefautl);
 
-    // getDefaulCheckedCheckbox(filter);
     rangesValue();
-    getSelectsValue();
     getRoomsNumber();
+    function getSelectsValue() {
+        $(".select__item").on("click", function(e) {
+            var parrent = $(this).closest(".home-filter__select-wrap");
+            var value = parrent.find(".home-filter__select").val();
+            var selectId = parrent.find("select").attr("id");
+
+            switch (selectId) {
+                    case "project_city":
+                        return filter.selectValue["project_city"] = value;
+                    case "project_region":
+                        return filter.selectValue["project_region"] = value;
+                    case "state":
+                        return filter.selectValue["state"] = value;
+                    case "development_id":
+                        return filter.selectValue["development_id"] = value;
+            }
+        });
+    }
 
     // show_selected_residance (home-page)
     function residenceShow(residence) {
@@ -165,7 +181,6 @@ function videoPlay(wrapper) {
     $('.filter__button-js').on("click", function(e) {
         e.preventDefault();
         $(".residence-list__item").remove();
-        console.log(filter);
 
         $.ajax({
             url: "http://apivime.smarto.com.ua/ajax",
@@ -173,9 +188,10 @@ function videoPlay(wrapper) {
             dataType: "json",
             data: filter,
             success: function(data){
-                console.log(data);
                 residenceShow(data.data);
-                paginationItemShow(data.quantity, residenceShow);
+                paginationItemShow(data.quantity, 12, residenceShow);
+
+                noResult(data.data);
             },
             error: function(data){
                console.log(data);
@@ -183,5 +199,19 @@ function videoPlay(wrapper) {
         });
     });
     // end__submit
+
+    // show no-result block
+    function noResult(data) {
+        if(data.length == 0) {
+            $(".no-result").css("display", "block");
+            $(".home-residence").css("display", "none");
+        } else {
+            $(".no-result").css("display", "none");
+            $(".home-residence").css("display", "block");
+        }
+        
+    };
+    // end__show no-result block
+    
 // end__filter
 

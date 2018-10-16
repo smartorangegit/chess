@@ -72,34 +72,42 @@ $(".filter-full__button_more").on("click", function() {
                               .find(".result-short__select-icon");
         var mainText = $(this).closest(".result-short__select-wrap")
                               .find(".result-short__select");
+        var sections = $(".filter-section-js");
+        var index = $(this).index();
 
         mainText.html(text);
         mainIcon.find("use").attr("xlink:href", iconId);
         $(this).closest(".view-list").css("display", "none");
 
-        var index = $(this).index();
-        if(index === 0) {
-            $(".result-plan").fadeIn();
-            $(".result-tile-wrap").removeClass("result-tile_active-js").css("display", "none");
-            $(".result-list").css("display", "none");
-        } else if(index === 2) {
-            $(".result-tile-wrap").addClass("result-tile_active-js").fadeIn();
-            $(".result-list").css("display", "none");
-            $(".result-plan").css("display", "none");
-        } else if(index === 1) {
-            $(".result-list").fadeIn();
-            $(".result-tile-wrap").removeClass("result-tile_active-js").css("display", "none");
-            $(".result-plan").css("display", "none");
-        }
+        sections.css("display", "none");
+        $(sections[index]).fadeIn();
 
+        //add class to actve section
+        sections.removeClass("filter-section_active-js");
+        $(sections[index]).addClass("filter-section_active-js");
+
+        // show/hide filter-select
+        if(index != 1) {
+            $(".filter-select").css("display", "block");
+        } else {
+            $(".filter-select").css("display", "none");
+        }
+        
         showFilterPagination();
+        changeFilterFloorNum(index);
     });
 
-    function showFilterPagination() {
-        if($(".result-tile-wrap").hasClass("result-tile_active-js")) {
-            $(".filter-pagination").css("display", "none");
-        } else {
-            $(".filter-pagination").css("display", "block");
+    function changeFilterFloorNum(i) {
+        var floors = $(".filter-top-range").find(".range__item")[2];
+        var min = $(floors).find(".js-filter__text_min").html();
+        var max = $(floors).find(".js-filter__text_max").html();
+
+        if(i != 3) {
+            filter.option.floor = [];
+            filter.option.floor[0] = +min;
+            filter.option.floor[1] = +max;
+            filter.typ = 3;
+            $(floors).css("display", "flex");
         }
     };
 // end__change-view
@@ -147,6 +155,23 @@ $(".filter-full__button_more").on("click", function() {
 
     tooltipShow();
 // end__flat-tooltip-show
+
+function showFilterPagination() {
+    var sections = $(".filter-section-js");
+    var index;
+    for(var i = 0; i < sections.length; i++) {
+        if($(sections[i]).hasClass("filter-section_active-js")) {
+            index = $(sections).index(sections[i]);
+        }
+    }
+
+    if(index == 1 || index == 3) {
+        $(".filter-pagination").css("display", "none");
+    } else {
+        $(".filter-pagination").css("display", "block");
+    }
+};
+$(".result-tile-wrap").addClass("filter-section_active-js"); //add default active class
 
 // filter
     // some of function describe in common.js 
@@ -232,6 +257,12 @@ $(".filter-full__button_more").on("click", function() {
     });
     // end__add_expanded_settings_filter
 
+    // remove_expanded_settings_filter
+    $(".clear-select-js").on("click", function() {
+        $(".filter-full-range").find(".range__item").remove();
+        filter.option.properties = {};
+    });
+    // end__remove_expanded_settings_filter
 
     var filter = objClone(filterDefautl);
 
@@ -243,14 +274,12 @@ $(".filter-full__button_more").on("click", function() {
                 roomsArr.push($(checkbox[i]).attr("value"));
             }
         }
-        console.log(filter);
     }());
 
     rangesValue();
-    // getDefaulCheckedCheckbox(filter);
     getRoomsNumber();
 
-    // submit
+    // apply
     $('.filter__button-js').on("click", function(e) {
         e.preventDefault();
         $(".residence-list__item").remove();
@@ -260,8 +289,9 @@ $(".filter-full__button_more").on("click", function() {
         url = url.substr(0,url.indexOf('?'))
         window.history.pushState("", "", url+'?'+recursiveEncoded);
 
-        // getParametersFromUrl();
+        getParametersFromUrl();
         // end change url
+
 
         $.ajax({
             url: "http://apivime.smarto.com.ua/ajax",
@@ -269,22 +299,43 @@ $(".filter-full__button_more").on("click", function() {
             dataType: "json",
             data: filter,
             success: function(data){
-                console.log(data);
                 entranceShow(data);
                 flatsShow(data.dataList);
                 flatsShowTable(data.dataList, data.dataTable);
 
-                paginationItemShow(data.quantity, flatsShow, flatsShowTable);
+                showFilterPagination();
+                paginationItemShow(data.quantity, 12, flatsShow, flatsShowTable);
 
                 $(".result-short_all-js").html(data.quantity);
                 $(".result-short_free-js").html(data.quantityFree);
+
+                noResult(data.dataList);
             },
             error: function(data){
                console.log(data);
             }
         });
     });
-    // end__submit
+    // end__apply
+
+    // show no-result block
+    function noResult(data) {
+        if(data.length == 0) {
+            $(".no-result-wrap").css("display", "block");
+            $(".pagination").css("display", "none");
+            $(".filter-section-js").css({
+                "position": "absolute",
+                "opacity": "0"
+            });
+        } else {
+            $(".no-result-wrap").css("display", "none");
+            $(".filter-section-js").css({
+                "position": "relative",
+                "opacity": "1"
+            });
+        }
+    };
+    // end__show no-result block
 
     function getFlats(data) {
         var flats = [];
@@ -417,26 +468,28 @@ $(".filter-full__button_more").on("click", function() {
     // end__show_selected_flats
 
     // select-pagination
-    function selectHandler() {
-        var value = document.getElementById("select_pagination").value;
-        filter.count = value;
+    (function selectHandler() {
+        $(".select__item").on("click", function(e) {
+            var parrent = $(this).closest(".home-filter__select-wrap");
+            var value = parrent.find(".result-list-top__select").val();
 
-        $.ajax({
-            url: "http://apivime.smarto.com.ua/ajax",
-            type: "POST",
-            dataType: "json",
-            data: filter,
-            success: function(data){
-                console.log(data);
-                flatsShowTable(data.dataList, data.dataTable);
-
-                paginationItemShow(data.quantity, flatsShow, flatsShowTable);
-            },
-            error: function(data){
-                console.log(data);
-            }
+            filter.count = value;
+            $.ajax({
+                url: "http://apivime.smarto.com.ua/ajax",
+                type: "POST",
+                dataType: "json",
+                data: filter,
+                success: function(data){
+                    flatsShow(data.dataList);
+                    flatsShowTable(data.dataList, data.dataTable);
+                    paginationItemShow(data.quantity, value, flatsShow, flatsShowTable);
+                },
+                error: function(data){
+                    console.log(data);
+                }
+            });
         });
-    }
+    }());
     // end__select-pagination
 
     // show_selected_flats_table
@@ -524,6 +577,8 @@ $(".filter-full__button_more").on("click", function() {
     var tableHeadingCklickCount = 1;
     function sendSortingData() {
         $(".filter-table__heading").on("click", function() {
+            // filter.page = "1";
+
             $(this).toggleClass("filter-sort_top");;
             var paramName = $(this).data("sort");
 
@@ -540,9 +595,7 @@ $(".filter-full__button_more").on("click", function() {
                 dataType: "json",
                 data: filter,
                 success: function(data){
-                    console.log(data);
                     flatsShowTable(data.dataList, data.dataTable);
-                    paginationItemShow(data.quantity, flatsShow, flatsShowTable);
                 },
                 error: function(data){
                    console.log(data);
@@ -648,7 +701,7 @@ $(".filter-full__button_more").on("click", function() {
             for(var key in floorArr) {
                 maxFloor++;
                 floorMarkup += "<ul class='entrance-flats'>" +
-                                        flat(floorArr[key]) +
+                                    flat(floorArr[key]) +
                                "</ul>";
             }
 
@@ -685,9 +738,9 @@ $(".filter-full__button_more").on("click", function() {
 // end__filter
 
 // URL
-// polyfil for searchParam
-var URLSearchParams=URLSearchParams||function(){"use strict";function URLSearchParams(query){var index,key,value,pairs,i,length,dict=Object.create(null);this[secret]=dict;if(!query)return;if(typeof query==="string"){if(query.charAt(0)==="?"){query=query.slice(1)}for(pairs=query.split("&"),i=0,length=pairs.length;i<length;i++){value=pairs[i];index=value.indexOf("=");if(-1<index){appendTo(dict,decode(value.slice(0,index)),decode(value.slice(index+1)))}else if(value.length){appendTo(dict,decode(value),"")}}}else{if(isArray(query)){for(i=0,length=query.length;i<length;i++){value=query[i];appendTo(dict,value[0],value[1])}}else if(query.forEach){query.forEach(addEach,dict)}else{for(key in query){appendTo(dict,key,query[key])}}}}var isArray=Array.isArray,URLSearchParamsProto=URLSearchParams.prototype,find=/[!'\(\)~]|%20|%00/g,plus=/\+/g,replace={"!":"%21","'":"%27","(":"%28",")":"%29","~":"%7E","%20":"+","%00":"\0"},replacer=function(match){return replace[match]},secret="__URLSearchParams__:"+Math.random();function addEach(value,key){appendTo(this,key,value)}function appendTo(dict,name,value){var res=isArray(value)?value.join(","):value;if(name in dict)dict[name].push(res);else dict[name]=[res]}function decode(str){return decodeURIComponent(str.replace(plus," "))}function encode(str){return encodeURIComponent(str).replace(find,replacer)}URLSearchParamsProto.append=function append(name,value){appendTo(this[secret],name,value)};URLSearchParamsProto["delete"]=function del(name){delete this[secret][name]};URLSearchParamsProto.get=function get(name){var dict=this[secret];return name in dict?dict[name][0]:null};URLSearchParamsProto.getAll=function getAll(name){var dict=this[secret];return name in dict?dict[name].slice(0):[]};URLSearchParamsProto.has=function has(name){return name in this[secret]};URLSearchParamsProto.set=function set(name,value){this[secret][name]=[""+value]};URLSearchParamsProto.forEach=function forEach(callback,thisArg){var dict=this[secret];Object.getOwnPropertyNames(dict).forEach(function(name){dict[name].forEach(function(value){callback.call(thisArg,value,name,this)},this)},this)};URLSearchParamsProto.toJSON=function toJSON(){return{}};URLSearchParamsProto.toString=function toString(){var dict=this[secret],query=[],i,key,name,value;for(key in dict){name=encode(key);for(i=0,value=dict[key];i<value.length;i++){query.push(name+"="+encode(value[i]))}}return query.join("&")};var dP=Object.defineProperty,gOPD=Object.getOwnPropertyDescriptor,createSearchParamsPollute=function(search){function append(name,value){URLSearchParamsProto.append.call(this,name,value);name=this.toString();search.set.call(this._usp,name?"?"+name:"")}function del(name){URLSearchParamsProto["delete"].call(this,name);name=this.toString();search.set.call(this._usp,name?"?"+name:"")}function set(name,value){URLSearchParamsProto.set.call(this,name,value);name=this.toString();search.set.call(this._usp,name?"?"+name:"")}return function(sp,value){sp.append=append;sp["delete"]=del;sp.set=set;return dP(sp,"_usp",{configurable:true,writable:true,value:value})}},createSearchParamsCreate=function(polluteSearchParams){return function(obj,sp){dP(obj,"_searchParams",{configurable:true,writable:true,value:polluteSearchParams(sp,obj)});return sp}},updateSearchParams=function(sp){var append=sp.append;sp.append=URLSearchParamsProto.append;URLSearchParams.call(sp,sp._usp.search.slice(1));sp.append=append},verifySearchParams=function(obj,Class){if(!(obj instanceof Class))throw new TypeError("'searchParams' accessed on an object that "+"does not implement interface "+Class.name)},upgradeClass=function(Class){var ClassProto=Class.prototype,searchParams=gOPD(ClassProto,"searchParams"),href=gOPD(ClassProto,"href"),search=gOPD(ClassProto,"search"),createSearchParams;if(!searchParams&&search&&search.set){createSearchParams=createSearchParamsCreate(createSearchParamsPollute(search));Object.defineProperties(ClassProto,{href:{get:function(){return href.get.call(this)},set:function(value){var sp=this._searchParams;href.set.call(this,value);if(sp)updateSearchParams(sp)}},search:{get:function(){return search.get.call(this)},set:function(value){var sp=this._searchParams;search.set.call(this,value);if(sp)updateSearchParams(sp)}},searchParams:{get:function(){verifySearchParams(this,Class);return this._searchParams||createSearchParams(this,new URLSearchParams(this.search.slice(1)))},set:function(sp){verifySearchParams(this,Class);createSearchParams(this,sp)}}})}};upgradeClass(HTMLAnchorElement);if(/^function|object$/.test(typeof URL)&&URL.prototype)upgradeClass(URL);return URLSearchParams}();(function(URLSearchParamsProto){var iterable=function(){try{return!!Symbol.iterator}catch(error){return false}}();if(!("forEach"in URLSearchParamsProto)){URLSearchParamsProto.forEach=function forEach(callback,thisArg){var names=Object.create(null);this.toString().replace(/=[\s\S]*?(?:&|$)/g,"=").split("=").forEach(function(name){if(!name.length||name in names)return;(names[name]=this.getAll(name)).forEach(function(value){callback.call(thisArg,value,name,this)},this)},this)}}if(!("keys"in URLSearchParamsProto)){URLSearchParamsProto.keys=function keys(){var items=[];this.forEach(function(value,name){items.push(name)});var iterator={next:function(){var value=items.shift();return{done:value===undefined,value:value}}};if(iterable){iterator[Symbol.iterator]=function(){return iterator}}return iterator}}if(!("values"in URLSearchParamsProto)){URLSearchParamsProto.values=function values(){var items=[];this.forEach(function(value){items.push(value)});var iterator={next:function(){var value=items.shift();return{done:value===undefined,value:value}}};if(iterable){iterator[Symbol.iterator]=function(){return iterator}}return iterator}}if(!("entries"in URLSearchParamsProto)){URLSearchParamsProto.entries=function entries(){var items=[];this.forEach(function(value,name){items.push([name,value])});var iterator={next:function(){var value=items.shift();return{done:value===undefined,value:value}}};if(iterable){iterator[Symbol.iterator]=function(){return iterator}}return iterator}}if(iterable&&!(Symbol.iterator in URLSearchParamsProto)){URLSearchParamsProto[Symbol.iterator]=URLSearchParamsProto.entries}if(!("sort"in URLSearchParamsProto)){URLSearchParamsProto.sort=function sort(){var entries=this.entries(),entry=entries.next(),done=entry.done,keys=[],values=Object.create(null),i,key,value;while(!done){value=entry.value;key=value[0];keys.push(key);if(!(key in values)){values[key]=[]}values[key].push(value[1]);entry=entries.next();done=entry.done}keys.sort();for(i=0;i<keys.length;i++){this["delete"](keys[i])}for(i=0;i<keys.length;i++){key=keys[i];this.append(key,values[key].shift())}}}})(URLSearchParams.prototype);
-//
+    // polyfil for searchParam
+    var URLSearchParams=URLSearchParams||function(){"use strict";function URLSearchParams(query){var index,key,value,pairs,i,length,dict=Object.create(null);this[secret]=dict;if(!query)return;if(typeof query==="string"){if(query.charAt(0)==="?"){query=query.slice(1)}for(pairs=query.split("&"),i=0,length=pairs.length;i<length;i++){value=pairs[i];index=value.indexOf("=");if(-1<index){appendTo(dict,decode(value.slice(0,index)),decode(value.slice(index+1)))}else if(value.length){appendTo(dict,decode(value),"")}}}else{if(isArray(query)){for(i=0,length=query.length;i<length;i++){value=query[i];appendTo(dict,value[0],value[1])}}else if(query.forEach){query.forEach(addEach,dict)}else{for(key in query){appendTo(dict,key,query[key])}}}}var isArray=Array.isArray,URLSearchParamsProto=URLSearchParams.prototype,find=/[!'\(\)~]|%20|%00/g,plus=/\+/g,replace={"!":"%21","'":"%27","(":"%28",")":"%29","~":"%7E","%20":"+","%00":"\0"},replacer=function(match){return replace[match]},secret="__URLSearchParams__:"+Math.random();function addEach(value,key){appendTo(this,key,value)}function appendTo(dict,name,value){var res=isArray(value)?value.join(","):value;if(name in dict)dict[name].push(res);else dict[name]=[res]}function decode(str){return decodeURIComponent(str.replace(plus," "))}function encode(str){return encodeURIComponent(str).replace(find,replacer)}URLSearchParamsProto.append=function append(name,value){appendTo(this[secret],name,value)};URLSearchParamsProto["delete"]=function del(name){delete this[secret][name]};URLSearchParamsProto.get=function get(name){var dict=this[secret];return name in dict?dict[name][0]:null};URLSearchParamsProto.getAll=function getAll(name){var dict=this[secret];return name in dict?dict[name].slice(0):[]};URLSearchParamsProto.has=function has(name){return name in this[secret]};URLSearchParamsProto.set=function set(name,value){this[secret][name]=[""+value]};URLSearchParamsProto.forEach=function forEach(callback,thisArg){var dict=this[secret];Object.getOwnPropertyNames(dict).forEach(function(name){dict[name].forEach(function(value){callback.call(thisArg,value,name,this)},this)},this)};URLSearchParamsProto.toJSON=function toJSON(){return{}};URLSearchParamsProto.toString=function toString(){var dict=this[secret],query=[],i,key,name,value;for(key in dict){name=encode(key);for(i=0,value=dict[key];i<value.length;i++){query.push(name+"="+encode(value[i]))}}return query.join("&")};var dP=Object.defineProperty,gOPD=Object.getOwnPropertyDescriptor,createSearchParamsPollute=function(search){function append(name,value){URLSearchParamsProto.append.call(this,name,value);name=this.toString();search.set.call(this._usp,name?"?"+name:"")}function del(name){URLSearchParamsProto["delete"].call(this,name);name=this.toString();search.set.call(this._usp,name?"?"+name:"")}function set(name,value){URLSearchParamsProto.set.call(this,name,value);name=this.toString();search.set.call(this._usp,name?"?"+name:"")}return function(sp,value){sp.append=append;sp["delete"]=del;sp.set=set;return dP(sp,"_usp",{configurable:true,writable:true,value:value})}},createSearchParamsCreate=function(polluteSearchParams){return function(obj,sp){dP(obj,"_searchParams",{configurable:true,writable:true,value:polluteSearchParams(sp,obj)});return sp}},updateSearchParams=function(sp){var append=sp.append;sp.append=URLSearchParamsProto.append;URLSearchParams.call(sp,sp._usp.search.slice(1));sp.append=append},verifySearchParams=function(obj,Class){if(!(obj instanceof Class))throw new TypeError("'searchParams' accessed on an object that "+"does not implement interface "+Class.name)},upgradeClass=function(Class){var ClassProto=Class.prototype,searchParams=gOPD(ClassProto,"searchParams"),href=gOPD(ClassProto,"href"),search=gOPD(ClassProto,"search"),createSearchParams;if(!searchParams&&search&&search.set){createSearchParams=createSearchParamsCreate(createSearchParamsPollute(search));Object.defineProperties(ClassProto,{href:{get:function(){return href.get.call(this)},set:function(value){var sp=this._searchParams;href.set.call(this,value);if(sp)updateSearchParams(sp)}},search:{get:function(){return search.get.call(this)},set:function(value){var sp=this._searchParams;search.set.call(this,value);if(sp)updateSearchParams(sp)}},searchParams:{get:function(){verifySearchParams(this,Class);return this._searchParams||createSearchParams(this,new URLSearchParams(this.search.slice(1)))},set:function(sp){verifySearchParams(this,Class);createSearchParams(this,sp)}}})}};upgradeClass(HTMLAnchorElement);if(/^function|object$/.test(typeof URL)&&URL.prototype)upgradeClass(URL);return URLSearchParams}();(function(URLSearchParamsProto){var iterable=function(){try{return!!Symbol.iterator}catch(error){return false}}();if(!("forEach"in URLSearchParamsProto)){URLSearchParamsProto.forEach=function forEach(callback,thisArg){var names=Object.create(null);this.toString().replace(/=[\s\S]*?(?:&|$)/g,"=").split("=").forEach(function(name){if(!name.length||name in names)return;(names[name]=this.getAll(name)).forEach(function(value){callback.call(thisArg,value,name,this)},this)},this)}}if(!("keys"in URLSearchParamsProto)){URLSearchParamsProto.keys=function keys(){var items=[];this.forEach(function(value,name){items.push(name)});var iterator={next:function(){var value=items.shift();return{done:value===undefined,value:value}}};if(iterable){iterator[Symbol.iterator]=function(){return iterator}}return iterator}}if(!("values"in URLSearchParamsProto)){URLSearchParamsProto.values=function values(){var items=[];this.forEach(function(value){items.push(value)});var iterator={next:function(){var value=items.shift();return{done:value===undefined,value:value}}};if(iterable){iterator[Symbol.iterator]=function(){return iterator}}return iterator}}if(!("entries"in URLSearchParamsProto)){URLSearchParamsProto.entries=function entries(){var items=[];this.forEach(function(value,name){items.push([name,value])});var iterator={next:function(){var value=items.shift();return{done:value===undefined,value:value}}};if(iterable){iterator[Symbol.iterator]=function(){return iterator}}return iterator}}if(iterable&&!(Symbol.iterator in URLSearchParamsProto)){URLSearchParamsProto[Symbol.iterator]=URLSearchParamsProto.entries}if(!("sort"in URLSearchParamsProto)){URLSearchParamsProto.sort=function sort(){var entries=this.entries(),entry=entries.next(),done=entry.done,keys=[],values=Object.create(null),i,key,value;while(!done){value=entry.value;key=value[0];keys.push(key);if(!(key in values)){values[key]=[]}values[key].push(value[1]);entry=entries.next();done=entry.done}keys.sort();for(i=0;i<keys.length;i++){this["delete"](keys[i])}for(i=0;i<keys.length;i++){key=keys[i];this.append(key,values[key].shift())}}}})(URLSearchParams.prototype);
+    //
 function getParametersFromUrl() {
     var url_string = decodeURIComponent(window.location.href);
     var subStr = url_string.match(new RegExp("property_", "g"));
@@ -743,6 +796,569 @@ function getParametersFromUrl() {
 }
 getParametersFromUrl();
 // end__URL
+
+
+
+// floor-plan
+function request() {
+    $.ajax({
+        url: "http://apivime.smarto.com.ua/ajax",
+        type: "POST",
+        dataType: "json",
+        data: filter,
+        success: function(data){
+            planDraw(data);
+        },
+        error: function(data){
+           console.log(data);
+        }
+    });
+}
+
+$(".plan-data-js").on("click", function() {
+    var floors = $(".filter-top-range").find(".range__item")[2];
+    var min = $(floors).find(".js-filter__text_min").html();
+
+    filter.typ = 4;
+    filter.option.floor = min;
+
+    request();
+
+    changeFilterFloorNum(1); // argument should not be equal 3
+     $(floors).css("display", "none");
+});
+
+
+// change floor
+$('.floor-nav-list__item').on("click", function(e) {
+    var floorNum = $(this).html();
+    var el = $(this);
+    el.siblings().removeClass("floor-nav-list__item_active");
+    el.addClass("floor-nav-list__item_active");
+    filter.option.floor = floorNum;
+
+    $(".floor-svg").remove();
+
+    filter.typ = "4";
+    request();
+   
+    changeFilterFloorNum(1); // argument should not be equal 3
+});
+// end__change floor
+
+
+
+function planDraw(data) {
+    var coordinates = getCoord(data);
+    var parameters = getParam(data);
+    var imgWidth = data.img[0];
+    var imgHeigth = data.img[1];
+    var imgLoc = data.img[name];
+
+    $(".svg-wrap").css({
+        width: imgWidth+"px",
+        height: imgHeigth+"px"
+    });
+
+    (function buildSVG(middle) {
+        var wrapper = $(".svg-wrap");
+        var polygons = "";
+        var flatsCenterCoord = getPolygonsCenter(coordinates);
+
+        if($(".floor-svg")) {
+            $(".floor-svg").remove();
+        }
+
+        function colorPolygon(item, param, num) {
+            var horizontal = flatsCenterCoord[num].mid[0];
+            var vertical = flatsCenterCoord[num].mid[1];
+            var sale = param[num].sale;
+
+            switch (sale) {
+                case "1":
+                    return "<g class='floor-svg__grup'>" +
+                            "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+                                "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
+                                "<g>" + 
+                                    "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green' width='20' height='20'/>" +
+                                    "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
+                                        parameters[num].rooms +
+                                    "</text>" +
+                                "</g>" +
+                                "<g>" + 
+                                    "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green_lighter' width='65' height='20'/>" +
+                                    "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
+                                        parameters[num].square + " м<tspan class='sup'>2</tspan>" +
+                                    "</text>" +
+                                "</g>" +
+                            "</a>" +
+                        "</g>"; 
+                case "2":
+                    return "<g class='floor-svg__grup'>" +
+                            "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+                                "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
+                                "<g>" + 
+                                    "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow' width='20' height='20'/>" +
+                                    "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
+                                        parameters[num].rooms +
+                                    "</text>" +
+                                "</g>" +
+                                "<g>" + 
+                                    "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow_lighter' width='65' height='20'/>" +
+                                    "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
+                                        parameters[num].square + " м<tspan class='sup'>2</tspan>" +
+                                    "</text>" +
+                                "</g>" +
+                            "</a>" +
+                        "</g>"; 
+                case "3":
+                    return "<g class='floor-svg__grup'>" +
+                            "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+                                "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
+                                "<g>" + 
+                                    "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray' width='20' height='20'/>" +
+                                    "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
+                                        parameters[num].rooms +
+                                    "</text>" +
+                                "</g>" +
+                                "<g>" + 
+                                    "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray_lighter' width='65' height='20'/>" +
+                                    "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
+                                        parameters[num].square + " м<tspan class='sup'>2</tspan>" +
+                                    "</text>" +
+                                "</g>" +
+                            "</a>" +
+                        "</g>"; 
+                case "0":
+                    return "<g class='floor-svg__grup'>" +
+                            "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+                                "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
+                                "<g>" + 
+                                    "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray' width='20' height='20'/>" +
+                                    "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
+                                        parameters[num].rooms +
+                                    "</text>" +
+                                "</g>" +
+                                "<g>" + 
+                                    "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray_lighter' width='65' height='20'/>" +
+                                    "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
+                                        parameters[num].square + " м<tspan class='sup'>2</tspan>" +
+                                    "</text>" +
+                                "</g>" +
+                            "</a>" +
+                        "</g>"; 
+                default:
+                    return "<g class='floor-svg__grup'>" +
+                            "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
+                                "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
+                                "<g>" + 
+                                    "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray' width='20' height='20'/>" +
+                                    "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
+                                        parameters[num].rooms +
+                                    "</text>" +
+                                "</g>" +
+                                "<g>" + 
+                                    "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray_lighter' width='65' height='20'/>" +
+                                    "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text'>" +
+                                        parameters[num].square + " м<tspan class='sup'>2</tspan>" +
+                                    "</text>" +
+                                "</g>" +
+                            "</a>" +
+                        "</g>"; 
+            }
+        }
+
+        coordinates.forEach(function(item, i) {
+            polygons += colorPolygon(item, parameters, i);
+        });
+
+        var svg = "<svg class='floor-svg' width='" + imgWidth + "' height='" + imgHeigth + "' version='1.0' xmlns='http://www.w3.org/2000/svg'>" +
+                    "<image xlink:href='" + data.img.name + "' x='0' y='0' height='100%' width='100%' />" +
+                        polygons +
+                   "</svg>";
+
+        wrapper.append(svg);
+
+        polygonHover(parameters);
+        zooming();
+    }());
+};
+
+function getCoord(data) {
+    var flats = data.dataList;
+    var coordinates = [];
+    var finalArr = [];
+    
+    flats.forEach(function(flat, i) {
+        if(flat.sorts != null) {
+            coordinates.push(flat.sorts);
+        }
+    });
+    return coordinates;
+}
+
+function getParam(data) {
+    var flats = data.dataList;
+    var finalArr = [];
+    
+    flats.forEach(function(flat, i) {
+        var param = {};
+        if(flat.sorts != null) {
+            param.rooms = flat.rooms;
+            param.square = flat.all_room;
+            param.sale = flat.sale;
+            param.id = flat.id;
+            param.totalPrice = flat.price,
+            param.meterPrice = flat.price_m2,
+            param.url = flat.url
+
+            finalArr.push(param);
+        }
+    });
+
+    return finalArr;
+}
+
+function getPolygonsCenter(coordinatesAll) {
+    var coordinatesFlat = [];
+    var coordinatesAllNum = [];
+
+    coordinatesAll = coordinatesAll.map(function(item) {
+        return  item.split(',');
+    });
+
+    coordinatesAll.forEach(function(item) {
+        item = item.map(function(el) {
+            return  el = +el;
+        });
+        coordinatesAllNum.push(item);
+    });
+
+
+    function flatsRangeSize(coord) {
+        var all = [];
+        coord.forEach(function(item) {
+            var flatAllCoord = {};
+            var arrX = [];
+            var arrY = [];
+
+            // separate X and Y coordinate
+            for(var i = 0; i < item.length; i++) {
+                if(i%2 == 0) {
+                    arrX.push(item[i]);
+                } else {
+                    arrY.push(item[i]);
+                }
+            }
+
+            //max coordinates
+            var flatMaxCoord = [];
+            var maxX = Math.max.apply( Math, arrX);
+            var maxY = Math.max.apply( Math, arrY);
+            flatMaxCoord.push(maxX);
+            flatMaxCoord.push(maxY);
+
+            //min coordinates
+            var flatMinCoord = [];
+            var minX = Math.min.apply( Math, arrX);
+            var minY = Math.min.apply( Math, arrY);
+            flatMinCoord.push(minX);
+            flatMinCoord.push(minY);
+
+            //middle coordinates
+            var flatMidCoord = [];
+            var midX = maxX - ((maxX - minX) / 2) - 10; // 10 - half width of center tooltip rect
+            var midY = maxY - ((maxY - minY) / 2) - 10; // 10 - half height of center tooltip rect
+            flatMidCoord.push(midX);
+            flatMidCoord.push(midY);
+
+            flatAllCoord.min = flatMinCoord;
+            flatAllCoord.max = flatMaxCoord;
+            flatAllCoord.mid = flatMidCoord;
+
+            all.push(flatAllCoord);
+        });
+        return all;
+    }
+    
+    return flatsRangeSize(coordinatesAll);
+};
+
+function polygonHover(param) {
+    $(".floor-svg__polygon").hover(
+        function(e) {
+            var target = this;
+            buildTooltip(target);
+            mouseIn(target);
+        },
+        function(e) {
+            var target = this;
+            mouseOut(target);
+        }
+    );
+
+    function buildTooltip(el) {
+        var elementId = $(el).attr("id");
+        var tooltipMarkup = "";
+
+        $(".flat-tooltip_big").remove();
+
+        param.forEach(function(item) {
+            var sale = item.sale;
+            if(elementId == item.id) {
+                switch (sale) {
+                    case "1":
+                        return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+                                    "<div class='flat-tooltip-num'>" +
+                                        "<div class='flat-tooltip-num__rooms flat-tooltip-num__rooms_green'>" +
+                                            item.rooms + "K" +
+                                        "</div>" +
+                                        "<div class='flat-tooltip-num__num'>" +
+                                            "№" + item.id +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='flat-tooltip-price'>" +
+                                        "<p class='flat-tooltip-price__text'>" +
+                                           item.totalPrice + " грн." +
+                                        "</p>" +
+                                        "<p class='flat-tooltip-price__text flat-tooltip-price__text_lower'>" +
+                                            item.square + " м<sup>2</sup> – <span class='flat-tooltip-price__text_gray'>"+item.meterPrice+" грн/м<sup>2</sup></span>" +
+                                        "</p>" +
+                                    "</div>" +
+                                "</div>"
+                    case "2": 
+                        return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+                                    "<div class='flat-tooltip-num'>" +
+                                        "<div class='flat-tooltip-num__rooms flat-tooltip-num__rooms_yellow'>" +
+                                            item.rooms + "K" +
+                                        "</div>" +
+                                        "<div class='flat-tooltip-num__num'>" +
+                                            "№" + item.id +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='flat-tooltip-price'>" +
+                                        "<p class='flat-tooltip-price__text'>" +
+                                           "Бронь"
+                                        "</p>" +
+                                        "<p class='flat-tooltip-price__text flat-tooltip-price__text_lower'>" +
+                                            item.square + " м<sup>2</sup>" +
+                                        "</p>" +
+                                    "</div>" +
+                                "</div>"
+                    case "0":
+                        return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+                                    "<div class='flat-tooltip-num'>" +
+                                        "<div class='flat-tooltip-num__rooms flat-tooltip-num__rooms_dark-gray'>" +
+                                            item.rooms + "K" +
+                                        "</div>" +
+                                        "<div class='flat-tooltip-num__num'>" +
+                                            "№" + item.id +
+                                        "</div>" +
+                                    "</div>" +
+                                    "<div class='flat-tooltip-price'>" +
+                                        "<p class='flat-tooltip-price__text'>" +
+                                           "Продано" +
+                                        "</p>" +
+                                        "<p class='flat-tooltip-price__text flat-tooltip-price__text_lower'>" +
+                                            item.square + " м<sup>2</sup>" +
+                                        "</p>" +
+                                    "</div>" +
+                                "</div>"
+                    case "3":
+                        return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+                                    "<p>Помещение недоступно</p>" +
+                                "</div>"
+                    default:
+                        return tooltipMarkup = "<div class='flat-tooltip_big'>" +
+                                    "<p>Помещение недоступно</p>" +
+                                "</div>"
+                }
+            }
+        });
+        $(".svg-wrap").append(tooltipMarkup);
+    }
+
+    function mouseIn(el) {
+        var targetX = el.getBoundingClientRect().left,
+            targetY = el.getBoundingClientRect().top;
+
+        var wrapper = document.getElementsByClassName("plan-wrap")[0];
+        var wrapperX = wrapper.getBoundingClientRect().left,
+            wrapperY = wrapper.getBoundingClientRect().top;
+
+        var diffTop = targetY - wrapperY,
+            diffLeft = targetX - wrapperX;
+
+        var tooltip = $('.flat-tooltip_big'),
+            tooltipHeight = tooltip.height(),
+            tooltipWidth = tooltip.width();
+
+        tooltip.css({
+            top: diffTop - 0.3*tooltipHeight + "px",
+            left: diffLeft + 0.3*tooltipWidth + "px",
+            opacity: "1"
+        });
+
+        tooltip.hover(
+            function(e) {
+                $(this).css({
+                    top: diffTop - 0.3*tooltipHeight + "px",
+                    left: diffLeft + 0.3*tooltipWidth + "px",
+                    opacity: "1"
+                });
+            },
+            function() {
+                $(this).css({
+                    left: "-9999",
+                    opacity: "0"
+                });
+            }
+        );
+
+        $(el).siblings().css("display", "none");
+
+        (function fillColor() {
+            var elementId = $(el).attr("id");
+
+            param.forEach(function(item) {
+                var sale = item.sale;
+                if(elementId == item.id) {
+                    switch (sale) {
+                        case "1":
+                            return $(el).css("fill", "#219277");
+                        case "2": 
+                            return $(el).css("fill", "#FFB142")
+                        case "3":
+                            return $(el).css("fill", "#666665")
+                        case "0":
+                            return $(el).css("fill", "#454C53")
+                        default:
+                            return $(el).css("fill", "#454C53")
+                    }
+                }
+            });
+        }());
+    }
+
+    function mouseOut(el) {
+        $(el).siblings().css("display", "block");
+
+        $('.flat-tooltip_big').css({
+            opacity: "0",
+            left: "-999px"
+        });
+
+        $(el).css("fill", "transparent");
+    }
+}
+
+// zooming
+function zooming() {
+    var count = 1;
+    $(".zoom-button__button_plus").on("click", function() {
+        if(count < 1.8) {
+            count += 0.2;
+        }
+        $(".floor-svg").css("transform", "scale(" + count + ")");
+        imageDrag(count);
+    });
+    $(".zoom-button__button_minus").on("click", function() {
+        if(count > 1) {
+            count -= 0.2;
+        }
+        $(".floor-svg").css("transform", "scale(" + count + ")");
+        imageDrag(count);
+    });
+
+    (function whellZoom() {
+        var el = document.getElementsByClassName("plan-wrap")[0];
+        el.addEventListener("wheel", function(e) {
+            e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+            var delta = e.deltaY || e.detail || e.wheelDelta;
+
+            if(delta < 0) {
+                if(count < 2) {
+                    count += -delta/3000;
+                } 
+            } else if(delta > 1) {
+                if(count > 1) {
+                    count += -delta/3000;
+                }
+            } 
+            $(".floor-svg").css("transform", "translate(0, 0) scale(" + count + ")");
+            imageDrag(count);
+        });
+    })();
+
+    imageDrag(1);
+};
+// end__zooming
+
+// drag-image
+function imageDrag(zoomValue) {
+    var image = document.getElementsByClassName("floor-svg")[0];
+    var container = document.getElementsByClassName("plan-wrap")[0];
+    var bigContainer = document.getElementsByClassName("floor-wrap")[0];
+
+    bigContainer.onmousedown = function(e) {
+        var containerPosition = container.getBoundingClientRect();
+        var imagePosition = image.getBoundingClientRect();
+
+        var mouseX = e.clientX - containerPosition.left,
+            mouseY = e.clientY - containerPosition.top;
+
+        var vertical = imagePosition.top - containerPosition.top - mouseY,
+            horizontal = imagePosition.left - containerPosition.left - mouseX;
+
+        // reset style;
+        $(image).css("transform", "translate(0, 0) scale(" + zoomValue + ")");
+
+        $(container).mousemove(function(e) {
+            var mouseXMove = e.clientX - containerPosition.left,
+                mouseYMove = e.clientY - containerPosition.top;
+
+            var horizontalMove = mouseXMove + horizontal,
+                verticalMove = mouseYMove + vertical;
+
+            $(".floor-container").css({
+                cursor: "-webkit-grab",
+                cursor: "-moz-grab",
+                cursor: "grab"
+            });
+
+            // checking zoom value for correct displaying
+            if(zoomValue < 1.5) {
+                $(image).css({
+                    left: horizontalMove + (zoomValue*10) + "px",
+                    top: verticalMove + (zoomValue*10) + "px"
+                });
+            } else {
+                $(image).css({
+                    left: horizontalMove + (zoomValue*100) + "px",
+                    top: verticalMove + (zoomValue*100) + "px"
+                });
+            }
+        });
+    };
+
+    bigContainer.ondragstart = function() {
+      return false;
+    };
+
+    bigContainer.onmouseup = function() {
+        $(container).off("mousemove");
+        $(".floor-container").css({
+            cursor: "default"
+        });
+    };
+};
+// end__drag-image
+// end__floor-plan
+
+
+
+
+
 
 
 

@@ -325,6 +325,14 @@
         </div>
     </section>
 
+    <div class="no-result-wrap">
+        <div class="no-result">
+            <p class="no-result__text no-result__line">По заданным Вами параметрам нет объектов для отображения.</p>
+            <p class="no-result__text no-result__text_blue">Попробуйте изменить параметры поиска.</p>
+            <svg class="no-result__icon"><use xlink:href="#no-result-search"></use></svg>
+        </div>
+    </div>
+
     <div class="home-popup-wrap">
         <div class="container">
             <div class="home-popup">
