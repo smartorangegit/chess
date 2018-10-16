@@ -10,6 +10,7 @@
     <body>
         <?php include_once('includes/header.php');?>
         <?php include_once('includes/svg-sprite.php');?>
+        <?php include_once('includes/preloader.php');?>
 
         <div class="location">
             <div class="container">
@@ -137,7 +138,7 @@
                                     Расширенные фильтры
                                     <svg class="filter-top__button-icon"><use xlink:href="#left-arrow"></use></svg>
                                 </button>
-                                <button class="button border-gradient header__button filter__button filter__button_clear-js">
+                                <button class="button border-gradient header__button filter__button filter__button_clear-js plan-data-js">
                                     Сбросить
                                 </button>
                             </div>

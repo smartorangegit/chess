@@ -46,7 +46,7 @@ function initMap(data) {
 		});
 
 	    var iconActive = {
-	        url: "img/map-marker-blue.png",
+	        url: "/img/marker-gray.png",
 	        scaledSize: new google.maps.Size(12, 12),
 	        origin: new google.maps.Point(0, 0)
 	    };
@@ -142,7 +142,7 @@ function filterProj(data, map, icon) {
 
 function createObjWithNecessaryProperties(data) {
 	var dataProjects = [];
-	var propertys = ["project_adress", "project_site", "project_name_mini", 
+	var propertys = ["project_adress", "url_project", "project_name_mini", 
 					"all_room", "projects_coor", "price", 
 					"rooms", "project_price", "project_city", 
 					"project_region", "types", "development_id",
@@ -192,7 +192,7 @@ function markersShow(map, proj, icon) {
     	info.lat = +item.projects_coor[0];
     	info.lng = +item.projects_coor[1];
     	info.name = item.project_name_mini;
-    	info.site = item.project_site;
+    	info.site = item.url_project;
     	info.str = item.project_adress;
     	info.devLogo = item.development_img;
     	info.img = item.project_img;
@@ -271,7 +271,7 @@ function markersShow(map, proj, icon) {
 
 function showResultOnMap(map, allProj, filterResult, icon) {
 	var iconFalse = {
-        url: "img/map-marker.png",
+        url: "/img/marker.png",
         scaledSize: new google.maps.Size(12, 12),
         origin: new google.maps.Point(0, 0)
     };

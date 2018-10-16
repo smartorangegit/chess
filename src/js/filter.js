@@ -87,12 +87,12 @@ $(".filter-full__button_more").on("click", function() {
         $(sections[index]).addClass("filter-section_active-js");
 
         // show/hide filter-select
-        if(index != 1) {
+        if(index == 0 || index == 2) {
             $(".filter-select").css("display", "block");
         } else {
             $(".filter-select").css("display", "none");
         }
-        
+
         showFilterPagination();
         changeFilterFloorNum(index);
     });
@@ -797,8 +797,6 @@ function getParametersFromUrl() {
 getParametersFromUrl();
 // end__URL
 
-
-
 // floor-plan
 function request() {
     $.ajax({
@@ -825,7 +823,7 @@ $(".plan-data-js").on("click", function() {
     request();
 
     changeFilterFloorNum(1); // argument should not be equal 3
-     $(floors).css("display", "none");
+    $(floors).css("display", "none");
 });
 
 
@@ -879,13 +877,13 @@ function planDraw(data) {
                     return "<g class='floor-svg__grup'>" +
                             "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
                                 "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green' width='20' height='20'/>" +
                                     "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
                                         parameters[num].rooms +
                                     "</text>" +
                                 "</g>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_green_lighter' width='65' height='20'/>" +
                                     "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
                                         parameters[num].square + " м<tspan class='sup'>2</tspan>" +
@@ -897,13 +895,13 @@ function planDraw(data) {
                     return "<g class='floor-svg__grup'>" +
                             "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
                                 "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow' width='20' height='20'/>" +
                                     "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
                                         parameters[num].rooms +
                                     "</text>" +
                                 "</g>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_yellow_lighter' width='65' height='20'/>" +
                                     "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
                                         parameters[num].square + " м<tspan class='sup'>2</tspan>" +
@@ -915,13 +913,13 @@ function planDraw(data) {
                     return "<g class='floor-svg__grup'>" +
                             "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
                                 "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray' width='20' height='20'/>" +
                                     "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
                                         parameters[num].rooms +
                                     "</text>" +
                                 "</g>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_gray_lighter' width='65' height='20'/>" +
                                     "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
                                         parameters[num].square + " м<tspan class='sup'>2</tspan>" +
@@ -933,13 +931,13 @@ function planDraw(data) {
                     return "<g class='floor-svg__grup'>" +
                             "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
                                 "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray' width='20' height='20'/>" +
                                     "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
                                         parameters[num].rooms +
                                     "</text>" +
                                 "</g>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray_lighter' width='65' height='20'/>" +
                                     "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_black'>" +
                                         parameters[num].square + " м<tspan class='sup'>2</tspan>" +
@@ -951,13 +949,13 @@ function planDraw(data) {
                     return "<g class='floor-svg__grup'>" +
                             "<a href='http://apivime.smarto.com.ua" + param[num].url + "'>" +
                                 "<polygon id='" + param[num].id + "' class='floor-svg__polygon' points='" + item + "'/>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + horizontal + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray' width='20' height='20'/>" +
                                     "<text x='" + (horizontal+7) + "' y='" + (vertical+14) + "' class='floor-svg__text floor-svg__text_white'>" +
                                         parameters[num].rooms +
                                     "</text>" +
                                 "</g>" +
-                                "<g>" + 
+                                "<g class='rect-wrap' data-active='" + param[num].active +"'>" + 
                                     "<rect x='" + (horizontal+20) + "' y='" + vertical + "' class='floor-svg__rect floor-svg__rect_dark-gray_lighter' width='65' height='20'/>" +
                                     "<text x='" + (horizontal+26) + "' y='" + (vertical+14) + "' class='floor-svg__text'>" +
                                         parameters[num].square + " м<tspan class='sup'>2</tspan>" +
@@ -980,9 +978,29 @@ function planDraw(data) {
         wrapper.append(svg);
 
         polygonHover(parameters);
+        activeFlat();
         zooming();
     }());
 };
+
+function activeFlat() {
+    var rectWrap = $(".rect-wrap");
+    for(var i = 0; i < rectWrap.length; i++) {
+        var active = $(rectWrap[i]).attr("data-active");
+
+        if(active == 0) {
+            $(rectWrap[i]).css({
+                "opacity": "0.7",
+                "transform": "scale(0.95)"
+            });
+        } else {
+            $(rectWrap[i]).css({
+                "opacity": "1",
+                "transform": "scale(1)"
+            });
+        }
+    }
+}
 
 function getCoord(data) {
     var flats = data.dataList;
@@ -1010,7 +1028,8 @@ function getParam(data) {
             param.id = flat.id;
             param.totalPrice = flat.price,
             param.meterPrice = flat.price_m2,
-            param.url = flat.url
+            param.url = flat.url,
+            param.active = flat.filter
 
             finalArr.push(param);
         }
@@ -1259,14 +1278,17 @@ function zooming() {
         if(count < 1.8) {
             count += 0.2;
         }
-        $(".floor-svg").css("transform", "scale(" + count + ")");
+        // $(".floor-svg").css("transform", "scale(" + count + ")");
+        $(".floor-svg").css("transform", "translate(-50%, -50%) scale(" + count + ")");
+
         imageDrag(count);
     });
     $(".zoom-button__button_minus").on("click", function() {
         if(count > 1) {
             count -= 0.2;
         }
-        $(".floor-svg").css("transform", "scale(" + count + ")");
+        // $(".floor-svg").css("transform", "scale(" + count + ")");
+        $(".floor-svg").css("transform", "translate(-50%, -50%) scale(" + count + ")");
         imageDrag(count);
     });
 
@@ -1285,7 +1307,7 @@ function zooming() {
                     count += -delta/3000;
                 }
             } 
-            $(".floor-svg").css("transform", "translate(0, 0) scale(" + count + ")");
+            $(".floor-svg").css("transform", "translate(-50%, -50%) scale(" + count + ")");
             imageDrag(count);
         });
     })();
@@ -1310,12 +1332,11 @@ function imageDrag(zoomValue) {
         var vertical = imagePosition.top - containerPosition.top - mouseY,
             horizontal = imagePosition.left - containerPosition.left - mouseX;
 
-        // reset style;
-        $(image).css("transform", "translate(0, 0) scale(" + zoomValue + ")");
+        // $(image).css("transform", "translate(-50%, -50%) scale(" + zoomValue + ")");
 
         $(container).mousemove(function(e) {
-            var mouseXMove = e.clientX - containerPosition.left,
-                mouseYMove = e.clientY - containerPosition.top;
+            var mouseXMove = e.clientX - containerPosition.left + 150,
+                mouseYMove = e.clientY - containerPosition.top + 150;
 
             var horizontalMove = mouseXMove + horizontal,
                 verticalMove = mouseYMove + vertical;
@@ -1334,8 +1355,8 @@ function imageDrag(zoomValue) {
                 });
             } else {
                 $(image).css({
-                    left: horizontalMove + (zoomValue*100) + "px",
-                    top: verticalMove + (zoomValue*100) + "px"
+                    left: horizontalMove + 100 + "px",
+                    top: verticalMove + 100 + "px"
                 });
             }
         });

@@ -119,24 +119,7 @@ function videoPlay(wrapper) {
 
     rangesValue();
     getRoomsNumber();
-    function getSelectsValue() {
-        $(".select__item").on("click", function(e) {
-            var parrent = $(this).closest(".home-filter__select-wrap");
-            var value = parrent.find(".home-filter__select").val();
-            var selectId = parrent.find("select").attr("id");
-
-            switch (selectId) {
-                    case "project_city":
-                        return filter.selectValue["project_city"] = value;
-                    case "project_region":
-                        return filter.selectValue["project_region"] = value;
-                    case "state":
-                        return filter.selectValue["state"] = value;
-                    case "development_id":
-                        return filter.selectValue["development_id"] = value;
-            }
-        });
-    }
+    getSelectsValue();
 
     // show_selected_residance (home-page)
     function residenceShow(residence) {

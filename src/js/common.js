@@ -2,6 +2,14 @@
 
 $(".form__phone").mask('+38 (099) 999-99-99');
 
+// preloader
+window.addEventListener("load", function() {
+   setTimeout(function() {
+      document.querySelector(".preloader").classList.add("preloader-out");
+    }, 500);
+});
+// end__preloader
+
 // location-active-link
     $(".location-list__link").on("click", function() {
     	$(".location-list__link").removeClass("location-list__link_active");
@@ -196,6 +204,25 @@ $(".form__phone").mask('+38 (099) 999-99-99');
         }
     }
     // end__get_ranges_value
+
+    function getSelectsValue() {
+        $(".select__item").on("click", function(e) {
+            var parrent = $(this).closest(".home-filter__select-wrap");
+            var value = parrent.find(".home-filter__select").val();
+            var selectId = parrent.find("select").attr("id");
+
+            switch (selectId) {
+                    case "project_city":
+                        return filter.selectValue["project_city"] = value;
+                    case "project_region":
+                        return filter.selectValue["project_region"] = value;
+                    case "state":
+                        return filter.selectValue["state"] = value;
+                    case "development_id":
+                        return filter.selectValue["development_id"] = value;
+            }
+        });
+    }
 
     // get_number_of_rooms
    function getRoomsNumber() {
