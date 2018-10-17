@@ -60,7 +60,7 @@
                             <img src="img/residence/res_1.jpg" alt="build-image" class="building__image">
                         </div>
                     </div>
-                    <div class="filter-short">
+                    <div class="filter-short filter-short_height-js">
                         <div class="filter-short-content">
                             <div class="filter-short-checkbox-wrap">
                                 <span class="filter-checkbox__text">Количество комнат:</span>
@@ -286,7 +286,7 @@
                                         <svg id="list" class="view-list__icon"><use xlink:href="#list"></use></svg>
                                         <p class="view-list__text">Список</p>
                                     </li>
-                                    <li class="view-list__item plan-data-js">
+                                    <li class="view-list__item plan-data-js hide-floor-range-js">
                                         <svg id="icon-plan" class="view-list__icon"><use xlink:href="#icon-plan"></use></svg>
                                         <p class="view-list__text">Этаж</p>
                                     </li>

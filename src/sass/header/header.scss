@@ -27,7 +27,7 @@
 
 	&-list {
 		/*width: 630/1200*100%;*/
-		width: 632px;
+		width: 835px;
 		display: flex;
 		align-items: center;
 
@@ -72,6 +72,12 @@
 			}
 			&:hover:after {
 				width: 100%;
+			}
+
+			&_active {
+				&:after {
+					width: 100%;
+				}
 			}
 		}
 	}
@@ -280,7 +286,7 @@
 			align-items: center;
 			justify-content: center;
 			width: auto;
-			padding: 0;
+			padding: 0 5px;
 
 			&:hover {
 				color: #fff;

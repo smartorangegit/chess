@@ -118,7 +118,6 @@ function videoPlay(wrapper) {
     var filter = objClone(filterDefautl);
 
     rangesValue();
-    getRoomsNumber();
     getSelectsValue();
 
     // show_selected_residance (home-page)
@@ -165,6 +164,8 @@ function videoPlay(wrapper) {
         e.preventDefault();
         $(".residence-list__item").remove();
 
+        getRoomsNumber($(".home-filter-checkbox-wrap"));
+
         $.ajax({
             url: "http://apivime.smarto.com.ua/ajax",
             type: "POST",
@@ -186,10 +187,10 @@ function videoPlay(wrapper) {
     // show no-result block
     function noResult(data) {
         if(data.length == 0) {
-            $(".no-result").css("display", "block");
+            $(".no-result-wrap").css("display", "block");
             $(".home-residence").css("display", "none");
         } else {
-            $(".no-result").css("display", "none");
+            $(".no-result-wrap").css("display", "none");
             $(".home-residence").css("display", "block");
         }
         

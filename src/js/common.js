@@ -225,13 +225,31 @@ window.addEventListener("load", function() {
     }
 
     // get_number_of_rooms
-   function getRoomsNumber() {
-     $(".filter-checkbox").on("click", function() {
+   function getRoomsNumber(wrapper) {
+    //  $(".filter-checkbox").on("click", function() {
+    //     var roomsArr = filter.option["rooms"];
+    //     var roomNumber = $(this).attr("value");
+    //     var checked = $(this).prop("checked");
+
+    //     if(checked) {
+    //         roomsArr.push(+roomNumber);
+    //     } else {
+    //         roomsArr.forEach(function(item, i) {
+    //             if(item == +roomNumber) {
+    //                 roomsArr.splice(i, 1);
+    //             }
+    //         });
+    //     }
+    // });
+
+     var roomsCheck = wrapper.find(".filter-checkbox");
+
+     roomsCheck.each(function(i, el) {
         var roomsArr = filter.option["rooms"];
         var roomNumber = $(this).attr("value");
         var checked = $(this).prop("checked");
 
-        if(checked) {
+        if($(el).prop("checked")) {
             roomsArr.push(+roomNumber);
         } else {
             roomsArr.forEach(function(item, i) {
@@ -240,7 +258,7 @@ window.addEventListener("load", function() {
                 }
             });
         }
-    });
+     });
    }
     // end__get_number_of_rooms
 
@@ -277,7 +295,7 @@ window.addEventListener("load", function() {
             filter = objClone(filterDefautl);
         });
     };
-    resetFilter();
+    // resetFilter();
     // end__reset_filter_values
 
 // end__functions_for_filter
@@ -470,11 +488,11 @@ window.addEventListener("load", function() {
 // end__pagination
 
 
-// login-popup
-function logSucces() {
-    $('.succes-popup').fadeIn();
-    setTimeout(function() {
-        $('.succes-popup').fadeOut();
-    }, 2000);
-}
-// end__login-popup
+// // login-popup
+// function logSucces() {
+//     $('.succes-popup').fadeIn();
+//     setTimeout(function() {
+//         $('.succes-popup').fadeOut();
+//     }, 2000);
+// }
+// // end__login-popup

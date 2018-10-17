@@ -150,8 +150,10 @@
             </div>
         </div>
 
-        <div class="map-page__map-wrap">
-            <div id="map" class="map-page__map"></div>
+        <div class="container">
+            <div class="map-page__map-wrap">
+                <div id="map" class="map-page__map"></div>
+            </div>
         </div>
 
 

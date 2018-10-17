@@ -19,7 +19,7 @@ var filter = objClone(filterDefautl);
 
 rangesValue();
 getSelectsValue();
-getRoomsNumber();
+// getRoomsNumber($(".home-filter-checkbox-wrap"));
 
 $.ajax({
     url: "http://apivime.smarto.com.ua/ajax",
@@ -69,6 +69,7 @@ function getAllProject(data) {
 
 function filterProj(data, map, icon) {
 	$(".filter__button-js").on("click", function(e) {
+		getRoomsNumber($(".home-filter-checkbox-wrap"));
 		e.preventDefault();
 		var fullDataProjects = data.data;
 		var allProjects = createObjWithNecessaryProperties(fullDataProjects);
@@ -224,12 +225,12 @@ function markersShow(map, proj, icon) {
 		                '<img src="' + item.devLogo + '" alt="logo" class="map-tooltip__logo">' +
 		                '<ul class="map-tooltip-info">' +
 		                    '<li class="map-tooltip-info__item">' +
-		                        '<svg class="map-tooltip-info__icon"><use xlink:href="#placeholder"></use></svg>' +
+		                        '<svg class="map-tooltip-info__icon map-tooltip-info__icon_small"><use xlink:href="#placeholder"></use></svg>' +
 		                        '<p class="map-tooltip-info__text">' + item.subway + '<span class="map-tooltip__text-info_medium">' + item.str + '</span></p>' +
 		                    '</li>' +
 		                    '<li class="map-tooltip-info__item">' +
 		                        '<svg class="map-tooltip-info__icon"><use xlink:href="#price"></use></svg>' +
-		                        '<p class="map-tooltip-info__text">Cтоимость квартиры – <span class="map-tooltip-info__text_medium">от ' + item.minPrice + ' грн.</span></p>' +
+		                        '<p class="map-tooltip-info__text">Cтоимость квартиры – <br> <span class="map-tooltip-info__text_medium">от ' + item.minPrice + ' грн.</span></p>' +
 		                    '</li>' +
 		                '</ul>' +
 		                '<a href="' + item.site + '" class="button booking-button map-tooltip__button">' +

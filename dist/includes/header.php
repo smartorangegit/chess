@@ -9,6 +9,9 @@
 					<a href="#" class="nav-list__link">о проекте</a>
 				</li>
 				<li class="nav-list__item">
+					<a href="#" class="nav-list__link">подбор по карте</a>
+				</li>
+				<li class="nav-list__item">
 					<a href="#" class="nav-list__link">контакты</a>
 				</li>
 				<li class="nav-list__item">

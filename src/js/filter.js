@@ -26,6 +26,13 @@ $(".filter-full__button_more").on("click", function() {
     });
 // end__cahnge color-box color
 
+//filter-short-height
+(function setFilterShortHeight() {
+    var etalonHeight = $(".building").outerHeight();
+    $(".filter-short").outerHeight(etalonHeight);
+}());
+//end__filter-short-height
+
 
 // show-floor-plan
     function showFlorPlan() {
@@ -277,21 +284,22 @@ $(".result-tile-wrap").addClass("filter-section_active-js"); //add default activ
     }());
 
     rangesValue();
-    getRoomsNumber();
+    // getRoomsNumber();
 
     // apply
     $('.filter__button-js').on("click", function(e) {
         e.preventDefault();
         $(".residence-list__item").remove();
+
+        getRoomsNumber($(".filter-short-content"));
+
         // change url
         var recursiveEncoded = $.param(filter);
         var url = window.location.href + '?';
         url = url.substr(0,url.indexOf('?'))
         window.history.pushState("", "", url+'?'+recursiveEncoded);
-
         getParametersFromUrl();
         // end change url
-
 
         $.ajax({
             url: "http://apivime.smarto.com.ua/ajax",
@@ -318,11 +326,31 @@ $(".result-tile-wrap").addClass("filter-section_active-js"); //add default activ
     });
     // end__apply
 
+    // request for show floor-plan
+    function request() {
+        getRoomsNumber($(".filter-short-content"));
+        $.ajax({
+            url: "http://apivime.smarto.com.ua/ajax",
+            type: "POST",
+            dataType: "json",
+            data: filter,
+            success: function(data){
+                console.log(filter, data);
+                planDraw(data);
+            },
+            error: function(data){
+               console.log(data);
+            }
+        });
+    }
+    // end__request for show floor-plan
+
     // show no-result block
     function noResult(data) {
         if(data.length == 0) {
             $(".no-result-wrap").css("display", "block");
             $(".pagination").css("display", "none");
+            $(".result-list-top").css("display", "none");
             $(".filter-section-js").css({
                 "position": "absolute",
                 "opacity": "0"
@@ -798,21 +826,6 @@ getParametersFromUrl();
 // end__URL
 
 // floor-plan
-function request() {
-    $.ajax({
-        url: "http://apivime.smarto.com.ua/ajax",
-        type: "POST",
-        dataType: "json",
-        data: filter,
-        success: function(data){
-            planDraw(data);
-        },
-        error: function(data){
-           console.log(data);
-        }
-    });
-}
-
 $(".plan-data-js").on("click", function() {
     var floors = $(".filter-top-range").find(".range__item")[2];
     var min = $(floors).find(".js-filter__text_min").html();
@@ -823,7 +836,20 @@ $(".plan-data-js").on("click", function() {
     request();
 
     changeFilterFloorNum(1); // argument should not be equal 3
-    $(floors).css("display", "none");
+
+    var floorNumList = $('.floor-nav-list__item');
+    for(var i = 0; i < floorNumList.length; i++) {
+        if($(floorNumList[i]).html() == min) {
+            $(floorNumList[i]).addClass("floor-nav-list__item_active");
+        } else {
+            $(floorNumList[i]).removeClass("floor-nav-list__item_active");
+        }
+    }
+});
+
+$(".hide-floor-range-js").on("click", function() {
+     var floors = $(".filter-top-range").find(".range__item")[2];
+     $(floors).css("display", "none");
 });
 
 
@@ -831,11 +857,13 @@ $(".plan-data-js").on("click", function() {
 $('.floor-nav-list__item').on("click", function(e) {
     var floorNum = $(this).html();
     var el = $(this);
+
     el.siblings().removeClass("floor-nav-list__item_active");
     el.addClass("floor-nav-list__item_active");
     filter.option.floor = floorNum;
 
     $(".floor-svg").remove();
+    $(".floor__heading_num").html(floorNum);
 
     filter.typ = "4";
     request();
@@ -990,8 +1018,8 @@ function activeFlat() {
 
         if(active == 0) {
             $(rectWrap[i]).css({
-                "opacity": "0.7",
-                "transform": "scale(0.95)"
+                "opacity": "0.6",
+                "transform": "scale(0.9)"
             });
         } else {
             $(rectWrap[i]).css({
