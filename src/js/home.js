@@ -119,6 +119,7 @@ function videoPlay(wrapper) {
 
     rangesValue();
     getSelectsValue();
+    getRoomsNumber();
 
     // show_selected_residance (home-page)
     function residenceShow(residence) {
@@ -163,8 +164,6 @@ function videoPlay(wrapper) {
     $('.filter__button-js').on("click", function(e) {
         e.preventDefault();
         $(".residence-list__item").remove();
-
-        getRoomsNumber($(".home-filter-checkbox-wrap"));
 
         $.ajax({
             url: "http://apivime.smarto.com.ua/ajax",

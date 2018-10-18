@@ -225,31 +225,13 @@ window.addEventListener("load", function() {
     }
 
     // get_number_of_rooms
-   function getRoomsNumber(wrapper) {
-    //  $(".filter-checkbox").on("click", function() {
-    //     var roomsArr = filter.option["rooms"];
-    //     var roomNumber = $(this).attr("value");
-    //     var checked = $(this).prop("checked");
-
-    //     if(checked) {
-    //         roomsArr.push(+roomNumber);
-    //     } else {
-    //         roomsArr.forEach(function(item, i) {
-    //             if(item == +roomNumber) {
-    //                 roomsArr.splice(i, 1);
-    //             }
-    //         });
-    //     }
-    // });
-
-     var roomsCheck = wrapper.find(".filter-checkbox");
-
-     roomsCheck.each(function(i, el) {
+   function getRoomsNumber() {
+     $(".filter-checkbox").on("click", function() {
         var roomsArr = filter.option["rooms"];
         var roomNumber = $(this).attr("value");
         var checked = $(this).prop("checked");
 
-        if($(el).prop("checked")) {
+        if(checked) {
             roomsArr.push(+roomNumber);
         } else {
             roomsArr.forEach(function(item, i) {
@@ -258,7 +240,25 @@ window.addEventListener("load", function() {
                 }
             });
         }
-     });
+    });
+
+     // var roomsCheck = wrapper.find(".filter-checkbox");
+
+     // roomsCheck.each(function(i, el) {
+     //    var roomsArr = filter.option["rooms"];
+     //    var roomNumber = $(this).attr("value");
+     //    var checked = $(this).prop("checked");
+
+     //    if($(el).prop("checked")) {
+     //        roomsArr.push(+roomNumber);
+     //    } else {
+     //        roomsArr.forEach(function(item, i) {
+     //            if(item == +roomNumber) {
+     //                roomsArr.splice(i, 1);
+     //            }
+     //        });
+     //    }
+     // });
    }
     // end__get_number_of_rooms
 

@@ -241,7 +241,7 @@ $(".result-tile-wrap").addClass("filter-section_active-js"); //add default activ
         });
     }());
 
-    $(".filter-settings-list__label").on("click", function() {
+    function checkBoxClickHandler() {
         var checkbox = $(this).siblings(".filter-checkbox");
         var checked = checkbox.prop("checked");
         var name = checkbox.data("label");
@@ -261,7 +261,11 @@ $(".result-tile-wrap").addClass("filter-section_active-js"); //add default activ
             filter.option.properties[id][0] = null;
             filter.option.properties[id][1] = null;
         }
-    });
+    }
+
+    $(".filter-settings-list__label").on("click", checkBoxClickHandler);
+    $(".filter-settings-list__text").on("click", checkBoxClickHandler);
+
     // end__add_expanded_settings_filter
 
     // remove_expanded_settings_filter
@@ -284,14 +288,12 @@ $(".result-tile-wrap").addClass("filter-section_active-js"); //add default activ
     }());
 
     rangesValue();
-    // getRoomsNumber();
+    getRoomsNumber();
 
     // apply
     $('.filter__button-js').on("click", function(e) {
         e.preventDefault();
         $(".residence-list__item").remove();
-
-        getRoomsNumber($(".filter-short-content"));
 
         // change url
         var recursiveEncoded = $.param(filter);
@@ -328,14 +330,12 @@ $(".result-tile-wrap").addClass("filter-section_active-js"); //add default activ
 
     // request for show floor-plan
     function request() {
-        getRoomsNumber($(".filter-short-content"));
         $.ajax({
             url: "http://apivime.smarto.com.ua/ajax",
             type: "POST",
             dataType: "json",
             data: filter,
             success: function(data){
-                console.log(filter, data);
                 planDraw(data);
             },
             error: function(data){
@@ -788,7 +788,6 @@ function getParametersFromUrl() {
             urlFilter[prop] = url.searchParams.getAll("option[properties][" + prop + "][]");
         }
 
-
         // set range parameters
         var rangesWrap = $(".range__item");
         var rangesInfoElements = rangesWrap.find(".js-filter__hidden-values");
@@ -820,6 +819,22 @@ function getParametersFromUrl() {
             });
         }
         // end__check rooms
+
+        (function setNewPropForFilter() {
+            var expandedSettingsRange = $(".filter-full-range .js-filter__hidden-values");
+            for(var i = 0; i < expandedSettingsRange.length; i++) {
+                var min = $(expandedSettingsRange[i]).siblings(".js-filter__text_min").html(),
+                    max = $(expandedSettingsRange[i]).siblings(".js-filter__text_max").html(),
+                    name = $(expandedSettingsRange[i]).attr("name");
+
+                filter.option.properties[name] = [min, max];
+            }
+
+            filter.option.price = url.searchParams.getAll("option[price][]");
+            filter.option.all_room = url.searchParams.getAll("option[all_room][]");
+            filter.option.floor = url.searchParams.getAll("option[floor][]");
+            filter.option.rooms = url.searchParams.getAll("option[rooms][]");
+        }());
     } 
 }
 getParametersFromUrl();

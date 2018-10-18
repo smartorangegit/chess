@@ -19,7 +19,7 @@ var filter = objClone(filterDefautl);
 
 rangesValue();
 getSelectsValue();
-// getRoomsNumber($(".home-filter-checkbox-wrap"));
+getRoomsNumber();
 
 $.ajax({
     url: "http://apivime.smarto.com.ua/ajax",
