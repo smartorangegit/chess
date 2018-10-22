@@ -172,7 +172,7 @@ function showFilterPagination() {
         }
     }
 
-    if(index == 1 || index == 3) {
+    if(index == 1 || index == 3 || index == 4) {
         $(".filter-pagination").css("display", "none");
     } else {
         $(".filter-pagination").css("display", "block");
@@ -1072,7 +1072,8 @@ function getParam(data) {
             param.totalPrice = flat.price,
             param.meterPrice = flat.price_m2,
             param.url = flat.url,
-            param.active = flat.filter
+            param.active = flat.filter,
+            param.floor = flat.floor
 
             finalArr.push(param);
         }
@@ -1418,6 +1419,181 @@ function imageDrag(zoomValue) {
 };
 // end__drag-image
 // end__floor-plan
+
+
+// facade
+$(".facade-data-js").on("click", function() {
+
+    var sendData = {
+        typ: "5",
+        page: "1",
+        option: {
+            house: 1,
+            project_id: $(".building").data("id"),
+            rooms: []
+        }
+    }
+
+    $.ajax({
+        url: "http://apivime.smarto.com.ua/ajax",
+        type: "POST",
+        dataType: "json",
+        data: sendData,
+        success: function(data){
+            facadeDraw(data);
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+});
+
+function facadeDraw(data) {
+    var coordinates = getCoord(data);
+    var parameters = getParam(data);
+    var imgWidth = data.img[0];
+    var imgHeigth = data.img[1];
+    var imgLoc = data.img[name];
+
+    $(".facade").css({
+        width: imgWidth+"px",
+        height: imgHeigth+"px"
+    });
+
+    (function buildFacade(middle) {
+        var wrapper = $(".facade");
+        var polygons = "";
+
+        if($(".facade-svg")) {
+            $(".facade-svg").remove();
+        }
+
+        coordinates.forEach(function(item, i) {
+            polygons += "<g class='facade-svg__grup'>" +
+                                "<polygon data-floor='" + parameters[i].floor + "' class='facade-svg__polygon' points='" + item + "'/>" +
+                        "</g>"; 
+        });
+
+        var svg = "<svg class='facade-svg' width='" + imgWidth + "' height='" + imgHeigth + "' version='1.0' xmlns='http://www.w3.org/2000/svg'>" +
+                    "<image xlink:href='" + data.img.name + "' x='0' y='0' height='100%' width='100%' />" +
+                        polygons +
+                   "</svg>";
+
+        wrapper.append(svg);
+
+        facadePolygonHover(parameters);
+        toFloorPlan();
+    }());
+};
+
+function toFloorPlan() {
+    $(".facade-svg__polygon").on("click", function() {
+        var floor = $(this).data("floor");
+        var floorsItems = $(".floor-nav-list__item");
+        $(this).closest(".filter-section-js")
+               .removeClass("filter-section_active-js")
+               .css("display", "none");
+
+        $(".floor-wrap").addClass("filter-section_active-js")
+                        .css("display", "block");
+        floorsItems.removeClass("floor-nav-list__item_active");
+        floorsItems.each(function(i, item) {
+            if(floor == $(item).html()) {
+                $(item).addClass("floor-nav-list__item_active");
+            }
+        });
+
+        $(".result-short__select").html("Этаж");
+        $(".result-short__select-icon").find("use").attr("xlink:href", "#icon-plan");
+
+        filter.typ = 4;
+        filter.option.floor = floor;
+
+        request();
+
+        changeFilterFloorNum(1);
+    });
+}
+
+
+
+function facadePolygonHover(param) {
+    $(".facade-svg__polygon").hover(
+        function(e) {
+            var target = this;
+            buildTooltip(target);
+            mouseIn(target);
+        },
+        function(e) {
+            var target = this;
+            mouseOut(target);
+        }
+    );
+
+    function buildTooltip(el) {
+        var elementId = $(el).data("floor");
+        var tooltipMarkup = "";
+
+        $(".facade-tooltip").remove();
+
+        param.forEach(function(item) {
+            if(elementId == item.floor) {
+               tooltipMarkup = '<div class="facade-tooltip">' +
+                    'some text' +
+                '</div>';
+            }
+        });
+        $(".facade").append(tooltipMarkup);
+    }
+
+    function mouseIn(el) {
+        var targetX = el.getBoundingClientRect().left,
+            targetY = el.getBoundingClientRect().top;
+
+        var wrapper = document.getElementsByClassName("facade")[0];
+        var wrapperX = wrapper.getBoundingClientRect().left,
+            wrapperY = wrapper.getBoundingClientRect().top;
+
+        var diffTop = targetY - wrapperY,
+            diffLeft = targetX - wrapperX;
+
+        var tooltip = $('.facade-tooltip'),
+            tooltipHeight = tooltip.height(),
+            tooltipWidth = tooltip.width();
+
+        tooltip.css({
+            top: diffTop - 0.4*tooltipHeight + "px",
+            left: diffLeft + 0.3*tooltipWidth + "px",
+            opacity: "1"
+        });
+
+        tooltip.hover(
+            function(e) {
+                $(this).css({
+                    top: diffTop - 0.4*tooltipHeight + "px",
+                    left: diffLeft + 0.3*tooltipWidth + "px",
+                    opacity: "1"
+                });
+            },
+            function() {
+                $(this).css({
+                    left: "-9999",
+                    opacity: "0"
+                });
+            }
+        );
+
+        $(el).siblings().css("display", "none");
+    }
+
+    function mouseOut(el) {
+        $('.facade-tooltip').css({
+            opacity: "0",
+            left: "-999px"
+        });
+    }
+}
+// end__facade
 
 
 

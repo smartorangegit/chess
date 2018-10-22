@@ -290,6 +290,10 @@
                                         <svg id="icon-plan" class="view-list__icon"><use xlink:href="#icon-plan"></use></svg>
                                         <p class="view-list__text">Этаж</p>
                                     </li>
+                                    <li class="view-list__item facade-data-js hide-floor-range-js">
+                                        <svg id="icon-plan" class="view-list__icon"><use xlink:href="#icon-plan"></use></svg>
+                                        <p class="view-list__text">Фасад</p>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -782,6 +786,7 @@
                         <li class="floor-nav-list__item">2</li>
                         <li class="floor-nav-list__item">3</li>
                         <li class="floor-nav-list__item">4</li>
+                        <li class="floor-nav-list__item">5</li>
                     </ul>
                 </div>
                 <div class="floor-container">
@@ -799,6 +804,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="facade filter-section-js">
+            <div class="facade-tooltip">
+                some text
             </div>
         </section>
 

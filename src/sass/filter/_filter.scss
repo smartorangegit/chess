@@ -1224,4 +1224,38 @@
 }
 /*end__section-floor-plan*/
 
+
+/*facade*/
+.facade {
+	display: none;
+	margin: 0 auto;
+	padding-bottom: 50px;
+	position: relative;
+
+	&-svg__polygon {
+		fill: $blue;
+		opacity: 0.3;
+		transition: all 0.3s;
+		cursor: pointer;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
+
+	&-tooltip {
+		position: absolute;
+		top: 0;
+		left: -999px;
+		opacity: 0;
+		width: 200px;
+		height: 100px;
+		background-color: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+/*end__facade*/
+
 /*end__filter*/
